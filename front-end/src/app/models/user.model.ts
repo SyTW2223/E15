@@ -2,7 +2,6 @@ import {Deserializable} from './deserializable.model';
 
 export class UserModel {
   constructor (
-    public id_user: number,
     public username: string,
     public password: string,
     public email: string,
