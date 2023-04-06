@@ -11,8 +11,8 @@ export class UserModel {
     public password: string,
     public gender: string,
     public role: string,
-    public profile_picture: string,
     public birthdate: string,
+    public picture: string,
   ){}
   
   deserialize(input: any) {

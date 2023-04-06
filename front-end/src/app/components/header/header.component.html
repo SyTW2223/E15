@@ -1,4 +1,15 @@
-<p>header works!</p>
-<a routerLink="sing-up">Registrarse</a>
-<p></p>
-<a routerLink="sing-in">Iniciar sesión</a>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>PRE-WORKOUT</span>
+    <span class="spacer"></span>
+    <button mat-button routerLink="/">Inicio</button>
+    <button mat-button routerLink="/ejercicios">Ejercicios</button>
+    <button mat-button routerLink="/rutinas">Rutinas</button>
+    <button mat-button routerLink="/alimentación">Alimentación</button>
+    <button mat-button routerLink="/mapa">Mapa</button>
+    <button mat-button routerLink="/asesoramiento">Asesoramiento</button>
+    <button mat-raised-button color="accent" routerLink="/sign-in">Iniciar sesión</button>
+    <button mat-raised-button color="accent" routerLink="/sign-up">Registrarse</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+  

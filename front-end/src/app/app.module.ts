@@ -12,7 +12,11 @@ import { SingInComponent } from './components/sing-in/sing-in.component';
 import { SingUpComponent } from './components/sing-up/sing-up.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { AuthenticationService } from './services/authentication.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { AuthenticationService } from './services/authentication.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    MatButtonModule,
+    MatToolbarModule,
+
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [AuthenticationService],
   bootstrap: [AppComponent]
