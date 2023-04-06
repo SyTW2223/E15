@@ -15,6 +15,3 @@ signUpR.post('/signUp', async (req, res)=>{
 
   console.log(new_user)
 })
-
-
-

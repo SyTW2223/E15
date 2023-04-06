@@ -4,9 +4,10 @@ import {ExerciseModel} from "./exercise.model";
 
 export class RoutineModel {
   constructor ( 
-    public id_routine: number, 
+    public id: number, 
+    public category: string,
     public exercises: ExerciseModel[],
-    public need_equipment: boolean,
+    public equipment_needed: boolean,
     public avg_duration: number,
     public trainer: UserModel
   ){}

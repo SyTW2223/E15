@@ -22,7 +22,7 @@ export class SingUpComponent {
   ngOnInit() {
 
   }
-
+  
   singUp() {
     this.auth.signUpUser(this.singUpUser)
       .subscribe(
