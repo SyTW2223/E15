@@ -1,0 +1,22 @@
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Iniciar sesión</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <mat-form-field>
+          <!--<input [(ngModel)]="signUpUser.name" matInput placeholder="Name">-->
+          <mat-label>Correo electronico</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field>
+          <!--<input [(ngModel)]="signUpUser.name" matInput placeholder="Name">-->
+          <mat-label>Contraseña</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="signIn()">Registrarse</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

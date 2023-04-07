@@ -36,26 +36,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.signUpR = void 0;
+exports.signInR = void 0;
 var userSchema_1 = require("../Schema/userSchema");
 var express = require("express");
 var jwt = require('jsonwebtoken');
-exports.signUpR = express.Router();
-exports.signUpR.post('/signUp', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var new_user, result, token;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+exports.signInR = express.Router();
+exports.signInR.post('/signIn', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, username, email, password, user, token;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
             case 0:
-                new_user = new userSchema_1.User(req.body);
-                return [4 /*yield*/, new_user.save()];
+                _a = req.body, username = _a.username, email = _a.email, password = _a.password;
+                return [4 /*yield*/, userSchema_1.User.findOne({ email: email })];
             case 1:
-                result = _a.sent();
-                return [4 /*yield*/, jwt.sign({ _id: new_user._id }, 'secretkey')];
-            case 2:
-                token = _a.sent();
-                res.status(200).json({ token: token });
-                console.log(result);
-                return [2 /*return*/];
+                user = _b.sent();
+                if (!user) {
+                    return [2 /*return*/, res.status(401).send("El correo no existe")];
+                }
+                if (user.password !== password) {
+                    return [2 /*return*/, res.status(401).send("La contraseña no existe")];
+                }
+                token = jwt.sign({ _id: user._id }, 'secretkey');
+                return [2 /*return*/, res.status(200).json({ token: token })];
         }
     });
 }); });

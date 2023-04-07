@@ -1,0 +1,94 @@
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Registrarse</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <div class="form-inputs">
+          <mat-form-field>
+            <!-- <input [(ngModel)]="signUpUser.name" matInput> -->
+            <mat-label>Nombre</mat-label>
+            <input matInput>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <!--<input [(ngModel)]="signUpUser.lastName" matInput>-->
+            <mat-label>Apellido</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+
+        <div class="form-inputs">
+          <mat-form-field>
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <mat-label>Telefono</mat-label>
+            <input matInput>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill">
+          <!--<input [(ngModel)]="signUpUser.email" matInput>-->
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput placeholder="pat@example.com" [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        
+        <div class="form-inputs">
+          <mat-form-field>
+            <!--<input [(ngModel)]="signUpUser.password" matInput>-->
+            <mat-label>Contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+
+          <mat-form-field>
+            <!--<input [(ngModel)]="signUpUser.password" matInput>-->
+            <mat-label>Confirmar contraseña</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div class="form-inputs">
+          <mat-form-field>
+            <mat-label>Genero</mat-label>
+            <mat-select>
+              <mat-option value="Mujer">Mujer</mat-option>
+              <mat-option value="Hombre">Hombre</mat-option>
+              <mat-option value="No binario">No binario</mat-option>
+              <mat-option value="Otro">Otro</mat-option>
+              <mat-option value="Prefiero no decirlo">Prefiero no decirlo</mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <mat-label>Fecha de nacimiento</mat-label>
+  <!--           <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker> -->
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Tipo de usuario</mat-label>
+          <mat-select>
+            <mat-option value="Deportista">Deportista</mat-option>
+            <mat-option value="Entrenador">Entrenador</mat-option>
+            <mat-option value="Dueño de gimnasio">Dueño de gimnasio</mat-option>
+          </mat-select>
+        </mat-form-field> 
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="signUp()">Registrarse</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

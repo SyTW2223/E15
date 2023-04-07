@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "tsc-watch --onSucces ../server/server.ts",
     "start": "PORT=3000 node index.js"
   },
   "repository": {
