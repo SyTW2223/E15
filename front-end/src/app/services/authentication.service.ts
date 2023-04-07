@@ -9,7 +9,9 @@ export class AuthenticationService {
   private singUpURL = 'http://localhost:3000/api/user'
   private singInURL = 'http://localhost:3000/api/auth'
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+   }
 
   signUpUser(user: any) {
     console.log('ha llegado hasta aqui')

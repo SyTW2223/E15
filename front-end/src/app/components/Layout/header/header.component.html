@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="header">
+  <mat-toolbar-row class="header-row">
+    <i class="fa-solid fa-dumbbell fa-xl" style="color: #000000;"></i>
+    <span class="title" routerLink="/">PRE-WORKOUT</span>
+    <span class="spacer"></span>
+    <!-- Botones principales ocultos en pantallas pequeñas -->
+    <button class="button" mat-button routerLink="/" *ngIf="!isScreenSmall">Inicio</button>
+    <button class="button" mat-button routerLink="/ejercicios" *ngIf="!isScreenSmall">Ejercicios</button>
+    <button class="button" mat-button routerLink="/rutinas" *ngIf="!isScreenSmall">Rutinas</button>
+    <button class="button" mat-button routerLink="/alimentación" *ngIf="!isScreenSmall">Alimentación</button>
+    <button class="button" mat-button routerLink="/mapa" *ngIf="!isScreenSmall">Mapa</button>
+    <button class="button" mat-button routerLink="/asesoramiento" *ngIf="!isScreenSmall">Asesoramiento</button>
+    <button mat-icon-button [matMenuTriggerFor]="menu" (click)="toggleMenu()" *ngIf="isScreenSmall">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <!-- Menú desplegable oculto en pantallas grandes -->
+    <mat-menu #menu="matMenu" [class.menu-open]="isMenuOpen" *ngIf="isScreenSmall">
+      <button mat-menu-item routerLink="/" (click)="closeMenu()">Inicio</button>
+      <button mat-menu-item routerLink="/ejercicios" (click)="closeMenu()">Ejercicios</button>
+      <button mat-menu-item routerLink="/rutinas" (click)="closeMenu()">Rutinas</button>
+      <button mat-menu-item routerLink="/alimentación" (click)="closeMenu()">Alimentación</button>
+      <button mat-menu-item routerLink="/mapa" (click)="closeMenu()">Mapa</button>
+      <button mat-menu-item routerLink="/asesoramiento" (click)="closeMenu()">Asesoramiento</button>
+    </mat-menu>
+    <button class="button" mat-raised-button color="accent" routerLink="/sign-in">Iniciar sesión</button>
+    <button class="button" mat-raised-button color="accent" routerLink="/sign-up">Registrarse</button>
+  </mat-toolbar-row>
+</mat-toolbar>

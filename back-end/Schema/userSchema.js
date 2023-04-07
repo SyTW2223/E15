@@ -3,20 +3,8 @@ exports.__esModule = true;
 exports.User = exports.userSchema = void 0;
 var mongoose_1 = require("mongoose");
 exports.userSchema = new mongoose_1.Schema({
-    id_user: {
+    id: {
         type: Number,
-        required: true
-    },
-    username: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
         required: true
     },
     first_name: {
@@ -27,14 +15,35 @@ exports.userSchema = new mongoose_1.Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     phone_number: {
         type: String,
         required: true
     },
-    profile_picture: {
-        type: String
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    gender: {
+        type: String,
+        required: true
     },
     role: {
+        type: String,
+        required: true
+    },
+    birthdate: {
+        type: String,
+        required: true
+    },
+    picture: {
         type: String,
         required: true
     }

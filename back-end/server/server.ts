@@ -1,5 +1,5 @@
 import * as express from 'express';
-import '../db/mongoose';
+import '../db/moongose';
 import { signUpR } from '../routers/app.routerSignUp'
 import { signInR } from '../routers/app.routerSignIn'
 
