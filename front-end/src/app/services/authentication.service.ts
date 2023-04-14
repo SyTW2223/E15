@@ -6,16 +6,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthenticationService {
 
-  private singUpURL = 'http://localhost:3000/api/user'
-  private singInURL = 'http://localhost:3000/api/auth'
 
-  constructor(private http: HttpClient) {
+  private signUpURL = 'http://localhost:3002/signUp'
+  private signInURL = 'http://localhost:3002/signIn'
 
-   }
+  constructor(private http: HttpClient) {}
 
   signUpUser(user: any) {
     console.log('ha llegado hasta aqui')
     console.log(user)
-    return this.http.post<any>(this.singUpURL, user)
+    return this.http.post<any>(this.signUpURL, user);
+  }
+
+
+  signInUser(user: any) {
+    console.log('ha llegado hasta aqui')
+    console.log(user)
+    return this.http.post<any>(this.signInURL, user);
   }
 }

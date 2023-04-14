@@ -53,3 +53,11 @@
     opacity: 0;
   }
 }
+
+.fa-dumbbell {
+  transition: transform 0.2s;
+}
+
+.fa-dumbbell:hover {
+  transform: rotate(-45deg);
+}

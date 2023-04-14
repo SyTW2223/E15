@@ -6,17 +6,20 @@
         <mat-form-field>
           <!--<input [(ngModel)]="signUpUser.name" matInput placeholder="Name">-->
           <mat-label>Correo electronico</mat-label>
-          <input matInput>
+          <input matInput [(ngModel)]="signInUser.email">
         </mat-form-field>
         <mat-form-field>
           <!--<input [(ngModel)]="signUpUser.name" matInput placeholder="Name">-->
           <mat-label>Contraseña</mat-label>
-          <input matInput>
+          <input matInput [(ngModel)]="signInUser.password">
         </mat-form-field>
       </div>
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="signIn()">Registrarse</button>
     </mat-card-actions>
+    <mat-card-content>
+      <p>¿No tienes una cuenta? <a routerLink="/sign-in">Registrarse</a></p>
+    </mat-card-content>
   </mat-card>
 </div>
