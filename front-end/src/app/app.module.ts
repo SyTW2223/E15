@@ -19,11 +19,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
 import { AuthenticationService } from './services/authentication.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './components/Authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './components/Authentication/sign-up/sign-up.component';
+import { HomeRoutineComponent } from './components/Home/home-routine/home-routine.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +37,7 @@ import { SignUpComponent } from './components/Authentication/sign-up/sign-up.com
     ProfilePageComponent,
     SignInComponent,
     SignUpComponent,
+    HomeRoutineComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,8 @@ import { SignUpComponent } from './components/Authentication/sign-up/sign-up.com
     MatCardModule,
     MatMenuModule,
     MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
