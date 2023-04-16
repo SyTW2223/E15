@@ -29,7 +29,7 @@ signUpR.post('/signUp', async (req, res)=>{
   })
 
 
-  const token = await jwt.sign({_id: new_user._id}, 'secretkey')
+  const token = await jwt.sign({new_user}, 'secretkey')
 
   res.status(200).json({token});
 });

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-
 import { AuthenticationService } from '../../../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -35,7 +35,8 @@ export class SignUpComponent implements OnInit {
 
   hide = true;
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService,
+    private router: Router) { }
 
   ngOnInit(): void {}
 
@@ -44,6 +45,8 @@ export class SignUpComponent implements OnInit {
     .subscribe(
       res =>  {
         console.log(res)
+        localStorage.setItem('token', res.token)
+        this.router.navigate(['/home'])
       },  
       err => console.log(err)
     )

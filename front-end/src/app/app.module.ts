@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './modules/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -23,10 +23,22 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 
 import { AuthenticationService } from './services/authentication.service';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './components/Authentication/sign-in/sign-in.component';
 import { SignUpComponent } from './components/Authentication/sign-up/sign-up.component';
 import { HomeRoutineComponent } from './components/Home/home-routine/home-routine.component';
+
+import { AuthGuard } from './guard/auth.guard';
+import { DietsComponent } from './components/Home/diets/diets.component';
+import { ExercisePageComponent } from './components/Exercise/exercise-page/exercise-page.component';
+import { RoutinePageComponent } from './components/Routine/routine-page/routine-page.component';
+import { DietPageComponent } from './components/Diet/diet-page/diet-page.component';
+import { MapPageComponent } from './components/Map/map-page/map-page.component';
+import { AdviserPageComponent } from './components/Adviser/adviser-page/adviser-page.component';
+
+
 
 @NgModule({
   declarations: [
@@ -38,6 +50,12 @@ import { HomeRoutineComponent } from './components/Home/home-routine/home-routin
     SignInComponent,
     SignUpComponent,
     HomeRoutineComponent,
+    DietsComponent,
+    ExercisePageComponent,
+    RoutinePageComponent,
+    DietPageComponent,
+    MapPageComponent,
+    AdviserPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +76,12 @@ import { HomeRoutineComponent } from './components/Home/home-routine/home-routin
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, AuthGuard,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

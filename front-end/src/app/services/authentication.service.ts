@@ -13,15 +13,19 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   signUpUser(user: any) {
-    console.log('ha llegado hasta aqui')
-    console.log(user)
     return this.http.post<any>(this.signUpURL, user);
   }
 
 
   signInUser(user: any) {
-    console.log('ha llegado hasta aqui')
-    console.log(user)
     return this.http.post<any>(this.signInURL, user);
+  }
+
+  userLogged() {
+    return !!localStorage.getItem('token');
+  }
+
+  getToken(){
+    return localStorage.getItem('token')
   }
 }
