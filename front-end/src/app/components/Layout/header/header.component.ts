@@ -21,11 +21,4 @@ export class HeaderComponent implements OnInit {
         this.isScreenSmall = state.matches;
       });
   }
-  closeMenu() {
-    this.menu.close();
-  }
-
-  toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
-  }
 }

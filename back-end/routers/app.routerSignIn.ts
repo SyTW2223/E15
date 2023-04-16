@@ -8,7 +8,8 @@ export const signInR = express.Router();
 
 signInR.use(bodyParser.json());
 
-signInR.get('/signIn', async (req, res)=>{
+signInR.post('/signIn', async (req, res)=>{
+  console.log(req.body);
   const {email, password} = req.body;
   const user =  await User.findOne({email});
     if (!user) {
@@ -17,6 +18,7 @@ signInR.get('/signIn', async (req, res)=>{
     if (user.password !== password) {
       return res.status(401).send("La contraseña no existe");
     }
-  const token = jwt.sign({_id: user._id}, 'secretkey');
+
+  const token = jwt.sign({user}, 'secretkey');
   return res.status(200).json({token});
 })
