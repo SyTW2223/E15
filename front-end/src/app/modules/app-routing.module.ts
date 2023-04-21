@@ -8,6 +8,7 @@ import { RoutinePageComponent } from '../components/Routine/routine-page/routine
 import { DietPageComponent } from '../components/Diet/diet-page/diet-page.component';
 import { MapPageComponent } from '../components/Map/map-page/map-page.component';
 import { AdviserPageComponent } from '../components/Adviser/adviser-page/adviser-page.component';
+import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
 
 import { AuthGuard } from '../guard/auth.guard';
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'diets', component: DietPageComponent},
   { path: 'map', component: MapPageComponent},
   { path: 'adviser', component: AdviserPageComponent},
+  { path: 'profile', component: ProfilePageComponent}
 ];
 
 @NgModule({
