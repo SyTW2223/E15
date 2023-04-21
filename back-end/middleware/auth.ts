@@ -15,7 +15,7 @@ export const auth = Router();
   let jwtToken:any = req.header("Authorization")
   jwtToken = jwtToken.split(' ')[1]
   if(!jwtToken){
-   return res.status(401).send("Acceso denegado. No hay token")
+   return res.status(400).send("Acceso denegado. No hay token")
   } 
 
  try{
@@ -25,6 +25,6 @@ export const auth = Router();
    authReq.user = payload
    next()
  } catch(err){
-     res.status(400).send("Acceso denegado. Token no valido")
+     res.status(401).send("Acceso denegado. Token no valido")
  }
 })

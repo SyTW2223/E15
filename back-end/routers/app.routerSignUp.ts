@@ -16,15 +16,15 @@ signUpR.post('/signUp', async (req, res)=>{
   new_user.save()
   .then((saveU) =>{
     if(!saveU){
-      //res.status(400).send({message: "Fallo al guardar el usuario, no se ha podido almacenar"})
+      res.status(400).send({message: "Fallo al guardar el usuario, no se ha podido almacenar"})
     } else{
-      //res.status(200).send({new_user: saveU})
+      res.status(200).send({new_user: saveU})
     }
   }).catch((err) =>{
     if(err.code === 11000){
-      //res.status(500).send({message: "El usuario ya existe"})
+      res.status(500).send({message: "El usuario ya existe"})
     } else {
-      //res.status(500).send({message: "ha ocurrido un error"})
+      res.status(500).send({message: "ha ocurrido un error"})
     }
   })
 
