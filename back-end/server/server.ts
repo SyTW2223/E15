@@ -3,6 +3,7 @@ import cors from 'cors';
 import '../db/moongose';
 import { signUpR } from '../routers/app.routerSignUp'
 import { signInR } from '../routers/app.routerSignIn'
+import { exerciseR } from '../routers/app.exerciseRouter'
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(function(req, res, next) {
 app.use(cors({origin: 'http://localhost:4200'}));
 app.use(signUpR);
 app.use(signInR);
+app.use(exerciseR);
 
 
 const port = process.env.PORT || 3002;
