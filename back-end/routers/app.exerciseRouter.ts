@@ -46,9 +46,30 @@ exerciseR.get('/exercise', async(req, res) =>{
   res.status(200).json(exercises);
 })
 
-exerciseR.get
+exerciseR.get('/exercise/:id', async(req, res) =>{
+  //Todo: Funcionalidad base funciona, hacer manejo de errores y que sea por el _ID
+  const exercise = await Exercise.findOne({id: req.params.id});
+  console.log(exercise);
+  res.status(200).json(exercise);
+})
 
 
-exerciseR.put('/exercise', async(req, res) =>{
+exerciseR.patch('/exercise/:id', async(req, res) =>{
+  //TODO: Hay que buscar el usuario por el id que ofrece el JTW y comprobar que puede updatear el ejercicio bien
+  console.log(req.body);
+  const { id } = req.params
+  const exercise_update = req.body;
   
+  await Exercise.findByIdAndUpdate({_id: id}, exercise_update)
+  .then((exercise) =>{
+    if(!exercise){
+        return res.status(404).send({ msg: 'Ejercicios no encontrado' })
+      }
+      return res
+        .status(200)
+        .send({ msg: 'Ejercicio actualizado satisfactoriamente' })
+    })
+    .catch(() => {
+      return res.status(500).send({ msg: 'Error al actualizar el ejercicio' })
+    })  
 })
