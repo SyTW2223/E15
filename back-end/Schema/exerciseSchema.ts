@@ -33,7 +33,7 @@ export const exerciseSchema = new Schema<ExerciseModel>({
     required: true
   },
   equipment_needed: {
-    tyep: Boolean,
+    type: Boolean,
     required: true
   },
   picture: {
