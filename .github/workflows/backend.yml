@@ -1,4 +1,4 @@
-name: React Build and Test
+name: Backend Build and Test
 
 on:
   push:
