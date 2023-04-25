@@ -5,7 +5,7 @@ import { signUpR } from '../routers/app.routerSignUp'
 import { signInR } from '../routers/app.routerSignIn'
 import { exerciseR } from '../routers/app.exerciseRouter'
 
-const app = express();
+export const app = express();
 
 /* mirar porque es de dsi pillado*/
 app.use(function(req, res, next) {
