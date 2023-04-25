@@ -32,9 +32,9 @@ jobs:
       run: npm run build
       working-directory: back-end
 
-    # - name: Start backend app
-    #   run: npm start
-    #   working-directory: back-end
+    - name: Start backend app
+      run: npm start
+      working-directory: back-end
 
     - name: Run backend tests
       run: npm run test
