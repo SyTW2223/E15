@@ -12,21 +12,30 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x]
-        
+
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
-      
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-      
+
     - name: Install dependencies
       run: npm ci
-      
+      env:
+        NODE_ENV: production
+      working-directory: ./backend
+
     - name: Start backend app
       run: npm start
-      
+      working-directory: ./backend
+
     - name: Run backend tests
       run: npm test
+      working-directory: ./backend 
+
+
+
+  
