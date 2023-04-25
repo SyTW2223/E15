@@ -10,4 +10,9 @@ describe("Diet API", () => {
 
     expect(response.status).to.equal(200);
   });
+  it("Debe devolver una lista de las dietas", async () => {
+    const response = await request.get("/diet");
+
+    expect(response.status).to.equal(200);
+  });
 });
