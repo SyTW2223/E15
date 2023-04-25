@@ -25,8 +25,8 @@ jobs:
     - name: Install dependencies
       run: npm install
       
-    - name: Build React app
-      run: npm run build
+    - name: Start backend app
+      run: npm start
       
-    - name: Run React tests
-      run: npm run test
+    - name: Run backend tests
+      run: npm test
