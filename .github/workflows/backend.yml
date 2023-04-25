@@ -26,15 +26,15 @@ jobs:
       run: npm ci
       env:
         NODE_ENV: production
-      working-directory: ./backend
+      working-directory: /back-end
 
     - name: Start backend app
       run: npm start
-      working-directory: ./backend
+      working-directory: /back-end
 
     - name: Run backend tests
       run: npm test
-      working-directory: ./backend 
+      working-directory: /back-end 
 
 
 
