@@ -34,11 +34,6 @@ exerciseR.post('/exercise', async (req, res) =>{
   res.status(200).send("Ejercicio creado correctamente")
 });
 
-  //Un unico comentario
-  //const new_comments = [];
-  //const new_comment = new Comment({username: comment.username, comment: comment.comment})
-  //new_comments.push(new_comment);
-
 exerciseR.get('/exercise', async(req, res) =>{
   ///TODO: Funcionalidad base funciona, hacer manejo de errores
   const exercises = await Exercise.find();
@@ -47,7 +42,7 @@ exerciseR.get('/exercise', async(req, res) =>{
 })
 
 exerciseR.get('/exercise/:id', async(req, res) =>{
-  //Todo: Funcionalidad base funciona, hacer manejo de errores y que sea por el _ID
+  //TODO: Funcionalidad base funciona, hacer manejo de errores y que sea por el _ID
   const exercise = await Exercise.findOne({id: req.params.id});
   console.log(exercise);
   res.status(200).json(exercise);
@@ -59,7 +54,7 @@ exerciseR.patch('/exercise/:id', async(req, res) =>{
   console.log(req.body);
   const { id } = req.params
   const exercise_update = req.body;
-  
+
   await Exercise.findByIdAndUpdate({_id: id}, exercise_update)
   .then((exercise) =>{
     if(!exercise){
