@@ -1,0 +1,24 @@
+name: Angular Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+        
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+      
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build Angular app
+      run: ng build --prod
+      
+    - name: Run Angular tests
+      run: ng test
