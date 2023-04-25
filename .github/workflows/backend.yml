@@ -28,6 +28,14 @@ jobs:
         NODE_ENV: production
       working-directory: back-end
 
+    - name: Build backend app
+      run: npm run build
+      working-directory: back-end
+
+    # - name: Start backend app
+    #   run: npm start
+    #   working-directory: back-end
+
     - name: Run backend tests
       run: npm run test
       working-directory: back-end   
