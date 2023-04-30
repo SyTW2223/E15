@@ -4,8 +4,8 @@
   "description": "backend del proyecto de SyTW",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha --require ts-node/register __tests__/**/*.ts",
-    "run": "tsc-watch --onSucces ../server/server.ts",
+    "test": "npx mocha --require ts-node/register __tests__/**/*.test.ts",
+    "run": "tsc-watch --onSucces ./dist/server/server.js",
     "start": "PORT=3002 node ./dist/server/server.js",
     "build": "tsc"
   },
