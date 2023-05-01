@@ -7,7 +7,8 @@
     "test": "mocha",
     "run": "tsc-watch --onSucces ./dist/server/server.js",
     "start": "PORT=3002 node ./dist/server/server.js",
-    "build": "tsc"
+    "build": "tsc",
+    "coveralls": "mocha --testTimeout=60000 --coverage"
   },
   "repository": {
     "type": "git",
