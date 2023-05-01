@@ -28,10 +28,9 @@ jobs:
       working-directory: './back-end'
       run: npm install
     - name: Generating coverage information
-      run: npm run coveralls && exit 0
+      run: npm run coveralls
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ${{ github.workspace }}//server/coverage/lcov.info
         base-path: ./back-end/

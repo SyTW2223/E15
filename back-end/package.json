@@ -8,7 +8,7 @@
     "run": "tsc-watch --onSucces ./dist/server/server.js",
     "start": "PORT=3002 node ./dist/server/server.js",
     "build": "tsc",
-    "coveralls": "mocha --testTimeout=60000 --coverage"
+    "coveralls": "nyc npm test --testTimeout=60000 --coverage"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,9 @@
     "@types/mocha": "^10.0.1",
     "@types/supertest": "^2.0.12",
     "chai": "^4.3.7",
+    "coveralls": "^3.1.1",
     "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
     "supertest": "^6.3.3",
     "ts-node": "^10.9.1",
     "tsc-watch": "^6.0.0",

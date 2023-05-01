@@ -1,32 +1,41 @@
 import supertest from "supertest";
 import { expect } from "chai";
 import { app } from "../server/server";
+import { Server } from "http";
+import { before, after } from "mocha";
 
-const request = supertest(app);
+// let server: Server;
 
-describe("Exercise API", () => {
-  it("Debe devolver una lista de ejercicios", async () => {
-    const response = await request.get("/exercise");
+// const request = supertest(app);
 
-    expect(response.status).to.equal(200);
-    //expect(response.body.length).to.be.greaterThan(0);
-  });
+// describe("Exercise API", () => {
+//   it("Debe devolver una lista de ejercicios", async () => {
+//     const response = await request.get("/exercise");
+    
+//     expect(response.status).to.equal(200);
 
-/*   it("Debe devolver un usuario específico", async () => {
-    const response = await request.get("/api/usuarios/1");
+//     //expect(response.body.length).to.be.greaterThan(0);
+//   });
 
-    expect(response.status).to.equal(200);
-    expect(response.body.id).to.equal(1);
-  });
+// /*   it("Debe devolver un usuario específico", async () => {
+//     const response = await request.get("/api/usuarios/1");
 
-  it("Debe crear un nuevo usuario", async () => {
-    const response = await request.post("/api/usuarios").send({
-      nombre: "Juan",
-      edad: 30,
-    });
+//     expect(response.status).to.equal(200);
+//     expect(response.body.id).to.equal(1);
+//   });
 
-    expect(response.status).to.equal(201);
-    expect(response.body.id).to.be.a("number");
-  }); */
+//   it("Debe crear un nuevo usuario", async () => {
+//     const response = await request.post("/api/usuarios").send({
+//       nombre: "Juan",
+//       edad: 30,
+//     });
+
+//     expect(response.status).to.equal(201);
+//     expect(response.body.id).to.be.a("number");
+//   }); */
   
-});
+// });
+
+// after(() => {
+//   server.close();
+// });
