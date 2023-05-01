@@ -28,7 +28,7 @@ jobs:
       working-directory: './back-end'
       run: npm install
     - name: Generating coverage information
-      run: npm run coveralls
+      run: npm run coveralls && exit 0
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@master
       with:

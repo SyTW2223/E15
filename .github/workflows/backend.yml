@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: 18.x
 
     steps:
     - name: Checkout repo
@@ -21,11 +21,13 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependecy-path: './back-end/package-lock.json'
 
     - name: Install dependencies
+      working-directory: ./back-end
       run: npm ci
-      working-directory: './back-end'
 
     - name: Run backend tests
-      run: npm test
-      working-directory: './back-end' 
+      working-directory: ./back-end 
+      run: npm test && exit 0
