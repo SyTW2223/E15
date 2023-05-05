@@ -1,19 +1,28 @@
 import { Schema, model } from 'mongoose';
-import { RoutineModel} from '../Interface/routineInterface'
+import { RoutineModel} from '../Interface/routineInterface';
 import { commentsSchema } from './commentsSchema';
-import { exerciseSchema } from './exerciseSchema'
+import { userSchema } from './userSchema';
+import { exerciseSchema } from './exerciseSchema';
 
 export const routineSchema = new Schema<RoutineModel>({
   id: {
     type: Number,
     required: true
   }, 
+  name: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
   category:{
     type: String,
     required: true
   },
   author: {
-    type: String,
+    type: userSchema,
     required: true
   }, 
   exercises: {
@@ -32,8 +41,13 @@ export const routineSchema = new Schema<RoutineModel>({
     type: Number,
     required: true
   },
+  // TODO: revisar
   reps: {
-    tyep: Number,
+    type: Number,
+    required: true
+  },
+  picture: {
+    type: String,
     required: true
   },
   likes: {
