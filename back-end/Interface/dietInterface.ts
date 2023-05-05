@@ -4,7 +4,6 @@ import { CommentsModel} from './commentsInterface'
 export interface DietModel{
   id: number, 
   name: string,
-  description: string,
   category: string,
   author: UserModel,
   breakfast: string,

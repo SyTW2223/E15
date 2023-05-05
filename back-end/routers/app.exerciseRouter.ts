@@ -5,12 +5,9 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken')
 
-
 export const exerciseR = express.Router();
 
-
 exerciseR.use(bodyParser.json());
-
 
 exerciseR.post('/exercise', async (req, res) =>{
   //TODO: Hay que buscar el usuario por el id que ofrece el JTW y comprobar que puede crear el ejercicio
@@ -43,9 +40,13 @@ exerciseR.get('/exercise', async(req, res) =>{
 
 exerciseR.get('/exercise/:id', async(req, res) =>{
   //TODO: Funcionalidad base funciona, hacer manejo de errores y que sea por el _ID
-  const exercise = await Exercise.findOne({id: req.params.id});
-  console.log(exercise);
-  res.status(200).json(exercise);
+  try {
+    const exercise = await Exercise.findOne({_id: req.params.id});
+    console.log(exercise);
+    res.status(200).json(exercise);
+  } catch (error) {
+    res.status(401)
+  }
 })
 
 
@@ -67,4 +68,18 @@ exerciseR.patch('/exercise/:id', async(req, res) =>{
     .catch(() => {
       return res.status(500).send({ msg: 'Error al actualizar el ejercicio' })
     })  
+})
+
+exerciseR.delete('/exercise/:id', async(req, res)=>{
+  console.log(req.body);
+  await Exercise.findByIdAndDelete({_id: req.params.id})
+  .then((Exercise)=>{
+    if(!Exercise){
+    return res.status(404).send("Ejercicio no encontrado");
+  }
+    return res.status(200).send("Ejercicio eliminado satisfactoriamente");
+  })
+  .catch(()=>{
+    return res.status(500).send("Error");
+  })
 })

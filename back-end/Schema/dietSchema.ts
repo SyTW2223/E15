@@ -12,10 +12,6 @@ export const dietSchema = new Schema<DietModel>({
     type: String,
     required: true
   },
-  description: {
-    type: String,
-    required: true
-  }, 
   category: {
     type: String,
     required: true
@@ -32,8 +28,9 @@ export const dietSchema = new Schema<DietModel>({
     type: String,
     required: true
   },
+  // TODO: revisar
   snacks: {
-    tyep: String,
+    type: String,
     required: true
   },
   dinner: {
