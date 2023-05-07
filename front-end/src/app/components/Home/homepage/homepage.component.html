@@ -1,2 +1,7 @@
-<app-home-routine></app-home-routine>
-<app-diets></app-diets>
+<div *ngIf="!authService.userLogged()">
+  <app-home-log-out></app-home-log-out>
+</div>
+<div *ngIf="authService.userLogged()">
+  <app-home-routine></app-home-routine>
+  <app-diets></app-diets>
+</div>

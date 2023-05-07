@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,9 +23,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog'
 
 import { AuthenticationService } from './services/authentication.service';
+import { GetDietsService } from './services/get-diets.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { GetGymsService } from './services/get-gyms.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './components/Authentication/sign-in/sign-in.component';
@@ -38,6 +44,7 @@ import { RoutinePageComponent } from './components/Routine/routine-page/routine-
 import { DietPageComponent } from './components/Diet/diet-page/diet-page.component';
 import { MapPageComponent } from './components/Map/map-page/map-page.component';
 import { AdviserPageComponent } from './components/Adviser/adviser-page/adviser-page.component';
+import { HomeLogOutComponent } from './components/Home/home-log-out/home-log-out.component';
 
 
 
@@ -57,6 +64,7 @@ import { AdviserPageComponent } from './components/Adviser/adviser-page/adviser-
     DietPageComponent,
     MapPageComponent,
     AdviserPageComponent,
+    HomeLogOutComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,13 +85,20 @@ import { AdviserPageComponent } from './components/Adviser/adviser-page/adviser-
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    LeafletModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule
   ],
   providers: [AuthenticationService, AuthGuard,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
-  }],
+  },
+    GetGymsService,
+    GetDietsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
