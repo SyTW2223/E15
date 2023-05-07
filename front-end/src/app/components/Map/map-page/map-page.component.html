@@ -1,1 +1,5 @@
-<p>map-page works!</p>
+<input type="text" [(ngModel)]="nameTerm" (ngModelChange)="filterGyms()" placeholder="Buscar gimnasios...">
+<input type="text" [(ngModel)]="locationTerm" (ngModelChange)="filterGyms()" placeholder="Buscar localidad...">
+
+
+<div id="map"></div>
