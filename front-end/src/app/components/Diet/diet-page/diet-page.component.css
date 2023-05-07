@@ -1,0 +1,9 @@
+.mytable {
+  max-width: 100%;
+  overflow-y: auto;
+}
+
+.all-table {
+  overflow-y: auto;
+  padding: 20px;
+}
