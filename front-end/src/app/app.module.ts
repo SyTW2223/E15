@@ -26,6 +26,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog'
+import {MatGridListModule} from '@angular/material/grid-list';
+
 
 import { AuthenticationService } from './services/authentication.service';
 import { GetDietsService } from './services/get-diets.service';
@@ -45,6 +47,8 @@ import { DietPageComponent } from './components/Diet/diet-page/diet-page.compone
 import { MapPageComponent } from './components/Map/map-page/map-page.component';
 import { AdviserPageComponent } from './components/Adviser/adviser-page/adviser-page.component';
 import { HomeLogOutComponent } from './components/Home/home-log-out/home-log-out.component';
+import { DietMenuComponent } from './components/Diet/diet-menu/diet-menu.component';
+import { DietInfoComponent } from './components/Diet/diet-info/diet-info.component';
 
 
 
@@ -65,6 +69,8 @@ import { HomeLogOutComponent } from './components/Home/home-log-out/home-log-out
     MapPageComponent,
     AdviserPageComponent,
     HomeLogOutComponent,
+    DietMenuComponent,
+    DietInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +94,8 @@ import { HomeLogOutComponent } from './components/Home/home-log-out/home-log-out
     LeafletModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
   ],
   providers: [AuthenticationService, AuthGuard,
   {
