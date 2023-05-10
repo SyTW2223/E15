@@ -1,5 +1,23 @@
-<input type="text" [(ngModel)]="nameTerm" (ngModelChange)="filterGyms()" placeholder="Buscar gimnasios...">
-<input type="text" [(ngModel)]="locationTerm" (ngModelChange)="filterGyms()" placeholder="Buscar localidad...">
+<div>
+  <mat-card class="mat-elevation-z5 card">
+    <mat-card-header class="title">
+      <mat-card-title class="opacity"><strong>BUSCAR GIMNASIO</strong></mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <mat-form-field class="filter">
+        <mat-label>Buscar por nombre</mat-label>
+        <input matInput [(ngModel)]="nameTerm" (ngModelChange)="filterGyms()">
+      </mat-form-field>
+      <mat-form-field class="filter">
+        <mat-label>Buscar por localidad</mat-label>
+        <input matInput [(ngModel)]="locationTerm" (ngModelChange)="filterGyms()">
+      </mat-form-field>
+    </mat-card-actions>
+  </mat-card>
+</div>
 
-
-<div id="map"></div>
+<div>
+  <mat-card class="mat-elevation-z5 card">
+    <div id="map"></div>
+  </mat-card>
+</div>
