@@ -23,9 +23,8 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
-        cache-dependency-path: './back-end/package-lock.json'
+        cache-dependency-path: './package-lock.json'
     - name: Installing dependencies
-      working-directory: './back-end'
       run: npm install
     - name: Generating coverage information
       run: npm run coveralls
@@ -33,5 +32,4 @@ jobs:
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        path-to-lcov: ./back-end/coverage/lcov.info
-        base-path: ./back-end/
+        path-to-lcov: ./coverage/lcov.info
