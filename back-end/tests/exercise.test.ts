@@ -39,13 +39,8 @@ describe("Exercise API", () => {
   it("Debe actualizar un ejercicio", async () => {
     const response = await request.patch("/exercise/6442d4aa677db19baea771c1").send({
         id: "1",
-        name: "Jalon al ganso", //TODO: jiji
+        name: "Jalon al brazo", 
     });
     expect(response.status).to.equal(200);
   });
-});
-
-// TODO: comprobar esto para que se haga bien (:
-after(() => {
-  process.exit(0);
 });
