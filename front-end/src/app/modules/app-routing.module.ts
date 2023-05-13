@@ -11,6 +11,8 @@ import { AdviserPageComponent } from '../components/Adviser/adviser-page/adviser
 import { ProfilePageComponent } from '../components/profile-page/profile-page.component';
 import { DietInfoComponent } from '../components/Diet/diet-info/diet-info.component';
 import { DietMenuComponent } from '../components/Diet/diet-menu/diet-menu.component';
+import { EditComponent } from '../components/profile-page/edit/edit.component';
+
 
 import { AuthGuard } from '../guard/auth.guard';
 
@@ -27,7 +29,8 @@ const routes: Routes = [
   { path: 'diets-info', component: DietInfoComponent},
   { path: 'map', component: MapPageComponent},
   { path: 'adviser', component: AdviserPageComponent},
-  { path: 'profile', component: ProfilePageComponent}
+  { path: 'profile', component: ProfilePageComponent},
+  { path: 'profile_edit', component: EditComponent}
 ];
 
 @NgModule({
