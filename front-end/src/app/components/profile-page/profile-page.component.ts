@@ -19,4 +19,17 @@ export class ProfilePageComponent implements OnInit {
     console.log(this.user);
   }
 
+  public isSportMan(): boolean {
+    return this.user.role === 'Deportista';
+  }
+
+  public isGymOwner(): boolean {
+    //return this.user.role === 'Dueño de gimnasio';
+    return false;
+  }
+
+  public isCoach(): boolean {
+    //return this.user.role === 'Entrenador';
+    return true;
+  }
 }
