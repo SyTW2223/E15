@@ -26,13 +26,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog'
-import {MatGridListModule} from '@angular/material/grid-list';
-
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { AuthenticationService } from './services/authentication.service';
 import { GetDietsService } from './services/get-diets.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { GetGymsService } from './services/get-gyms.service';
+import { GetRoutinesService } from './services/get-routines.service';
+import { GetExercisesService } from './services/get-exercises.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './components/Authentication/sign-in/sign-in.component';
@@ -49,6 +51,18 @@ import { AdviserPageComponent } from './components/Adviser/adviser-page/adviser-
 import { HomeLogOutComponent } from './components/Home/home-log-out/home-log-out.component';
 import { DietMenuComponent } from './components/Diet/diet-menu/diet-menu.component';
 import { DietInfoComponent } from './components/Diet/diet-info/diet-info.component';
+import { CreateExerciseComponent } from './components/forms/create-exercise/create-exercise.component';
+import { CreateDietComponent } from './components/forms/create-diet/create-diet.component';
+import { CreateGymComponent } from './components/forms/create-gym/create-gym.component';
+import { UpdateGymComponent } from './components/forms/update-gym/update-gym.component';
+import { UpdateExerciseComponent } from './components/forms/update-exercise/update-exercise.component';
+import { UpdateDietComponent } from './components/forms/update-diet/update-diet.component';
+import { UpdateProfileComponent } from './components/forms/update-profile/update-profile.component';
+import { DeleteGymComponent } from './components/forms/delete-gym/delete-gym.component';
+import { DeleteExerciseComponent } from './components/forms/delete-exercise/delete-exercise.component';
+import { DeleteDietComponent } from './components/forms/delete-diet/delete-diet.component';
+import { AdviserListComponent } from './components/Adviser/adviser-list/adviser-list.component';
+import { EditComponent } from './components/profile-page/edit/edit.component';
 
 
 
@@ -71,6 +85,18 @@ import { DietInfoComponent } from './components/Diet/diet-info/diet-info.compone
     HomeLogOutComponent,
     DietMenuComponent,
     DietInfoComponent,
+    CreateExerciseComponent,
+    CreateDietComponent,
+    CreateGymComponent,
+    UpdateGymComponent,
+    UpdateExerciseComponent,
+    UpdateDietComponent,
+    UpdateProfileComponent,
+    DeleteGymComponent,
+    DeleteExerciseComponent,
+    DeleteDietComponent,
+    AdviserListComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +121,8 @@ import { DietInfoComponent } from './components/Diet/diet-info/diet-info.compone
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule
   ],
   providers: [AuthenticationService, AuthGuard,
   {
@@ -104,7 +131,9 @@ import { DietInfoComponent } from './components/Diet/diet-info/diet-info.compone
     multi: true
   },
     GetGymsService,
-    GetDietsService
+    GetDietsService,
+    GetRoutinesService,
+    GetExercisesService
   ],
   bootstrap: [AppComponent]
 })

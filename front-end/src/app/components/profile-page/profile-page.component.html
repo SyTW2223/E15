@@ -1,17 +1,58 @@
-<div>
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{user.first_name}} {{user.last_name}}</mat-card-title>
-      <mat-card-subtitle>{{user.role}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <br>
-      <p><strong>Estadisticas</strong> </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>EDITAR PERFIL</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="container">
+  <div class="column">
+    <mat-card class="card_profile">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{user.first_name}} {{user.last_name}}</mat-card-title>
+        <mat-card-subtitle>{{user.role}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Foto de perfil">
+      <mat-card-content>
+        <br>
+        <p class="center"><strong>Estadisticas</strong></p>
+        <mat-divider></mat-divider>
+        <p>Rutinas creadas: </p>
+        <p>Ejercicios añadidas: </p>
+        <p>Dietas añadidas: </p>
+        <mat-divider></mat-divider>
+      </mat-card-content>
+      
+        <button mat-button routerLink="/profile_edit">EDITAR PERFIL</button>
+        <button mat-button (click)="authService.logoutUser()">SALIR</button>
+    </mat-card>
+  </div>
+  <div class="column">
+
+
+
+    <mat-card class="card triple">
+      <mat-card-title class="center"><h3>Datos del perfil</h3></mat-card-title>
+      <mat-card-content>
+        <p><strong>Nombre:</strong> {{user.first_name}} {{user.last_name}} </p>
+        <p><strong>Nombre de usuario:</strong> {{user.username}} </p>
+        <p><strong>Correo:</strong> {{user.email}} </p>
+        <p><strong>Fecha de nacimiento:</strong> {{user.birthdate}} </p>
+        <p><strong>Número de telefono:</strong> {{user.phone_number}}</p>
+        <p><strong>Género:</strong> {{user.gender}}</p>
+        <p><strong>Tipo de usuario:</strong> {{user.role}}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card triple" *ngIf="isGymOwner() || isCoach()">
+        <mat-card-title class="center"><h3>Opciones</h3></mat-card-title>
+          <div mat-dialog-actions *ngIf="isGymOwner()" align="center">
+            <button mat-button>AÑADE TU GIMNASIO</button>
+            <button mat-button>MODIFICA TU GIMNASIO</button>
+            <button mat-button>ELIMINA TU GIMNASIO</button>
+          </div>
+          <div mat-dialog-actions *ngIf="isCoach()"  align="center">
+            <button mat-button>AÑADE UN EJERCICIO</button>
+            <button mat-button>MODIFICA UN EJERCICIO</button>
+            <button mat-button>ELIMINA UN EJERCICIO</button>
+            <button mat-button>AÑADE UNA DIETA</button>
+            <button mat-button>MODIFICA UNA DIETA</button>
+            <button mat-button>ELIMINA UNA DIETA</button>
+          </div>
+      </mat-card>
+  </div>
 </div>
