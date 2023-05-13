@@ -1,0 +1,52 @@
+.background-img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.card {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-inputs {
+  display: flex;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-left: 5px;
+}
+
+.bottom_center{
+  margin-top: 5px;  
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+}
+
+
+.bottom-diet{
+  margin-bottom: 15px;
+  font-size: 18px;
+  padding: 25px 80px; 
+  margin-bottom: 10px;
+}
