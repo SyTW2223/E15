@@ -13,7 +13,7 @@ gymR.use(bodyParser.json());
 gymR.post('/gym', async (req, res)=>{
   console.log(req.body);
   //Encontrar owner
-  const owner = await User.findOne({first_name: req.body.owner})
+  const owner = await User.findOne({_id: req.body.owner})
 
   //Comentarios
   const comments = req.body.comments;
@@ -62,10 +62,10 @@ gymR.patch('/gym/:id', async(req, res) =>{
     if(!gym){
       return res.status(404).send("Gimnasio no encontrado")
     }
-    return res.status(200).send("Ejercicio actualizado satisfactoriamente")
+    return res.status(200).send("Gimnasio actualizado satisfactoriamente")
   })
   .catch(() => {
-    return res.status(500).send("Error al actualizar el ejercicio")
+    return res.status(500).send("Error al actualizar el Gimnasio")
   })
 })
 
@@ -76,7 +76,7 @@ gymR.delete('/gym/:id', async(req,res) =>{
     if(!gym){
     return res.status(404).send("Gimnasio no encontrado");
   }
-    return res.status(200).send("GImnasio eliminado satisfactoriamente");
+    return res.status(200).send("Gimnasio eliminado satisfactoriamente");
   })
   .catch(()=>{
     return res.status(500).send("Error");

@@ -9,35 +9,35 @@
       <div class="container">
         <div class="form-inputs">
           <mat-form-field>
-            <mat-label>Nombre</mat-label>
+            <mat-label>Nombre: {{ previous_first_name }} </mat-label>
             <input matInput [(ngModel)]="user.first_name">
           </mat-form-field>
         
           <mat-form-field>
-            <mat-label>Apellido</mat-label>
+            <mat-label>Apellido: {{ previous_last_name }}</mat-label>
             <input matInput [(ngModel)]="user.last_name">
           </mat-form-field>
         </div>
 
         <div class="form-inputs">
           <mat-form-field>
-            <mat-label>Nombre de usuario</mat-label>
+            <mat-label>Nombre de usuario: {{ previous_username }}</mat-label>
             <input matInput [(ngModel)]="user.username"> 
           </mat-form-field>
         
           <mat-form-field>
-            <mat-label>Telefono</mat-label>
+            <mat-label>Telefono: {{ previous_phone_number }}</mat-label>
             <input matInput [(ngModel)]="user.phone_number">
           </mat-form-field>
         </div>
 
         <mat-form-field appearance="fill">
-          <mat-label>Correo electrónico</mat-label>
+          <mat-label>Correo electrónico: {{ previous_email }}</mat-label>
           <input matInput placeholder="pat@example.com" [formControl]="email" required [(ngModel)]="user.email">
           <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> 
         </mat-form-field>
 
-        <div class="form-inputs">
+<!--         <div class="form-inputs">
           <mat-form-field>
             <mat-label>Contraseña</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="user.password">
@@ -53,11 +53,11 @@
              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
-        </div>
+        </div> -->
 
         <div class="form-inputs">
           <mat-form-field>
-            <mat-label>Genero</mat-label>
+            <mat-label>Genero: {{ previous_gender }}</mat-label>
              <mat-select [(ngModel)]="user.gender">
               <mat-option value="Mujer">Mujer</mat-option>
               <mat-option value="Hombre">Hombre</mat-option>
@@ -69,25 +69,17 @@
         
         </div>
         <mat-form-field appearance="fill">
+          <mat-label>Fecha de nacimiento: {{ previous_birthdate }}</mat-label>
           <input matInput [matDatepicker]="picker" [(ngModel)]="user.birthdate">
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Tipo de usuario</mat-label>
-          <mat-select [(ngModel)]="user.role">
-            <mat-option value="Deportista">Deportista</mat-option>
-            <mat-option value="Entrenador">Entrenador</mat-option>
-            <mat-option value="Dueño de gimnasio">Dueño de gimnasio</mat-option>
-          </mat-select>
-        </mat-form-field> 
-        <mat-checkbox class="example-margin">Aceptar terminos y condiciones</mat-checkbox>
       </div>
     </mat-card-content>
+    <!--TODO: Añadir para confirmar contraseña-->
     <mat-card-actions>
-      <button class="button" mat-raised-button color="primary">Actualizar</button>
+      <button class="button" mat-raised-button color="primary" (click)="updateUser()">Actualizar</button>
     </mat-card-actions>
   </mat-card>
 </div>

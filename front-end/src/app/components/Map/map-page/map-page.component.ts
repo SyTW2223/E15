@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetGymsService } from 'src/app/services/get-gyms.service';
+import { GymsService } from 'src/app/services/gyms.service';
 import * as L from 'leaflet';
 
 @Component({
@@ -15,7 +15,7 @@ export class MapPageComponent implements OnInit {
   map: any;
   marks: any = [];
 
-  constructor(private getGym: GetGymsService) { }
+  constructor(private getGym: GymsService) { }
 
   ngOnInit() {
     this.map = L.map('map').setView([28.4682400, -16.2546200], 13);

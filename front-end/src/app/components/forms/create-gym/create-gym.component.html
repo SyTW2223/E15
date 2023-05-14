@@ -1,1 +1,94 @@
-<p>create-gym works!</p>
+<div>
+  <img src="assets/images/home-log-out.jpg" class="background-img">
+</div>
+
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Añadir un gimnasio</mat-card-title>
+    <mat-card-content>
+      <div class="container">
+        <div class="form-inputs">
+          <mat-form-field>
+            <mat-label>Nombre del gimnaso</mat-label>
+            <input matInput [(ngModel)]="gym.name">
+          </mat-form-field>
+        
+          <mat-form-field>
+            <mat-label>Telefono de contacto</mat-label>
+            <input matInput [(ngModel)]="gym.phone_number">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Ubicación: Latitud</mat-label>
+          <input matInput [(ngModel)]="gym.latitude">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Ubicación: Longitud</mat-label>
+          <input matInput [(ngModel)]="gym.longitude">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Dirección</mat-label>
+          <input matInput [(ngModel)]="gym.address">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Sitio web</mat-label>
+          <input matInput [(ngModel)]="gym.website">
+        </mat-form-field>
+      </div>
+      <p>Horario</p>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Lunes</mat-label>
+          <input matInput [(ngModel)]="schedule.monday">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Martes</mat-label>
+          <input matInput [(ngModel)]="schedule.tuesday">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Miercoles</mat-label>
+          <input matInput [(ngModel)]="schedule.wednesday">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Jueves</mat-label>
+          <input matInput [(ngModel)]="schedule.thursday">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Viernes</mat-label>
+          <input matInput [(ngModel)]="schedule.friday">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Sabado</mat-label>
+          <input matInput [(ngModel)]="schedule.saturday">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Domingo</mat-label>
+          <input matInput [(ngModel)]="schedule.sunday">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="createGym()">Añadir</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
