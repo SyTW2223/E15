@@ -1,43 +1,47 @@
-.footer {
-  background-color: #00E676;
-  color: #fff;
+footer {
   padding: 20px;
-  width: 100%;
-  min-height: 170px;
-  display: flex;
-  justify-content: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  margin-bottom: 60px!important;
+  margin: 40px;
+  bottom: 0!important;
+  flex-wrap: wrap;
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+/* Estilos para pantallas más estrechas */
+@media screen and (max-width: 767px) {
+  .footer {
+    font-size: 0.8rem;
+    margin: 20px;
+  }
 }
 
-h5 {
-  margin-bottom: 10px;
+/* Estilos para pantallas más anchas */
+@media screen and (min-width: 768px) {
+  .footer {
+    font-size: 1rem;
+  }
+}
+
+.border-top {
+  --bs-border-opacity: 0.95;
+  border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
+}
+
+.fa-dumbbell {
+  opacity: 80%;
+  transition: transform 0.2s;
+}
+
+.fa-dumbbell:hover {
+  transform: rotate(-45deg);
+}
+
+.text-body-secondary {
   font-size: 100%;
-  color: #000;
 }
 
-p {
-  margin-bottom: 5px;
-}
-
-.social-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.i {
-  font-size: 20px;
-  color: #fff;
-  margin-right: 20px;
-  margin-left: 20px;
-}
-
-.subtext {
-  font-size: 90%;
-  margin-left: 20px;
+.fa-brands {
+  padding: 2%;
+  opacity: 80%;
 }
