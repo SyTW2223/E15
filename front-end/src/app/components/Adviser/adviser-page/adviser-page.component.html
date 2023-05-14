@@ -4,7 +4,7 @@
 
 <div class="form">
   <mat-card class="card"> 
-    <mat-card-title>Ingresa tus datos y preferencias para poder asesorarte: </mat-card-title>
+    <mat-card-title class="margin">Ingresa tus datos y preferencias para poder asesorarte: </mat-card-title>
     <mat-card-content>
       <div class="container">
         <div class="form-inputs">
@@ -57,8 +57,15 @@
         </div> 
       </div>
 
+      <div>
+        <mat-form-field class="form-inputs2">
+        <mat-label>Explicanos tu problema</mat-label>
+        <input matInput>
+        </mat-form-field>
+      </div>
+
       <div class="bottom_center">
-        <button class="bottom-diet"  mat-raised-button color="accent" onclick="window.location.href = '/routines'">Continuar</button>
+        <button class="bottom-diet"  mat-raised-button color="accent" onclick="window.location.href = '/adviser_list'">Continuar</button>
       </div>
     </mat-card-content>
   </mat-card>

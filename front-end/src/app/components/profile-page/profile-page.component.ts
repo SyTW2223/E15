@@ -16,7 +16,6 @@ export class ProfilePageComponent implements OnInit {
     this.token = this.authService.getToken();
     this.token = jwt_decode(this.token);
     this.user = this.token.user;
-    console.log(this.user);
   }
 
   public isSportMan(): boolean {
@@ -25,7 +24,7 @@ export class ProfilePageComponent implements OnInit {
 
   public isGymOwner(): boolean {
     //return this.user.role === 'Dueño de gimnasio';
-    return false;
+    return true;
   }
 
   public isCoach(): boolean {
