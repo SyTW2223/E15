@@ -24,4 +24,4 @@ export class RoutineModel {
     Object.assign(this, input);
     return this;
   }
-}//
+}

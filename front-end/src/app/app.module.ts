@@ -28,13 +28,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog'
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+
 
 import { AuthenticationService } from './services/authentication.service';
 import { GetDietsService } from './services/get-diets.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
-import { GetGymsService } from './services/get-gyms.service';
+import { GymsService } from './services/gyms.service';
 import { GetRoutinesService } from './services/get-routines.service';
 import { GetExercisesService } from './services/get-exercises.service';
+import { UsersService } from './services/users.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './components/Authentication/sign-in/sign-in.component';
@@ -63,6 +66,7 @@ import { DeleteExerciseComponent } from './components/forms/delete-exercise/dele
 import { DeleteDietComponent } from './components/forms/delete-diet/delete-diet.component';
 import { AdviserListComponent } from './components/Adviser/adviser-list/adviser-list.component';
 import { EditComponent } from './components/profile-page/edit/edit.component';
+import { RoutineComponent } from './components/Routine/routine/routine.component';
 
 
 
@@ -97,6 +101,7 @@ import { EditComponent } from './components/profile-page/edit/edit.component';
     DeleteDietComponent,
     AdviserListComponent,
     EditComponent,
+    RoutineComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,7 +127,8 @@ import { EditComponent } from './components/profile-page/edit/edit.component';
     MatPaginatorModule,
     MatDialogModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
   ],
   providers: [AuthenticationService, AuthGuard,
   {
@@ -130,10 +136,11 @@ import { EditComponent } from './components/profile-page/edit/edit.component';
     useClass: TokenInterceptorService,
     multi: true
   },
-    GetGymsService,
+    GymsService,
     GetDietsService,
     GetRoutinesService,
-    GetExercisesService
+    GetExercisesService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

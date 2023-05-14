@@ -7,6 +7,7 @@ import { exerciseR } from '../routers/app.exerciseRouter'
 import { gymR } from '../routers/app.gymRouter'
 import { routineR } from '../routers/app.routineRouter';
 import { dietR } from '../routers/app.dietRouter';
+import { userR } from '../routers/app.userRouter';
 
 export const app = express();
 
@@ -25,6 +26,7 @@ app.use(exerciseR);
 app.use(gymR);
 app.use(routineR);
 app.use(dietR);
+app.use(userR);
 
 const port = process.env.PORT || 3002;
 app.listen(port, () => {
