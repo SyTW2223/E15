@@ -13,6 +13,10 @@ export class GymsService {
     return this.http.get<any>(this.gymsURL);
   }
 
+  getGym(id: String) {
+    return this.http.get<any>(`${this.gymsURL}/${id}`);
+  }
+
   postGym(data: any) {
     return this.http.post<any>(this.gymsURL, data);
   }
