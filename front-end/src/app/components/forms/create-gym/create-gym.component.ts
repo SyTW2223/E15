@@ -14,8 +14,6 @@ export class CreateGymComponent implements OnInit {
   gym: any = {};
   schedule: any = {};
 
-
-
   constructor(private gymService: GymsService, 
     public authService: AuthenticationService,
     private router: Router) { }
@@ -28,7 +26,7 @@ export class CreateGymComponent implements OnInit {
   createGym() {
     this.gym.owner = this.token.user._id;
     this.gym.schedule = this.schedule;
-    this.gym.picture = "";
+    this.gym.picture = "Imagen";
     this.gym.likes = 0;
     this.gym.comments = [];
     this.gymService.postGym(this.gym)

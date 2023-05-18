@@ -32,11 +32,11 @@ import { MatListModule } from '@angular/material/list';
 
 
 import { AuthenticationService } from './services/authentication.service';
-import { GetDietsService } from './services/get-diets.service';
+import { DietsService } from './services/diets.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { GymsService } from './services/gyms.service';
-import { GetRoutinesService } from './services/get-routines.service';
-import { GetExercisesService } from './services/get-exercises.service';
+import { RoutinesService } from './services/routines.service';
+import { ExercisesService } from './services/exercises.service';
 import { UsersService } from './services/users.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -137,9 +137,9 @@ import { RoutineComponent } from './components/Routine/routine/routine.component
     multi: true
   },
     GymsService,
-    GetDietsService,
-    GetRoutinesService,
-    GetExercisesService,
+    DietsService,
+    RoutinesService,
+    ExercisesService,
     UsersService
   ],
   bootstrap: [AppComponent]

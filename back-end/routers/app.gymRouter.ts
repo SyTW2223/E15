@@ -33,7 +33,7 @@ gymR.post('/gym', async (req, res)=>{
      website: req.body.website, likes:req.body.likes, comments: new_comments, picture: req.body.picture, schedule: new_schedule});
   new_gym.save();
 
-  res.status(200).send("Gimnasio creado correctamente")
+  res.status(200).send()
 })
 
 //devuelve toda la lista de gimnasios
@@ -76,7 +76,7 @@ gymR.delete('/gym/:id', async(req,res) =>{
     if(!gym){
     return res.status(404).send("Gimnasio no encontrado");
   }
-    return res.status(200).send("Gimnasio eliminado satisfactoriamente");
+    return res.status(200).send();
   })
   .catch(()=>{
     return res.status(500).send("Error");

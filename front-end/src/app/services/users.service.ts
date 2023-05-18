@@ -9,8 +9,16 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getUser() {
+  getUsers() {
     return this.http.get<any>(this.userURL);
+  }
+
+  getUser(id: String) {
+    return this.http.get<any>(`${this.userURL}/${id}`);
+  }
+
+  deleteUser(id: string) {
+    return this.http.delete<any>(`${this.userURL}/${id}`);
   }
 
   getUserId(id: string) {

@@ -1,1 +1,24 @@
-<p>delete-diet works!</p>
+<div>
+  <img src="assets/images/home-log-out.jpg" class="background-img">
+</div>
+
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Eliminar un dieta</mat-card-title>
+    <mat-card-content>
+      <p>Escoger una dieta</p>
+      <mat-form-field>
+        <mat-label>Dietas</mat-label>
+        <mat-select [(ngModel)]="diet">
+          <mat-option *ngFor="let diet of diets" [value]="diet">
+            {{diet.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="deleteDiet()">Eliminar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

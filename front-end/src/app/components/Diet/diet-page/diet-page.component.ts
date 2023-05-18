@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { GetDietsService } from 'src/app/services/get-diets.service';
+import { DietsService } from 'src/app/services/diets.service';
 
 @Component({
   selector: 'app-diet-page',
@@ -18,7 +18,7 @@ export class DietPageComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private getDiets: GetDietsService) {}
+  constructor(private getDiets: DietsService) {}
 
   ngOnInit() {
     this.getDiets.getDiets()
