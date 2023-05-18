@@ -65,7 +65,7 @@ dietR.patch('/diet/:id', async(req, res) =>{
     })
     .catch(() => {
       return res.status(500).send({ msg: 'Error al actualizar la dieta' })
-    })  
+    })
 });
 
 dietR.delete('/diet/:id', async(req, res)=>{
@@ -75,7 +75,7 @@ dietR.delete('/diet/:id', async(req, res)=>{
     if(!Diet){
     return res.status(404).send("Dieta no encontrada");
   }
-    return res.status(200).send("Dieta eliminada satisfactoriamente");
+    return res.status(200).send("");
   })
   .catch(()=>{
     return res.status(500).send("Error");

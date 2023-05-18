@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { GetExercisesService } from 'src/app/services/get-exercises.service';
+import { ExercisesService } from 'src/app/services/exercises.service';
 
 @Component({
   selector: 'app-exercise-page',
@@ -19,7 +19,7 @@ export class ExercisePageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private getExercises: GetExercisesService) {}
+  constructor(private getExercises: ExercisesService) {}
 
   ngOnInit() {
     this.getExercises.getExercises()

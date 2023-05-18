@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { DietsService } from 'src/app/services/diets.service';
+import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-delete-diet',
@@ -6,5 +10,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./delete-diet.component.css']
 })
 export class DeleteDietComponent {
+  token: any;
+  diets: any = [];
+  diet: any = {};
 
+  constructor(private dietsService: DietsService,
+    public authService: AuthenticationService,
+    private router: Router) {}
+
+  ngOnInit(): void {
+    this.token = this.authService.getToken();
+    this.token = jwt_decode(this.token);
+    this.dietsService.getDiets()
+      .subscribe(
+        res => {
+          this.diets = res;
+        },
+        err => console.log(err)
+      )
+  }
+
+  deleteDiet() {
+    let id = this.diet._id;
+    this.dietsService.deleteDiet(id)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.router.navigate(['/profile']);
+        },
+        err => console.log(err)
+      )
+  }
 }

@@ -1,1 +1,23 @@
-<p>delete-exercise works!</p>
+<div>
+  <img src="assets/images/home-log-out.jpg" class="background-img">
+</div>
+
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Eliminar un ejercicio</mat-card-title>
+    <mat-card-content>
+      <p>Escoger ejercicio</p>
+      <mat-form-field>
+        <mat-label>Ejercicio</mat-label>
+        <mat-select [(ngModel)]="exercise">
+          <mat-option *ngFor="let exercise of exercises" [value]="exercise">
+            {{exercise.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="deleteExercise()">Eliminar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
