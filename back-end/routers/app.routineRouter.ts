@@ -39,7 +39,7 @@ routineR.post('/routine', async (req, res) =>{
     author: author, category: req.body.category, exercises: new_exercises, equipment_needed: req.body.equipment_needed, avg_duration: req.body.avg_duration, 
     sets: req.body.sets, reps: req.body.reps, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
   new_routine.save();
-  res.status(200).send("Rutina creada correctamente")
+  res.status(200).send({ msg: "Rutina creada correctamente" })
 });
 
 routineR.get('/routine', async(req, res) =>{
@@ -67,12 +67,12 @@ routineR.patch('/routine/:id', async(req, res) =>{
   await Routine.findByIdAndUpdate({_id: id}, routine_update)
   .then((Routine) =>{
     if(!Routine){
-      res.status(404).send("No se ha encontrado la rutina")
+      res.status(404).send({ msg: "No se ha encontrado la rutina" })
     }
-    return res.status(200).send("Rutina actualizada correctamente")
+    return res.status(200).send({ msg: "Rutina actualizada correctamente" })
   })
   .catch((err) =>{
-    res.status(500).send("Error al actualizar la rutina")
+    res.status(500).send({ msg: "Error al actualizar la rutina" })
   })
 });
 
@@ -81,11 +81,11 @@ routineR.delete('/routine/:id', async(req, res)=>{
   await Routine.findByIdAndDelete({_id: req.params.id})
   .then((Routine)=>{
     if(!Routine){
-    return res.status(404).send("Rutina no encontrado");
+    return res.status(404).send({ msg: "Rutina no encontrado" });
   }
-    return res.status(200).send("Rutina eliminada satisfactoriamente");
+    return res.status(200).send({ msg: "Rutina eliminada satisfactoriamente" });
   })
   .catch(()=>{
-    return res.status(500).send("Error");
+    return res.status(500).send({ msg: "Error" });
   })
 })

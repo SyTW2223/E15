@@ -12,7 +12,7 @@ exerciseR.use(bodyParser.json());
 exerciseR.post('/exercise', async (req, res) =>{
   //TODO: Hay que buscar el usuario por el id que ofrece el JTW y comprobar que puede crear el ejercicio
   console.log(req.body);
-  const author = await User.findOne({first_name: req.body.author})
+  const author = await User.findOne({_id: req.body.author})
   
   //Array de comment
   const comments = req.body.comments;
@@ -28,7 +28,7 @@ exerciseR.post('/exercise', async (req, res) =>{
    initial_position: req.body.initial_position, category: req.body.category, equipment_needed: req.body.equipment_needed, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
   new_exercise.save();
   
-  res.status(200).send("Ejercicio creado correctamente")
+  res.status(200).send({ msg: 'Ejercicio creado correctamente' })
 });
 
 exerciseR.get('/exercise', async(req, res) =>{
@@ -75,11 +75,11 @@ exerciseR.delete('/exercise/:id', async(req, res)=>{
   await Exercise.findByIdAndDelete({_id: req.params.id})
   .then((Exercise)=>{
     if(!Exercise){
-    return res.status(404).send("Ejercicio no encontrado");
+    return res.status(404).send({ msg: "Ejercicio no encontrado" });
   }
-    return res.status(200).send("Ejercicio eliminado satisfactoriamente");
+    return res.status(200).send({ msg: "Ejercicio eliminado satisfactoriamente" });
   })
   .catch(()=>{
-    return res.status(500).send("Error");
+    return res.status(500).send({ msg: "Error" });
   })
 })

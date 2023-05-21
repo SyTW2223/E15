@@ -33,12 +33,12 @@ userR.patch('/user/:id', async(req, res) =>{
   await User.findByIdAndUpdate({_id: req.params.id}, user_update)
   .then((user) => {
     if(!user){
-      return res.status(404).send("Usuario no encontrado")
+      return res.status(404).send({ msg: "Usuario no encontrado" })
     }
-    return res.status(200).send()
+    return res.status(200).send({ msg: "Usuario actualizado correctamente" })
   })
   .catch(() => {
-    return res.status(500).send("Error al actualizar el usuaario")
+    return res.status(500).send({ msg: "Error al actualizar el usuario" })
   })
 })
 
@@ -48,11 +48,11 @@ userR.delete('/user/:id', async(req,res) =>{
   await User.findByIdAndDelete({_id: req.params.id})
   .then((user)=>{
     if(!user){
-    return res.status(404).send("Usuario no encontrado");
+    return res.status(404).send({ msg: "Usuario no encontrado" });
   }
-    return res.status(200).send("Usuario eliminado satisfactoriamente");
+    return res.status(200).send({ msg: "Usuario eliminado satisfactoriamente" });
   })
   .catch(()=>{
-    return res.status(500).send("Error");
+    return res.status(500).send({ msg: "Error" });
   })
 })
