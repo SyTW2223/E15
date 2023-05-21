@@ -30,9 +30,12 @@
   font-style: italic;
 }
 
-.mat-column-description {
+.mat-column-equipment {
   text-align: right;
+}
 
+.iconos {
+  padding-right: 5.5%;
 }
 
 .card {

@@ -25,6 +25,12 @@ export class DeleteDietComponent {
       .subscribe(
         res => {
           this.diets = res;
+          console.log("hola");
+          console.log(this.token.user._id);
+          console.log("hola");
+          console.log(this.diets);
+          this.diets = this.diets.filter((diet: any) => diet.user_id === this.token.user._id);
+          console.log(this.diets);
         },
         err => console.log(err)
       )

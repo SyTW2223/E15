@@ -13,10 +13,10 @@ signInR.post('/signIn', async (req, res)=>{
   const {email, password} = req.body;
   const user =  await User.findOne({email});
     if (!user) {
-      return res.status(401).send("El correo no existe");
+      return res.status(401).send({ msg: "El correo no existe" });
     }
     if (user.password !== password) {
-      return res.status(401).send("La contraseña no existe");
+      return res.status(401).send({ msg: "La contraseña no existe" });
     }
 
   const token = jwt.sign({user}, 'secretkey');

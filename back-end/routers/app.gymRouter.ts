@@ -33,7 +33,7 @@ gymR.post('/gym', async (req, res)=>{
      website: req.body.website, likes:req.body.likes, comments: new_comments, picture: req.body.picture, schedule: new_schedule});
   new_gym.save();
 
-  res.status(200).send()
+  res.status(200).send({ msg: "Gimnasio creado correctamente" });
 })
 
 //devuelve toda la lista de gimnasios
@@ -49,7 +49,7 @@ gymR.get('/gym/:id', async (req,res) => {
     console.log(gym);
     res.status(200).json(gym);
   } catch {
-    res.status(400).send("Gimnasio no encontrado");
+    res.status(400).send({ msg: "Gimnasio no encontrado" });
   }
 })
 
@@ -60,12 +60,12 @@ gymR.patch('/gym/:id', async(req, res) =>{
   await Gym.findByIdAndUpdate({_id: req.params.id}, gym_update)
   .then((gym) => {
     if(!gym){
-      return res.status(404).send("Gimnasio no encontrado")
+      return res.status(404).send({ msg: "Gimnasio no encontrado" })
     }
-    return res.status(200).send("Gimnasio actualizado satisfactoriamente")
+    return res.status(200).send({ msg: "Gimnasio actualizado correctamente" })
   })
   .catch(() => {
-    return res.status(500).send("Error al actualizar el Gimnasio")
+    return res.status(500).send({ msg: "Error al actualizar el Gimnasio" })
   })
 })
 
@@ -74,11 +74,11 @@ gymR.delete('/gym/:id', async(req,res) =>{
   await Gym.findByIdAndDelete({_id: req.params.id})
   .then((gym)=>{
     if(!gym){
-    return res.status(404).send("Gimnasio no encontrado");
+    return res.status(404).send({ msg: "Gimnasio no encontrado" });
   }
-    return res.status(200).send();
+    return res.status(200).send({ msg: "Gimnasio eliminado correctamente"});
   })
   .catch(()=>{
-    return res.status(500).send("Error");
+    return res.status(500).send({ msg: "Error" });
   })
 })

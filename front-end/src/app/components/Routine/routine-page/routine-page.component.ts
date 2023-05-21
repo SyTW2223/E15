@@ -10,7 +10,7 @@ import { RoutinesService } from 'src/app/services/routines.service';
   styleUrls: ['./routine-page.component.css']
 })
 export class RoutinePageComponent {
-  displayedColumns: string[] = ['name', 'author', 'category', 'description'];
+  displayedColumns: string[] = ['name', 'author', 'category', 'description', 'equipment'];
   dataSource: any;
   categories: any = [];
   routines: any = [];

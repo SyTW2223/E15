@@ -5,21 +5,43 @@ footer {
   margin-bottom: 60px!important;
   margin: 40px;
   bottom: 0!important;
+  display: flex;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
-/* Estilos para pantallas más estrechas */
-@media screen and (max-width: 767px) {
+@media (max-width: 768px) {
+  /* Estilos para pantallas más pequeñas que 768px de ancho */
   .footer {
-    font-size: 0.8rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer > *:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  .text-body-secondary,
+  .fa-dumbbell {
     margin: 20px;
   }
-}
 
-/* Estilos para pantallas más anchas */
-@media screen and (min-width: 768px) {
-  .footer {
-    font-size: 1rem;
+  .text-body-secondary {
+    text-align: center;
+  }
+
+  .fa-dumbbell {
+    margin-top: 40%;
+  }
+
+  .fa-brands {
+    margin: 5px 0 10px;
+  }
+
+  .nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center !important;
   }
 }
 

@@ -1,1 +1,66 @@
-<p>create-diet works!</p>
+<div>
+  <img src="assets/images/home-log-out.jpg" class="background-img">
+</div>
+
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Añadir una dieta</mat-card-title>
+    <mat-card-content>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Nombre de la dieta</mat-label>
+          <input matInput [(ngModel)]="diet.name">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <mat-select [(ngModel)]="diet.category">
+            <mat-option value="Bajar de peso">Bajar de peso</mat-option>
+            <mat-option value="Conseguir volumen">Conseguir volumen</mat-option>
+            <mat-option value="Equilibrada">Equilibrada</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Desayuno</mat-label>
+          <input matInput [(ngModel)]="diet.breakfast">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Almuerzo</mat-label>
+          <input matInput [(ngModel)]="diet.lunch">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Merienda</mat-label>
+          <input matInput [(ngModel)]="diet.snacks">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Cena</mat-label>
+          <input matInput [(ngModel)]="diet.dinner">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Descripción corta</mat-label>
+          <input matInput [(ngModel)]="diet.short_description">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Descripción larga</mat-label>
+          <input matInput [(ngModel)]="diet.long_description">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="createDiet()">Añadir</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

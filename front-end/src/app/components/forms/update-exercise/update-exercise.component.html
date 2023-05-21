@@ -1,1 +1,66 @@
-<p>update-exercise works!</p>
+<div>
+  <img src="assets/images/home-log-out.jpg" class="background-img">
+</div>
+
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title>Modificar un ejercicio</mat-card-title>
+    <mat-card-content>
+      <p>Escoger un ejercicio</p>
+      <mat-form-field>
+        <mat-label>Ejercicio</mat-label>
+        <mat-select [(ngModel)]="exercise">
+          <mat-option *ngFor="let exercise of exercises" [value]="exercise">
+            {{exercise.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Nombre del ejercicio</mat-label>
+          <input matInput [(ngModel)]="exercise.name">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Descripción corta</mat-label>
+          <input matInput [(ngModel)]="exercise.short_description">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Descripción larga</mat-label>
+          <input matInput [(ngModel)]="exercise.long_description">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Posición inicial</mat-label>
+          <input matInput [(ngModel)]="exercise.initial_position">
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <mat-select [(ngModel)]="exercise.category">
+            <mat-option value="Hombros">Hombros</mat-option>
+            <mat-option value="Piernas">Piernas</mat-option>
+            <mat-option value="Brazos">Brazos</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-inputs">
+        <mat-form-field>
+          <mat-label>¿Equipamiento necesario?</mat-label>
+          <mat-select [(ngModel)]="exercise.equipment_needed">
+            <mat-option value="Si">Si</mat-option>
+            <mat-option value="No">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="updateExercise()">Modificar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

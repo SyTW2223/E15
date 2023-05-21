@@ -12,7 +12,7 @@ dietR.use(bodyParser.json());
 dietR.post('/diet', async (req, res) =>{
   // Author
   console.log(req.body);
-  const author = await User.findOne({first_name: req.body.author});
+  const author = await User.findOne({_id: req.body.author});
 
   // Comments
   const comments = req.body.comments;
@@ -30,7 +30,7 @@ dietR.post('/diet', async (req, res) =>{
 
   new_diet.save();
   
-  res.status(200).send("Dieta creada correctamente");
+  res.status(200).send({ msg: "Dieta creada correctamente" });
 });
 
 dietR.get('/diet', async(req, res) =>{
@@ -73,11 +73,11 @@ dietR.delete('/diet/:id', async(req, res)=>{
   await Diet.findByIdAndDelete({_id: req.params.id})
   .then((Diet)=>{
     if(!Diet){
-    return res.status(404).send("Dieta no encontrada");
+    return res.status(404).send({ msg: "Dieta no encontrada" });
   }
-    return res.status(200).send("");
+    return res.status(200).send({ msg: "Dieta eliminada correctamente" });
   })
   .catch(()=>{
-    return res.status(500).send("Error");
+    return res.status(500).send({ msg: "Error" });
   })
 });
