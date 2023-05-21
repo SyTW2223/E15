@@ -9,6 +9,7 @@
 
 .mytable {
   width: 100%;
+  padding: 10px 10px;
   overflow: auto;
 }
 
@@ -58,6 +59,20 @@
   margin-left: 1%;
 }
 
+.line{
+  border: 1pc solid black;
+}
+
+.center{
+  text-align: center;
+}
+
+.center button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
 /*//////////////////////////////////////////////////////////////////////////////////////*/
 table {
   width: 100%;
