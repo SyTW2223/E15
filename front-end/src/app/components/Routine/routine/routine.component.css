@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-header {
+  padding: 20px;
+}
+
+.card-img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card {
+  flex: 0 0 50%;
+  margin: 20px;
+}
+
+@media (max-width: 992px) {
+  /* Estilos para pantallas más pequeñas que 992px de ancho */
+  .card {
+    flex: 0 0 100%;
+    margin: 20px;
+  }
+}
+
+.info {
+  flex: 0 0 40%;
+  margin: 20px;
+}
+
+.comment {
+  flex: 1;
+  margin: 20px;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+mat-card-title {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.comment-card {
+  width: 100%;
+  margin: 2%;
+}
+
+.user-image {
+  padding: 1%;
+}
+
+.comment-text {
+  margin-left: 2%;
+}
+
+i {
+  margin-left: 3%;
+}
+
+.equipment {
+  margin-bottom: 2%;
+}
+
+.reps {
+  font-style: italic;
+}
