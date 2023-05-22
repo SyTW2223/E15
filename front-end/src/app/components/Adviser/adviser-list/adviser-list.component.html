@@ -6,13 +6,13 @@
   <mat-card-actions class="card-content">
     <mat-form-field class="filter-container"> 
       <mat-label>Buscar</mat-label>
-      <input matInput (keyup)="applyTextFilter($event)" placeholder="Ej. Baja Calórica" #input>
+      <input matInput (keyup)="applyTextFilter($event)" placeholder="Ej. @gmail" #input>
     </mat-form-field>
     <mat-form-field class="selector" appearance="fill">
       <mat-label>Email</mat-label>
-      <mat-select [(ngModel)]="emailTerm" (ngModelChange)="applyCategoryFilter()">
-        <mat-option *ngFor="let cat of categories" [value]="cat">
-          {{cat}}
+      <mat-select [(ngModel)]="emailTerm" (ngModelChange)="applyEmailFilter()">
+        <mat-option *ngFor="let user of users" [value]="user.email">
+          {{user.email}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -51,8 +51,7 @@
           <div class="example-element-description">
             {{element.descriptions}} 
           </div>
-          <!-- <button class="center" mat-raised-button color="accent" onclick="window.location.href = '/homepage'">Solicitar Entrenador</button> -->
-          <button mat-raised-button color="accent" mat-button (click)="openPopup()"> Solicitar Entrenador</button>
+          <button mat-raised-button color="accent" mat-stroked-button (click)="handleButtomClick()" class="custom-button">Solicitar Entrenador</button>
         </div>
       </td>
     </ng-container>
