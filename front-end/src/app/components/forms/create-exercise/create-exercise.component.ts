@@ -43,4 +43,7 @@ export class CreateExerciseComponent implements OnInit {
       ) 
   }
 
+  cancel() {
+    this.router.navigate(['/profile']);
+  }
 }

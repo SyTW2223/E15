@@ -4,8 +4,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UsersService } from 'src/app/services/users.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 //import { User } from './back-end/Schema/userSchema';
+import { Router } from '@angular/router';
 
 const descriptions: string[] =[
   'Entrenador de carrera: Te ayudará a mejorar tu técnica de carrera, aumentar tu resistencia y alcanzar tus metas en carreras y maratones',
@@ -70,7 +71,8 @@ export class AdviserListComponent implements OnInit {
   expandedElement: any | null;
   
   constructor(private getUsers: UsersService,
-    public dialog: MatDialog) {}
+    public _snackBar: MatSnackBar,
+    public router: Router) {}
 
   ngOnInit() {
     this.getUsers.getUsers()
@@ -103,8 +105,9 @@ export class AdviserListComponent implements OnInit {
     }
   }
 
-  applyCategoryFilter() {
-    this.dataSource.filter = this.emailTerm.trim().toLowerCase();
+  applyEmailFilter() {
+    const filterValue =  this.emailTerm.trim().toLowerCase();
+    this.dataSource.filter = filterValue;
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -118,15 +121,19 @@ export class AdviserListComponent implements OnInit {
     phone_number: 'Número de Teléfono'
   };
 
-  openPopup(): void {
-    const dialogRef = this.dialog.open(AdviserListComponent, {
-      width: '400px', 
-      data: {} 
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+  handleButtomClick(){
+    this.openSnackBar();
+    this.routerNavigate();
+  }
+  openSnackBar() {
+    this._snackBar.open('Entrenador solicitado','', {
+      duration: 1000
     });
   }
+
+  routerNavigate(): void{
+    this.router.navigate(['/homepage']);
+  }
   
+   
 }

@@ -9,9 +9,10 @@ import jwt_decode from 'jwt-decode';
   templateUrl: './update-gym.component.html',
   styleUrls: ['./update-gym.component.css']
 })
-export class UpdateGymComponent {
+export class UpdateGymComponent implements OnInit {
   token: any;
   gyms: any = [];
+  gyms_filtered: any = [];
   gym: any = {};
 
   constructor(private gymService: GymsService,
@@ -25,6 +26,11 @@ export class UpdateGymComponent {
       .subscribe(
         res => {
           this.gyms = res;
+          for (let i = 0; i < this.gyms.length; i++) {
+            if (this.gyms[i].owner._id == this.token.user._id) {
+              this.gyms_filtered.push(this.gyms[i]);
+            }
+          }
         },
         err => console.log(err)
       )
@@ -42,4 +48,7 @@ export class UpdateGymComponent {
       )
   }
 
+  cancel() {
+    this.router.navigate(['/profile']);
+  }
 }

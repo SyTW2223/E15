@@ -4,7 +4,7 @@
 
 <div class="form">
   <mat-card class="card">
-    <mat-card-title>Añadir un ejercicio</mat-card-title>
+    <mat-card-title><strong>Añadir un ejercicio</strong></mat-card-title>
     <mat-card-content>
       <div class="form-inputs">
         <mat-form-field>
@@ -52,6 +52,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="createExercise()">Añadir</button>
+      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -2,7 +2,7 @@
   <img src="assets/images/home-log-out.jpg" class="background-img">
 </div>
 
-<div class="form">
+<div class="form" [formGroup]="signInUserForm">
   <mat-card class="card">
     <mat-card-title>Iniciar sesión</mat-card-title>
     <mat-card-content>
@@ -10,12 +10,12 @@
         <mat-form-field>
           <!--<input [(ngModel)]="signUpUser.name" matInput placeholder="Name">-->
           <mat-label>Correo electronico</mat-label>
-          <input matInput [(ngModel)]="signInUser.email">
+          <input matInput formControlName="email">
         </mat-form-field>
         <mat-form-field>
           <!--<input [(ngModel)]="signUpUser.name" matInput placeholder="Name">-->
           <mat-label>Contraseña</mat-label>
-          <input matInput [(ngModel)]="signInUser.password">
+          <input matInput formControlName="password">
         </mat-form-field>
       </div>
     </mat-card-content>
@@ -23,6 +23,7 @@
       <button class="button" mat-raised-button color="primary" (click)="signIn()">Iniciar sesión</button>
     </mat-card-actions>
     <mat-card-content>
+      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
       <p>¿No tienes una cuenta? <a routerLink="/sign-up">Registrarse</a></p>
     </mat-card-content>
   </mat-card>

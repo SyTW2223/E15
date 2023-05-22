@@ -3,69 +3,30 @@
 </div>
 
 <div class="form">
-  <mat-card class="card"> 
-    <mat-card-title class="margin">Ingresa tus datos y preferencias para poder asesorarte: </mat-card-title>
+  <mat-card class="card">
+    <mat-card-title class="margin">Ingresa tus datos y preferencias para poder asesorarte:</mat-card-title>
     <mat-card-content>
-      <div class="container">
-        <div class="form-inputs">
+      <div class="container" [formGroup]="form">
+        <div>
           <mat-form-field>
-            <mat-label>Nombre</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Apellido</mat-label>
-            <input matInput>
-          </mat-form-field>
-        </div>
-
-        <div class="form-inputs">
-          <mat-form-field>
-          <mat-label>Correo Electronico</mat-label>
-          <input matInput>
-          </mat-form-field>
-        </div>
-        
-        <div class="form-inputs">
-          <mat-form-field>
-            <mat-label>Peso</mat-label>
-            <input matInput>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Edad</mat-label>
-            <input matInput>
+            <mat-label>Categoría de Asesoramiento</mat-label>
+            <mat-select formControlName="categoriaAsesoramiento">
+              <mat-option value="one">Opción uno</mat-option>
+              <mat-option value="two">Opción dos</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
 
         <div>
-          <mat-form-field>
-            <mat-label>Genero</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
-            </mat-select>
+          <mat-form-field class="form-inputs2">
+            <mat-label>Explícanos tu problema</mat-label>
+            <input matInput formControlName="problema">
           </mat-form-field>
+        </div>
 
-          <mat-form-field>
-            <mat-label>Categoria Asesoramiento</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div> 
-      </div>
-
-      <div>
-        <mat-form-field class="form-inputs2">
-        <mat-label>Explicanos tu problema</mat-label>
-        <input matInput>
-        </mat-form-field>
-      </div>
-
-      <div class="bottom_center">
-        <button class="bottom-diet"  mat-raised-button color="accent" onclick="window.location.href = '/adviser_list'">Continuar</button>
+        <div class="bottom_center">
+          <button class="bottom-diet" mat-raised-button color="accent" [disabled]="form.invalid" onclick="window.location.href = '/adviser_list'"> Continuar </button>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>

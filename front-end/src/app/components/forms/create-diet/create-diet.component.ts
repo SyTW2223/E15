@@ -37,4 +37,7 @@ export class CreateDietComponent implements OnInit {
       ) 
   }
 
+  cancel() {
+    this.router.navigate(['/profile']);
+  }
 }

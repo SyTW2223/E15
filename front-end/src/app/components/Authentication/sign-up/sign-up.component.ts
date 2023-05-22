@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, FormGroup, } from '@angular/forms';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -10,38 +11,60 @@ import { Router } from '@angular/router';
 })
 
 export class SignUpComponent implements OnInit {
+  hide = true;
+  termsAccepted = false;
+  signUpUserForm: FormGroup;
   // TODO: sustituir por el modelo de usuario
-  signUpUser={
-    first_name: '',
-    last_name: '',
-    username: '',
-    phone_number: '',
-    email: '',
-    password: '',
-    gender: '',
-    role: '',
-    birthdate: '',
-    picture: 'foto',
-  }
 
   email = new FormControl('', [Validators.required, Validators.email]);
-  getErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'Debes ingresar un valor';
+ 
+  constructor(private auth: AuthenticationService,
+    private router: Router, private formBuilder: FormBuilder) {
+      this.signUpUserForm = this.formBuilder.group({
+        first_name: ['', Validators.required],
+        last_name: ['', Validators.required],
+        username: ['', Validators.required],
+        phone_number: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+        gender: ['', Validators.required],
+        role: ['', Validators.required],
+        birthdate: ['', Validators.required],
+        picture: 'foto'
+      }, { validator: this.passwordsMatchValidator });
+    }
+    
+    ngOnInit(): void {}
+    
+    getErrorMessage() {
+      if (this.email.hasError('required')) {
+        return 'Debes ingresar un valor';
+      }
+  
+      return this.email.hasError('email') ? 'Email no valido' : '';
     }
 
-    return this.email.hasError('email') ? 'Email no valido' : '';
+  passwordsMatchValidator(formGroup: FormGroup) {
+    const password = formGroup?.get('password')?.value;
+    const confirmPassword = formGroup?.get('confirmPassword')?.value;
+      
+    if (password !== confirmPassword) {
+      formGroup?.get('confirmPassword')?.setErrors({ passwordsNotMatch: true });
+    } else {
+      formGroup?.get('confirmPassword')?.setErrors(null);
+    }
   }
 
-  hide = true;
-
-  constructor(private auth: AuthenticationService,
-    private router: Router) { }
-
-  ngOnInit(): void {}
-
   signUp(){
-    this.auth.signUpUser(this.signUpUser)
+    if (this.signUpUserForm.invalid ||  !this.signUpUserForm.get('acceptTerms')?.value) {
+      console.log('Error: El formulario es inválido o los términos y condiciones no han sido aceptados');
+      return;
+    }
+
+    const signUpUser = this.signUpUserForm.value;
+
+    this.auth.signUpUser(signUpUser)
     .subscribe(
       res =>  {
         console.log(res)

@@ -4,13 +4,12 @@
 
 <div class="form">
   <mat-card class="card">
-    <mat-card-title>Modificar un ejercicio</mat-card-title>
+    <mat-card-title><strong>Modificar un ejercicio</strong></mat-card-title>
     <mat-card-content>
-      <p>Escoger un ejercicio</p>
       <mat-form-field>
-        <mat-label>Ejercicio</mat-label>
+        <mat-label>Ejercicios</mat-label>
         <mat-select [(ngModel)]="exercise">
-          <mat-option *ngFor="let exercise of exercises" [value]="exercise">
+          <mat-option *ngFor="let exercise of exercises_filtered" [value]="exercise">
             {{exercise.name}}
           </mat-option>
         </mat-select>
@@ -61,6 +60,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="updateExercise()">Modificar</button>
+      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

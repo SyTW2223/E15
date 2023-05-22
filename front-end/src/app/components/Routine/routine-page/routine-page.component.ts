@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { RoutinesService } from 'src/app/services/routines.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-routine-page',
@@ -18,7 +19,7 @@ export class RoutinePageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private getRoutines: RoutinesService) {}
+  constructor(private getRoutines: RoutinesService, private router: Router) {}
 
   ngOnInit() {
     this.getRoutines.getRoutines()
@@ -52,5 +53,9 @@ export class RoutinePageComponent {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  navigateToRoutine(id: string) {
+    this.router.navigate(['routines', id]);
   }
 }

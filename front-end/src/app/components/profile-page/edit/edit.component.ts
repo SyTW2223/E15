@@ -64,4 +64,8 @@ export class EditComponent {
       err => console.log(err)
     )
   };
+
+  cancel(){
+    this.router.navigate(['/profile']);
+  }
 }

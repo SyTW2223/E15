@@ -13,6 +13,7 @@ export class UpdateDietComponent implements OnInit {
   token: any;
   diet: any = {};
   diets: any = [];
+  diets_filtered: any = [];
 
   constructor(private dietService: DietsService,
     public authService: AuthenticationService,
@@ -25,7 +26,11 @@ export class UpdateDietComponent implements OnInit {
     .subscribe(
       res => {
         this.diets = res;
-        console.log(this.diets);
+        for (let i = 0; i < this.diets.length; i++) {
+          if (this.diets[i].user_id === this.token.user._id) {
+            this.diets_filtered.push(this.diets[i]);
+          }
+        }
       },
       err => console.log(err)
     )
@@ -43,4 +48,7 @@ export class UpdateDietComponent implements OnInit {
       )
   }
 
+  cancel() {
+    this.router.navigate(['/profile']);
+  }
 }

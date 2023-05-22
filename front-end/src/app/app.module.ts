@@ -60,7 +60,6 @@ import { CreateGymComponent } from './components/forms/create-gym/create-gym.com
 import { UpdateGymComponent } from './components/forms/update-gym/update-gym.component';
 import { UpdateExerciseComponent } from './components/forms/update-exercise/update-exercise.component';
 import { UpdateDietComponent } from './components/forms/update-diet/update-diet.component';
-import { UpdateProfileComponent } from './components/forms/update-profile/update-profile.component';
 import { DeleteGymComponent } from './components/forms/delete-gym/delete-gym.component';
 import { DeleteExerciseComponent } from './components/forms/delete-exercise/delete-exercise.component';
 import { DeleteDietComponent } from './components/forms/delete-diet/delete-diet.component';
@@ -95,7 +94,6 @@ import { RoutineComponent } from './components/Routine/routine/routine.component
     UpdateGymComponent,
     UpdateExerciseComponent,
     UpdateDietComponent,
-    UpdateProfileComponent,
     DeleteGymComponent,
     DeleteExerciseComponent,
     DeleteDietComponent,
