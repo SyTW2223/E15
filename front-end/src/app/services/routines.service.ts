@@ -13,7 +13,7 @@ export class RoutinesService {
     return this.http.get<any>(this.routinesURL);
   }
 
-  getRoutine(id: String) {
+  getRoutineByID(id: String) {
     return this.http.get<any>(`${this.routinesURL}/${id}`);
   }
 
