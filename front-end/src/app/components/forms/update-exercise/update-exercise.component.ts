@@ -12,7 +12,9 @@ import jwt_decode from 'jwt-decode';
 export class UpdateExerciseComponent implements OnInit {
   token: any;
   exercise: any = {};
-  exercises: any = [];  
+  exercises: any = [];
+  exercises_filtered: any = [];  
+
   constructor(private authService: AuthenticationService,
     public exerciseService: ExercisesService,
     private router: Router) { }
@@ -24,7 +26,11 @@ export class UpdateExerciseComponent implements OnInit {
       .subscribe(
         res => {
           this.exercises = res;
-          console.log(this.exercises);
+          for (let i = 0; i < this.exercises.length; i++) {
+            if (this.exercises[i].author._id == this.token.user._id) {
+              this.exercises_filtered.push(this.exercises[i]);
+            }
+          }
         },
         err => console.log(err)
       )
@@ -45,6 +51,10 @@ export class UpdateExerciseComponent implements OnInit {
         },
         err => console.log(err)
       )
+  }
+
+  cancel() {
+    this.router.navigate(['/profile']);
   }
 
 }

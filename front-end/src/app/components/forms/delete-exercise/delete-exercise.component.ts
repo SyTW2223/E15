@@ -13,6 +13,7 @@ import jwt_decode from 'jwt-decode';
 export class DeleteExerciseComponent implements OnInit {
   token: any;
   exercises: any = [];
+  exercise_filtered: any = [];
   exercise: any = {};
 
   constructor(private exercisesService: ExercisesService,
@@ -26,6 +27,11 @@ export class DeleteExerciseComponent implements OnInit {
       .subscribe(
         res => {
           this.exercises = res;
+          for (let i = 0; i < this.exercises.length; i++) {
+            if (this.exercises[i].author._id == this.token.user._id) {
+              this.exercise_filtered.push(this.exercises[i]);
+            } 
+          }
         },
         err => console.log(err)
       )
@@ -41,5 +47,9 @@ export class DeleteExerciseComponent implements OnInit {
         },
         err => console.log(err)
       )
+  }
+
+  cancel() {
+    this.router.navigate(['/profile']);
   }
 }

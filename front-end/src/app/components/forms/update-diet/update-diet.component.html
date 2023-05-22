@@ -4,13 +4,12 @@
 
 <div class="form">
   <mat-card class="card">
-    <mat-card-title>Modificar una dieta</mat-card-title>
+    <mat-card-title><strong>Modificar una dieta</strong></mat-card-title>
     <mat-card-content>
-      <p>Escoger una dieta</p>
       <mat-form-field>
         <mat-label>Dietas</mat-label>
         <mat-select [(ngModel)]="diet">
-          <mat-option *ngFor="let diet of diets" [value]="diet">
+          <mat-option *ngFor="let diet of diets_filtered" [value]="diet">
             {{diet.name}}
           </mat-option>
         </mat-select>
@@ -70,6 +69,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="updateDiet()">Modificar</button>
+      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

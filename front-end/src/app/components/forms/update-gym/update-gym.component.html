@@ -4,14 +4,12 @@
 
 <div class="form">
   <mat-card class="card">
-    <mat-card-title>Modificar un gimnasio</mat-card-title>
+    <mat-card-title><strong>Modificar un gimnasio</strong></mat-card-title>
     <mat-card-content>
-      
-      <p>Escoger gimnasio</p>
       <mat-form-field>
-        <mat-label>Gimnasio</mat-label>
+        <mat-label>Gimnasios</mat-label>
         <mat-select [(ngModel)]="gym">
-          <mat-option *ngFor="let gym of gyms" [value]="gym">
+          <mat-option *ngFor="let gym of gyms_filtered" [value]="gym">
             {{gym.name}}
           </mat-option>
         </mat-select>
@@ -102,6 +100,7 @@
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="updateGym()">Modificar</button>
+      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

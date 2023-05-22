@@ -13,6 +13,7 @@ import jwt_decode from 'jwt-decode';
 export class DeleteGymComponent implements OnInit {
   token: any;
   gyms: any = [];
+  gyms_filtered: any = [];
   gym: any = {};
 
   constructor(private gymService: GymsService,
@@ -26,6 +27,11 @@ export class DeleteGymComponent implements OnInit {
       .subscribe(
         res => {
           this.gyms = res;
+          for (let i = 0; i < this.gyms.length; i++) {
+            if (this.gyms[i].owner._id == this.token.user._id) {
+              this.gyms_filtered.push(this.gyms[i]);
+            }
+          }
         },
         err => console.log(err)
       )
@@ -41,5 +47,9 @@ export class DeleteGymComponent implements OnInit {
         },
         err => console.log(err)
       )
+  }
+
+  cancel() {
+    this.router.navigate(['/profile']);
   }
 }

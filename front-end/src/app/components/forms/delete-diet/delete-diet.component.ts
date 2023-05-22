@@ -12,6 +12,7 @@ import jwt_decode from 'jwt-decode';
 export class DeleteDietComponent {
   token: any;
   diets: any = [];
+  diets_filtered: any = [];
   diet: any = {};
 
   constructor(private dietsService: DietsService,
@@ -25,12 +26,11 @@ export class DeleteDietComponent {
       .subscribe(
         res => {
           this.diets = res;
-          console.log("hola");
-          console.log(this.token.user._id);
-          console.log("hola");
-          console.log(this.diets);
-          this.diets = this.diets.filter((diet: any) => diet.user_id === this.token.user._id);
-          console.log(this.diets);
+          for (let i = 0; i < this.diets.length; i++) {
+            if (this.diets[i].author._id == this.token.user._id) {
+              this.diets_filtered.push(this.diets[i]);
+            }
+          }          
         },
         err => console.log(err)
       )
@@ -46,5 +46,9 @@ export class DeleteDietComponent {
         },
         err => console.log(err)
       )
+  }
+
+  cancel() {
+    this.router.navigate(['/profile']);
   }
 }

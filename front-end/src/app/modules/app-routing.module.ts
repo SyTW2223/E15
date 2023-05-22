@@ -38,6 +38,7 @@ const routes: Routes = [
   { path: 'exercises', component: ExercisePageComponent},
   { path: 'routines', component: RoutinePageComponent},
   { path: 'routines/:id', component: RoutineComponent},
+  { path: '', redirectTo: '/routines', pathMatch: 'full' }, // Cuidado
   { path: 'diets', component: DietMenuComponent },
   { path: 'diets_list', component: DietPageComponent },
   { path: 'diets_info', component: DietInfoComponent },

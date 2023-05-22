@@ -38,4 +38,8 @@ export class CreateGymComponent implements OnInit {
         err => console.log(err)
       ) 
   }
+
+  cancel() {
+    this.router.navigate(['/profile']);
+  }
 }
