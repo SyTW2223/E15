@@ -14,19 +14,23 @@ import { DietInfoComponent } from '../components/Diet/diet-info/diet-info.compon
 import { DietMenuComponent } from '../components/Diet/diet-menu/diet-menu.component';
 import { EditComponent } from '../components/profile-page/edit/edit.component';
 import { AdviserListComponent } from '../components/Adviser/adviser-list/adviser-list.component';
+import { ExerciseComponent } from '../components/Exercise/exercise/exercise.component';
+import { DietComponent } from '../components/Diet/diet/diet.component';
 
 import { CreateGymComponent } from '../components/forms/create-gym/create-gym.component';
 import { CreateExerciseComponent } from '../components/forms/create-exercise/create-exercise.component';
 import { CreateDietComponent } from '../components/forms/create-diet/create-diet.component';
+import { CreateRoutineComponent } from '../components/forms/create-routine/create-routine.component';
 
 import { UpdateGymComponent } from '../components/forms/update-gym/update-gym.component';
 import { UpdateExerciseComponent } from '../components/forms/update-exercise/update-exercise.component';
 import { UpdateDietComponent } from '../components/forms/update-diet/update-diet.component';
+import { UpdateRoutineComponent } from '../components/forms/update-routine/update-routine.component';
 
 import { DeleteGymComponent } from '../components/forms/delete-gym/delete-gym.component';
 import { DeleteExerciseComponent } from '../components/forms/delete-exercise/delete-exercise.component';
 import { DeleteDietComponent } from '../components/forms/delete-diet/delete-diet.component';
-
+import { DeleteRoutineComponent } from '../components/forms/delete-routine/delete-routine.component';
 import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
@@ -36,11 +40,12 @@ const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   //{ path: 'exercises', component: ExerciseListComponent, canActivate: [AuthGuard]},
   { path: 'exercises', component: ExercisePageComponent},
+  { path: 'exercises/:id', component: ExerciseComponent},
   { path: 'routines', component: RoutinePageComponent},
   { path: 'routines/:id', component: RoutineComponent},
-  { path: '', redirectTo: '/routines', pathMatch: 'full' }, // Cuidado
   { path: 'diets', component: DietMenuComponent },
   { path: 'diets_list', component: DietPageComponent },
+  { path: 'diets_list/:id', component: DietComponent },
   { path: 'diets_info', component: DietInfoComponent },
   { path: 'map', component: MapPageComponent },
   { path: 'adviser', component: AdviserPageComponent },
@@ -53,6 +58,9 @@ const routes: Routes = [
   { path: 'profile/add_exercise', component:  CreateExerciseComponent},
   { path: 'profile/edit_exercise', component:  UpdateExerciseComponent},
   { path: 'profile/delete_exercise', component:  DeleteExerciseComponent},
+  { path: 'profile/add_routine', component:  CreateRoutineComponent},
+  { path: 'profile/edit_routine', component:  UpdateRoutineComponent},
+  { path: 'profile/delete_routine', component:  DeleteRoutineComponent},
   { path: 'profile/add_diet', component:  CreateDietComponent},
   { path: 'profile/edit_diet', component:  UpdateDietComponent},
   { path: 'profile/delete_diet', component:  DeleteDietComponent},

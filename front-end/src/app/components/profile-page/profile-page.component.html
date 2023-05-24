@@ -21,10 +21,8 @@
         <button mat-button (click)="authService.logoutUser()">SALIR</button>
     </mat-card>
   </div>
+
   <div class="column">
-
-
-
     <mat-card class="card triple">
       <mat-card-title class="center"><h3>Datos del perfil</h3></mat-card-title>
       <mat-card-content>
@@ -49,6 +47,13 @@
             <button mat-button routerLink="/profile/add_exercise">AÑADE UN EJERCICIO</button>
             <button mat-button routerLink="/profile/edit_exercise">MODIFICA UN EJERCICIO</button>
             <button mat-button routerLink="/profile/delete_exercise">ELIMINA UN EJERCICIO</button>
+          </div>
+          <div mat-dialog-actions align="center">
+            <button mat-button routerLink="/profile/add_routine">AÑADE UNA RUTINA</button>
+            <button mat-button routerLink="/profile/edit_routine">MODIFICA UNA RUTINA</button>
+            <button mat-button routerLink="/profile/delete_routine">ELIMINA UNA RUTINA</button>
+          </div>
+          <div mat-dialog-actions *ngIf="isCoach()"  align="center">  
             <button mat-button routerLink="/profile/add_diet">AÑADE UNA DIETA</button>
             <button mat-button routerLink="/profile/edit_diet">MODIFICA UNA DIETA</button>
             <button mat-button routerLink="/profile/delete_diet">ELIMINA UNA DIETA</button>

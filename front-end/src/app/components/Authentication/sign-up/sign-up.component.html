@@ -83,7 +83,7 @@
             <mat-option value="Dueño de gimnasio">Dueño de gimnasio</mat-option>
           </mat-select>
         </mat-form-field> 
-        <mat-checkbox class="example-margin" formControlName="acceptTerms">Aceptar terminos y condiciones</mat-checkbox>
+        <mat-checkbox [formGroup]="signUpUserForm" class="example-margin" formControlName="acceptTerms">Aceptar términos y condiciones</mat-checkbox>      
       </div>
     </mat-card-content>
     <mat-card-actions>

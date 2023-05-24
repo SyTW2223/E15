@@ -58,6 +58,28 @@
       <mat-card-content>
         <p class="comment-text"> {{ comment.comment }} </p>
       </mat-card-content>
+      <mat-card-actions align="end">
+        <i class="fa-solid fa-trash fa-xl" *ngIf="isUserComments(comment)" (click)="deleteComments(comment)" style="color: #ff0000;"></i>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="comment">
+    <mat-divider></mat-divider>
+    <mat-card class="comment-card">
+      <mat-card-header>
+        <mat-card-title>Agregar un comentario</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="comment-box">
+        <div class="form-container">
+          <textarea matInput [formControl]="mpty" [(ngModel)]="comment.comment" placeholder="Escribe aquí tu comentario sobre esta rutina..."></textarea>
+          <mat-error class="error1" *ngIf="mpty.invalid">{{getErrorMessage()}}</mat-error>
+        </div>
+        <div class="button-container">
+          <mat-error class="error2" *ngIf="comment_error">No se puede enviar el comentario</mat-error>
+          <button mat-raised-button class="button" color="accent" (click)="sendComment()">Enviar</button>
+        </div>
+      </mat-card-content>
     </mat-card>
   </div>
 </div>

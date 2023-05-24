@@ -1,0 +1,26 @@
+<div>
+  <img src="assets/images/home-log-out.jpg" class="background-img">
+</div>
+
+<div class="form" [formGroup]="routineForm">
+  <mat-card class="card">
+    <mat-card-title><strong>Eliminar una rutina</strong></mat-card-title>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Rutinas</mat-label>
+        <mat-select formControlName="routine">
+          <mat-option *ngFor="let routine of routines_filtered" [value]="routine">
+            {{routine.name}}
+          </mat-option>
+        </mat-select>
+        <div class="error-message" *ngIf="routineForm.get('routine')?.invalid && routineForm.get('routine')?.touched">
+          <h4>Debes seleccionar una rutina.</h4>
+        </div>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="deleteRoutine()" [disabled]="routineForm.invalid">Eliminar</button>
+      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

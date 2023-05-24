@@ -31,7 +31,8 @@ export class SignUpComponent implements OnInit {
         gender: ['', Validators.required],
         role: ['', Validators.required],
         birthdate: ['', Validators.required],
-        picture: 'foto'
+        picture: 'foto',
+        acceptTerms: [true, Validators.requiredTrue]
       }, { validator: this.passwordsMatchValidator });
     }
     

@@ -14,7 +14,7 @@ routineR.post('/routine', async (req, res) =>{
   console.log(req.body);
 
   // Find author
-  const author = await User.findOne({first_name: req.body.author})
+  const author = await User.findOne({_id: req.body.author})
 
   // Array de comment
   const comments = req.body.comments;

@@ -24,8 +24,3 @@ describe("User API", () => {
     expect(response.status).to.equal(200);
   });
 });
-
-// TODO: comprobar esto para que se haga bien (:
-after(() => {
-  process.exit(0);
-});
