@@ -30,7 +30,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 
-
 import { AuthenticationService } from './services/authentication.service';
 import { DietsService } from './services/diets.service';
 import { TokenInterceptorService } from './services/token-interceptor.service';
@@ -66,8 +65,11 @@ import { DeleteDietComponent } from './components/forms/delete-diet/delete-diet.
 import { AdviserListComponent } from './components/Adviser/adviser-list/adviser-list.component';
 import { EditComponent } from './components/profile-page/edit/edit.component';
 import { RoutineComponent } from './components/Routine/routine/routine.component';
-
-
+import { DietComponent } from './components/Diet/diet/diet.component';
+import { ExerciseComponent } from './components/Exercise/exercise/exercise.component';
+import { CreateRoutineComponent } from './components/forms/create-routine/create-routine.component';
+import { DeleteRoutineComponent } from './components/forms/delete-routine/delete-routine.component';
+import { UpdateRoutineComponent } from './components/forms/update-routine/update-routine.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +102,11 @@ import { RoutineComponent } from './components/Routine/routine/routine.component
     AdviserListComponent,
     EditComponent,
     RoutineComponent,
+    DietComponent,
+    ExerciseComponent,
+    CreateRoutineComponent,
+    DeleteRoutineComponent,
+    UpdateRoutineComponent,
   ],
   imports: [
     BrowserModule,

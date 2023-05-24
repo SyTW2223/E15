@@ -41,7 +41,6 @@ export const routineSchema = new Schema<RoutineModel>({
     type: Number,
     required: true
   },
-  // TODO: revisar
   reps: {
     type: Number,
     required: true
