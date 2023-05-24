@@ -14,12 +14,14 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <div class="form-inputs">
-        <mat-form-field>
-          <mat-label>Nombre del ejercicio</mat-label>
-          <input matInput [(ngModel)]="exercise.name">
-        </mat-form-field>
-      </div>
+
+      <div *ngIf="exercise.name">
+        <div class="form-inputs">
+          <mat-form-field>
+            <mat-label>Nombre del ejercicio</mat-label>
+            <input matInput [(ngModel)]="exercise.name">
+          </mat-form-field>
+        </div>
       <div class="form-inputs">
         <mat-form-field>
           <mat-label>Descripción corta</mat-label>
@@ -57,6 +59,7 @@
           </mat-select>
         </mat-form-field>
       </div>
+    </div>
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="updateExercise()">Modificar</button>

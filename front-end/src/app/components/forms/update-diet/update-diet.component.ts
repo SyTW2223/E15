@@ -27,7 +27,7 @@ export class UpdateDietComponent implements OnInit {
       res => {
         this.diets = res;
         for (let i = 0; i < this.diets.length; i++) {
-          if (this.diets[i].user_id === this.token.user._id) {
+          if (this.diets[i].author._id === this.token.user._id) {
             this.diets_filtered.push(this.diets[i]);
           }
         }

@@ -14,7 +14,8 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
+        
+      <div *ngIf="gym.name">
       <div class="container">
         <div class="form-inputs">
           <mat-form-field>
@@ -97,6 +98,7 @@
           </mat-form-field>
         </div>
       </div>
+    </div>
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="updateGym()">Modificar</button>
