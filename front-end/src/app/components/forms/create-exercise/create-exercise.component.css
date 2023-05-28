@@ -25,6 +25,11 @@
   margin: 20px;
 }
 
+.text-input {
+  width: 100%;
+}
+
+
 .form {
   display: flex;
   justify-content: center;

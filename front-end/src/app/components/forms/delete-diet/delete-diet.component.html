@@ -2,22 +2,25 @@
   <img src="assets/images/home-log-out.jpg" class="background-img">
 </div>
 
-<div class="form">
+<div class="form" [formGroup]="dietForm">
   <mat-card class="card">
     <mat-card-title><strong>Eliminar un dieta</strong></mat-card-title>
     <mat-card-content>
       <mat-form-field>
         <mat-label>Dietas</mat-label>
-        <mat-select [(ngModel)]="diet">
+        <mat-select formControlName="diet">
           <mat-option *ngFor="let diet of diets_filtered" [value]="diet">
             {{diet.name}}
           </mat-option>
         </mat-select>
+        <div class="error-message" *ngIf="dietForm.get('diet')?.invalid && dietForm.get('diet')?.touched">
+          <h4>Debes seleccionar un gimnasio.</h4>
+        </div>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button class="button" mat-raised-button color="primary" (click)="deleteDiet()">Eliminar</button>
-      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
+      <button class="button" mat-raised-button color="primary" (click)="deleteDiet()" [disabled]="dietForm.invalid">Eliminar</button>
+      <button class="button" mat-raised-button color="warn" (click)="out()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

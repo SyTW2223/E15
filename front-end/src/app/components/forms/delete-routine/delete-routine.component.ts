@@ -3,12 +3,21 @@ import { RoutinesService } from 'src/app/services/routines.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-delete-routine',
   templateUrl: './delete-routine.component.html',
-  styleUrls: ['./delete-routine.component.css']
+  styleUrls: ['./delete-routine.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class DeleteRoutineComponent implements OnInit {
   token: any;
@@ -16,11 +25,11 @@ export class DeleteRoutineComponent implements OnInit {
   routines_filtered: any = [];
   routine: any = {};
   routineForm: FormGroup;
-  routineValue: any;
 
   constructor(private routineService: RoutinesService,
     public authService: AuthenticationService,
-    private router: Router, private formBuilder: FormBuilder ) {
+    private router: Router, private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar ) {
       this.routineForm = this.formBuilder.group({
       routine: ['', Validators.required]
     });
@@ -43,9 +52,17 @@ export class DeleteRoutineComponent implements OnInit {
       )
   }
 
-  updateRoutineValue(value: any) {
-    this.routineValue = value;
-    this.routineForm.get('routine')?.setValue(value);
+  out() {
+    this.router.navigate(['/profile']);
+  }
+  openSnackBar() {
+    this._snackBar.open('Rutina eliminada','', {
+      duration: 1000
+    });
+  }
+  handleButtomClick(){
+    this.openSnackBar();
+    this.out();
   }
   deleteRoutine() {
     if (this.routineForm.valid) {
@@ -54,14 +71,10 @@ export class DeleteRoutineComponent implements OnInit {
         .subscribe(
           res => {
             console.log(res);
-            this.router.navigate(['/profile']);
+            this.handleButtomClick();
           },
           err => console.log(err)
         );
     }
-  }
-
-  cancel() {
-    this.router.navigate(['/profile']);
   }
 }
