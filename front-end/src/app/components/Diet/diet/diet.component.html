@@ -1,1 +1,82 @@
-<p>diet works!</p>
+<div class="container">
+  <div class="card">
+    <mat-card class="card-comp">
+      <mat-card-header class="card-header">
+        <mat-card-title>{{ diet.name | uppercase }}</mat-card-title>
+        <mat-card-subtitle>{{ diet.short_description }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image class="card-img" src="../assets/images/dieta3.jpg" alt="Foto de la dieta">
+      <mat-card-content class="card-content">
+        <p class="author"> Autor: {{ diet.author.username }} </p>
+        <p> {{ diet.long_description }} </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="info">
+    <mat-card class="info-card">
+      <mat-card-header>
+        <mat-card-title>PLAN ALIMENTICIO</mat-card-title>
+        <i class="fa-solid fa-carrot fa-xl" style="color: #fa7000;"></i>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list> 
+          <mat-list-item>
+            <a matListItemTitle>DESAYUNO</a>
+            <span matListItemLine class="diet-info">{{ diet.breakfast }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <a matListItemTitle>ALMUERZO</a>
+            <span matListItemLine class="diet-info">{{ diet.lunch }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <a matListItemTitle>MERIENDA</a>
+            <span matListItemLine class="diet-info">{{ diet.snacks }}</span>
+          </mat-list-item>
+          <mat-list-item>
+            <a matListItemTitle>CENA</a>
+            <span matListItemLine class="diet-info">{{ diet.dinner }}</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="comment">
+    <h4> Comentarios </h4>
+    <mat-card class="comment-card" *ngFor="let comment of comments" [id]="comment">
+      <mat-card-header>
+        <div mat-card-avatar class="user-image">
+          <i class="fa-solid fa-user fa-xl" style="color: #000000;"></i>
+        </div>
+        <mat-card-title>{{ comment.username }}</mat-card-title>
+        <mat-card-subtitle>Deportista</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="comment-text"> {{ comment.comment }} </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <i class="fa-solid fa-trash fa-xl" *ngIf="isUserComments(comment)" (click)="deleteComments(comment)" style="color: #ff0000;"></i>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="comment">
+    <mat-divider></mat-divider>
+    <mat-card class="comment-card">
+      <mat-card-header>
+        <mat-card-title>Agregar un comentario</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="comment-box">
+        <div class="form-container">
+          <textarea matInput [formControl]="mpty" [(ngModel)]="comment.comment" placeholder="Escribe aquí tu comentario sobre esta dieta..."></textarea>
+          <mat-error class="error1" *ngIf="mpty.invalid">{{getErrorMessage()}}</mat-error>
+        </div>
+        <div class="button-container">
+          <mat-error class="error2" *ngIf="comment_error">No se puede enviar el comentario</mat-error>
+          <button mat-raised-button class="button" color="accent" (click)="sendComment()">Enviar</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
