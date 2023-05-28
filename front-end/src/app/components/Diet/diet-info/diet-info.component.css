@@ -19,9 +19,15 @@
 .container{
   width: 50%; 
   float: right;
-  padding-top: 9%; 
+  padding-top: 1%; 
 }
 
+.text-container2 {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
 .details {
   float: center; /* se mantiene a la derecha */
 }

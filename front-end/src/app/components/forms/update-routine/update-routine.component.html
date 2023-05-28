@@ -1,1 +1,94 @@
-<p>update-routine works!</p>
+<div>
+  <img src="assets/images/home-log-out.jpg" class="background-img">
+</div>
+
+<div class="form">
+  <mat-card class="card">
+    <mat-card-title><strong>Modifica una rutina</strong></mat-card-title>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Rutinas</mat-label>
+        <mat-select [(ngModel)]="routine">
+          <mat-option *ngFor="let routine of routines_filtered" [value]="routine">
+            {{routine.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="routine.name">
+        <div class="form-inputs">
+          <mat-form-field>
+            <mat-label>Nombre de la rutina</mat-label>
+            <input matInput [(ngModel)]="routine.name">
+          </mat-form-field>
+        </div>
+        <div class="form-inputs">
+          <mat-form-field class="text-input">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput [(ngModel)]="routine.description"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="form-inputs">
+          <mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <mat-select [(ngModel)]="routine.category">
+              <mat-option value="Hombros">Hombros</mat-option>
+              <mat-option value="Piernas">Piernas</mat-option>
+              <mat-option value="Brazos">Brazos</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-inputs">
+          <mat-form-field>
+            <mat-label>¿Equipamiento necesario?</mat-label>
+            <mat-select [(ngModel)]="routine.equipment_needed">
+              <mat-option value="Si">Si</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form-inputs">
+            <mat-label>Duración media</mat-label>
+            <input matInput [(ngModel)]="routine.avg_duration">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form-inputs">
+            <mat-label>Series</mat-label>
+            <input matInput maxlength="2" [(ngModel)]="routine.sets">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form-inputs">
+            <mat-label>Repeticiones</mat-label>
+            <input matInput maxlength="2" [(ngModel)]="routine.reps">
+          </mat-form-field>
+        </div>
+        <mat-form-field >
+          <mat-label>Ejercicios</mat-label>
+          <mat-select [(ngModel)]="exercise">
+            <mat-option *ngFor="let exercise of exercises" [value]="exercise">
+              {{exercise.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div mat-dialog-actions align="center">
+          <button mat-raised-button color="primary" (click)="addExercise()">Añadir ejercicio</button>
+        </div>
+        <div *ngFor="let exercise of routine.exercises">
+          <mat-card class="exercise">
+            <mat-card-title><strong>{{exercise.name}}</strong></mat-card-title> 
+            <mat-card-actions align="end">
+              <i class="fa-solid fa-trash fa-xl" (click)="deleteExercise(exercise)" style="color: #ff0000;"></i>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="button" mat-raised-button color="primary" (click)="updateRoutine()">Crear rutina</button>
+      <button class="button" mat-raised-button color="warn" (click)="out()">Cancelar</button>
+    </mat-card-actions>
+  </mat-card>
+</div> 

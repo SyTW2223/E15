@@ -23,27 +23,27 @@
         </mat-form-field>
       </div>
       <div class="form-inputs">
-        <mat-form-field>
+        <mat-form-field class="text-input">
           <mat-label>Desayuno</mat-label>
-          <input matInput [(ngModel)]="diet.breakfast">
+          <textarea matInput [(ngModel)]="diet.breakfast"></textarea>
         </mat-form-field>
       </div>
       <div class="form-inputs">
-        <mat-form-field>
+        <mat-form-field class="text-input">
           <mat-label>Almuerzo</mat-label>
-          <input matInput [(ngModel)]="diet.lunch">
+          <textarea matInput [(ngModel)]="diet.lunch"></textarea>
         </mat-form-field>
       </div>
       <div class="form-inputs">
-        <mat-form-field>
+        <mat-form-field class="text-input">
           <mat-label>Merienda</mat-label>
-          <input matInput [(ngModel)]="diet.snacks">
+          <textarea matInput [(ngModel)]="diet.snacks"></textarea>
         </mat-form-field>
       </div>
       <div class="form-inputs">
-        <mat-form-field>
+        <mat-form-field class="text-input">
           <mat-label>Cena</mat-label>
-          <input matInput [(ngModel)]="diet.dinner">
+          <textarea matInput [(ngModel)]="diet.dinner"></textarea>
         </mat-form-field>
       </div>
       <div class="form-inputs">
@@ -53,15 +53,15 @@
         </mat-form-field>
       </div>
       <div class="form-inputs">
-        <mat-form-field>
+        <mat-form-field class="text-input">
           <mat-label>Descripción larga</mat-label>
-          <input matInput [(ngModel)]="diet.long_description">
+          <textarea matInput [(ngModel)]="diet.long_description"></textarea>
         </mat-form-field>
       </div>
     </mat-card-content>
     <mat-card-actions>
       <button class="button" mat-raised-button color="primary" (click)="createDiet()">Añadir</button>
-      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
+      <button class="button" mat-raised-button color="warn" (click)="out()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

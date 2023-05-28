@@ -44,3 +44,7 @@ mat-form-field {
 .form-inputs {
   display: flex;
 }
+
+.text-input {
+  width: 100%;
+}

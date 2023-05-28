@@ -2,22 +2,25 @@
   <img src="assets/images/home-log-out.jpg" class="background-img">
 </div>
 
-<div class="form">
+<div class="form" [formGroup]="exerciseForm">
   <mat-card class="card">
     <mat-card-title><strong>Eliminar un ejercicio</strong></mat-card-title>
     <mat-card-content>
       <mat-form-field>
         <mat-label>Ejercicios</mat-label>
-        <mat-select [(ngModel)]="exercise">
+        <mat-select formControlName="exercise">
           <mat-option *ngFor="let exercise of exercise_filtered" [value]="exercise">
             {{exercise.name}}
           </mat-option>
         </mat-select>
+        <div class="error-message" *ngIf="exerciseForm.get('exercise')?.invalid && exerciseForm.get('exercise')?.touched">
+          <h4>Debes seleccionar un ejercicio.</h4>
+        </div>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button class="button" mat-raised-button color="primary" (click)="deleteExercise()">Eliminar</button>
-      <button class="button" mat-raised-button color="warn" (click)="cancel()">Cancelar</button>
+      <button class="button" mat-raised-button color="primary" (click)="deleteExercise()" [disabled]="exerciseForm.invalid">Eliminar</button>
+      <button class="button" mat-raised-button color="warn" (click)="out()">Cancelar</button>
     </mat-card-actions>
   </mat-card>
 </div>

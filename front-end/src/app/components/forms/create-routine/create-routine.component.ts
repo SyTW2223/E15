@@ -3,12 +3,21 @@ import { Router } from '@angular/router';
 import { RoutinesService } from 'src/app/services/routines.service';
 import { ExercisesService } from 'src/app/services/exercises.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-create-routine',
   templateUrl: './create-routine.component.html',
-  styleUrls: ['./create-routine.component.css']
+  styleUrls: ['./create-routine.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class CreateRoutineComponent implements OnInit{
   token: any;
@@ -19,7 +28,8 @@ export class CreateRoutineComponent implements OnInit{
   constructor(private routineService: RoutinesService,
     private exerciseService: ExercisesService,
     public authService: AuthenticationService,
-    private router: Router) {}
+    private router: Router,
+    private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.token = this.authService.getToken();
@@ -44,10 +54,24 @@ export class CreateRoutineComponent implements OnInit{
     console.log(this.routine.exercises);
     this.exercise = "";
   }
-
+  
   deleteExercise(exercise: any) {
     let index = this.routine.exercises.indexOf(exercise);
     this.routine.exercises.splice(index, 1);
+  }
+  
+  out() {
+    this.router.navigate(['/profile']);
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Rutina creada','', {
+      duration: 1000
+    });
+  }
+  handleButtomClick(){
+    this.openSnackBar();
+    this.out();
   }
 
   createRoutine() {
@@ -64,13 +88,10 @@ export class CreateRoutineComponent implements OnInit{
       .subscribe(
         res => {
           console.log(res);
-          this.router.navigate(['/profile']);
+          this.handleButtomClick();
         },
         err => console.log(err)
       )
   }
 
-  cancel() {
-    this.router.navigate(['/profile']);
-  }
 }

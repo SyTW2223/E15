@@ -11,9 +11,14 @@
         <br>
         <p class="center"><strong>Estadisticas</strong></p>
         <mat-divider></mat-divider>
-        <p>Rutinas creadas: </p>
-        <p>Ejercicios añadidas: </p>
-        <p>Dietas añadidas: </p>
+        <div *ngIf="isGymOwner()">
+          <p>Gimnasios añadidos: {{gyms_lentgh}} </p>
+        </div>
+        <p>Rutinas creadas: {{routines_lentgh}}</p>
+        <div *ngIf="isCoach()">
+          <p>Ejercicios añadidas: {{exercises_lentgh}}</p>
+          <p>Dietas añadidas: {{diets_lentgh}}</p>
+        </div>
         <mat-divider></mat-divider>
       </mat-card-content>
       
@@ -36,7 +41,7 @@
       </mat-card-content>
     </mat-card>
 
-    <mat-card class="card triple" *ngIf="isGymOwner() || isCoach()">
+    <mat-card class="card triple">
         <mat-card-title class="center"><h3>Opciones</h3></mat-card-title>
           <div mat-dialog-actions *ngIf="isGymOwner()" align="center">
             <button mat-button routerLink="/profile/add_gym">AÑADE TU GIMNASIO</button>

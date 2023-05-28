@@ -1,0 +1,151 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.card-header {
+  padding: 20px;
+}
+
+.card-img {
+  height: 400px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card {
+  flex: 0 0 40%;
+  margin: 20px;
+}
+
+@media (max-width: 992px) {
+  /* Estilos para pantallas más pequeñas que 992px de ancho */
+  .card {
+    flex: 0 0 100%;
+    margin: 20px;
+  }
+
+  button {
+    font-size: 90%;
+    width: 20%;
+  }
+
+  .error1 {
+    font-size: 80%;
+  }
+
+  .error2 {
+    font-size: 80%;
+    padding-top: 8%;
+  }
+}
+
+.info {
+  flex: 0 0 40%;
+  margin: 20px;
+  max-width: 40%;
+}
+
+.comment {
+  flex: 0 0 100%;
+  margin: 20px;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+mat-card-title {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.comment-card {
+  width: 100%;
+  margin: 2%;
+}
+
+.user-image {
+  padding: 1%;
+}
+
+.comment-text {
+  margin-left: 2%;
+}
+
+i {
+  margin-left: 3%;
+}
+
+.diet-info {
+  font-style: italic;
+  word-wrap: break-word !important;
+  white-space: break-spaces;
+}
+
+.mat-list-item {
+  margin-bottom: 10px;
+}
+
+.author {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+textarea {
+  flex: 0 0 90%;
+  margin: 20px;
+  width: 95%;
+  height: 140px;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+
+mat-divider {
+  width: 100%;
+  margin: 2%;
+  margin-top: 1%;
+}
+
+.fa-trash {
+  padding: 30px;
+}
+
+.error1 {
+  margin-left: 20px;
+  margin-top: 0;
+}
+
+button {
+  margin: 20px;
+  width: 17%;
+  padding: 25px;
+}
+
+.error2 {
+  margin-top: 4.5%;
+}
+
+.button-container {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+
+.fa-carrot {
+  margin: 2%;
+}
