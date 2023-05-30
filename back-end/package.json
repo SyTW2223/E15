@@ -4,7 +4,7 @@
   "description": "backend del proyecto de SyTW",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --exit --coverage --timeout 1000000",
     "run": "tsc-watch --onSucces ./dist/server/server.js",
     "start": "PORT=3002 node ./dist/server/server.js",
     "build": "tsc",
