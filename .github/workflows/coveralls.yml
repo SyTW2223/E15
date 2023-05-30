@@ -25,7 +25,6 @@ jobs:
         cache: 'npm'
         cache-dependency-path: './package-lock.json'
     - name: Installing dependencies
-      working-directory: ./
       run: npm install
     - name: Generating coverage information
       run: npm run coveralls
@@ -34,4 +33,3 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
-        base-path: ./
