@@ -8,7 +8,7 @@
     "run": "tsc-watch --onSucces ./dist/server/server.js",
     "start": "PORT=3002 node ./dist/server/server.js",
     "build": "tsc",
-    "coveralls": "nyc npm test -testTimeout=60000 --coverage"
+    "coveralls": "nyc npm test && nyc report --reporter=lcov"
   },
   "repository": {
     "type": "git",
