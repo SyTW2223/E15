@@ -3,6 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ExercisesService } from 'src/app/services/exercises.service';
+import { Router } from '@angular/router';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { ExerciseComponent } from 'src/app/components/Exercise/exercise/exercise.component'
 
 @Component({
   selector: 'app-exercise-page',
@@ -19,7 +23,8 @@ export class ExercisePageComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private getExercises: ExercisesService) {}
+  constructor(private getExercises: ExercisesService, private router: Router,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.getExercises.getExercises()
@@ -53,4 +58,16 @@ export class ExercisePageComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  openExerciseDialog(id: any): void {
+    const dialogRef = this.dialog.open(ExerciseComponent, {
+      width: '80%',
+      height: '70%',
+      data: { id: id } 
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }  
 }
