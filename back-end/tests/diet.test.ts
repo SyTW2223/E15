@@ -5,7 +5,14 @@ import { app } from "../server/server";
 //const request = supertest(app);
 
 describe("Diet API", () => {
-/*   it("Debe devolver una lista de las dietas", async () => {
+  it("Debe devolver una lista de las dietas", async () => {
+    await supertest(app)
+      .get("/diet")
+      .expect(200)
+  });
+
+  /*
+   it("Debe devolver una lista de las dietas", async () => {
     const response = await request.get("/diet");
 
     expect(response.status).to.equal(200);
