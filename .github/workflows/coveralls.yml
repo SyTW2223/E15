@@ -11,10 +11,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: './back-end'
-
     steps:
     - name: Cloning repo
       uses: actions/checkout@v2
@@ -26,10 +22,11 @@ jobs:
         cache-dependency-path: './package-lock.json'
     - name: Installing dependencies
       run: npm install
+      working-directory: ./back-end
     - name: Generating coverage information
       run: npm run coveralls
+      working-directory: ./back-en
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
