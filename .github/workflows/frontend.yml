@@ -18,5 +18,6 @@ jobs:
       working-directory: ./front-end
       run: npm install 
       
-    # - name: Run Angular tests
-    #   run: npm run test
+    - name: Run Angular tests
+      working-directory: ./front-end
+      run: npm run test
