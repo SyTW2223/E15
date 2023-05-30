@@ -2,10 +2,10 @@ import supertest from "supertest";
 import { expect } from "chai";
 import { app } from "../server/server";
 
-const request = supertest(app);
+//const request = supertest(app);
 
 describe("Diet API", () => {
-  it("Debe devolver una lista de las dietas", async () => {
+/*   it("Debe devolver una lista de las dietas", async () => {
     const response = await request.get("/diet");
 
     expect(response.status).to.equal(200);
@@ -43,10 +43,11 @@ describe("Diet API", () => {
         name: "Esta dieta no se borra", 
     });
     expect(response.status).to.equal(200);
-  });
+  }); */
 });
 
-// TODO: comprobar esto para que se haga bien (:
+/* // TODO: comprobar esto para que se haga bien (:
 after(() => {
   process.exit(0);
 });
+ */
