@@ -13,6 +13,10 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v2
+
+    - name: Install Angular CLI
+      working-directory: ./front-end
+      run: npm install -g @angular/cli  
       
     - name: Install dependencies
       working-directory: ./front-end
