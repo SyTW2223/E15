@@ -14,18 +14,22 @@ jobs:
     steps:
     - name: Cloning repo
       uses: actions/checkout@v2
+      
     - name: Use Node.js 18.x for BACKEND
       uses: actions/setup-node@v2
       with:
         node-version: 18.x
         cache: 'npm'
         cache-dependency-path: './back-end/package-lock.json'
+
     - name: Installing dependencies
       run: npm install
       working-directory: ./back-end
+
     - name: Generating coverage information
       run: npm run coveralls
       working-directory: ./back-end
+
     - name: Coveralls GitHub Action
       uses: coverallsapp/github-action@master
       with:
