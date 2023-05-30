@@ -29,6 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { AuthenticationService } from './services/authentication.service';
 import { DietsService } from './services/diets.service';
@@ -133,7 +134,8 @@ import { UpdateRoutineComponent } from './components/forms/update-routine/update
     MatDialogModule,
     MatGridListModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   providers: [AuthenticationService, AuthGuard,
   {

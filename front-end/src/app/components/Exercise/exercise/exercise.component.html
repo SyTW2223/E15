@@ -1,1 +1,76 @@
-<p>exercise works!</p>
+<h2 mat-dialog-title>DESCRIPCIÓN DEL EJERCICIO</h2>
+
+<mat-dialog-content class="mat-typography">
+
+  <div class="container">
+    <div class="card">
+      <mat-card class="card-comp">
+        <mat-card-header class="card-header">
+          <mat-card-title>{{ exercise.name | uppercase }}</mat-card-title>
+          <mat-card-subtitle class="author">Autor: {{ exercise.author.username }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ exercise.short_description }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image class="card-img" src="../assets/images/brazos.jpg" alt="Foto descriptiva del ejercicio">
+        <mat-card-content class="card-content">
+          <mat-card class="equipment">
+            <mat-card-content>
+              <span class="bold"> ¿Requiere equipamiento? </span>
+              <ng-container *ngIf="exercise.equipment_needed">
+                <i class="fa-solid fa-check fa-2xl" style="color: #1eff00;"></i>
+              </ng-container>
+              <ng-container *ngIf="!exercise.equipment_needed">
+                <i class="fa-solid fa-xmark fa-2xl" style="color: #ff0000;"></i>
+              </ng-container>
+            </mat-card-content>
+          </mat-card>
+          <div class="description">
+            <p> {{ exercise.long_description }} </p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="comment">
+      <h4> Comentarios </h4>
+      <mat-card class="comment-card" *ngFor="let comment of comments" [id]="comment">
+        <mat-card-header>
+          <div mat-card-avatar class="user-image">
+            <i class="fa-solid fa-user fa-xl" style="color: #000000;"></i>
+          </div>
+          <mat-card-title>{{ comment.username }}</mat-card-title>
+          <mat-card-subtitle>Deportista</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="comment-text"> {{ comment.comment }} </p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <i class="fa-solid fa-trash fa-xl" *ngIf="isUserComments(comment)" (click)="deleteComments(comment)" style="color: #ff0000;"></i>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  
+    <div class="comment">
+      <mat-divider></mat-divider>
+      <mat-card class="comment-card">
+        <mat-card-header>
+          <mat-card-title>Agregar un comentario</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="comment-box">
+          <div class="form-container">
+            <textarea matInput [formControl]="mpty" [(ngModel)]="comment.comment" placeholder="Escribe aquí tu comentario sobre esta rutina..."></textarea>
+            <mat-error class="error1" *ngIf="mpty.invalid">{{getErrorMessage()}}</mat-error>
+          </div>
+          <div class="button-container">
+            <mat-error class="error2" *ngIf="comment_error">No se puede enviar el comentario</mat-error>
+            <button mat-raised-button class="button" color="accent" (click)="sendComment()">Enviar</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

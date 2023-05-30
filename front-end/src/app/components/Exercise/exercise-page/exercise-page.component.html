@@ -17,7 +17,7 @@
       </mat-select>
     </mat-form-field>
     <div class="button-container">
-      <button mat-raised-button class="button" color="accent" align="end">Crear una rutina</button>
+      <button mat-raised-button class="button" color="accent" align="end" routerLink="/profile/add_exercise">Crear un ejercicio</button>
     </div>
   </mat-card-actions>
 </mat-card>
@@ -27,7 +27,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      <td mat-cell *matCellDef="let row" (click)="openExerciseDialog(row._id)"> {{row.name}} </td>
     </ng-container>
 
     <!-- Author Column -->
