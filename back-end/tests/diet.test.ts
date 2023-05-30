@@ -9,7 +9,6 @@ describe("Diet API", () => {
     await supertest(app)
       .get("/diet")
       .expect(200)
-      
   });
 
   /*

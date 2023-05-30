@@ -13,13 +13,14 @@
 .text-container {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 20px;
-  margin-top: 10px;
+  margin-top: 2px;
+  margin-bottom: 10px;
 }
 
 .container{
-  width: 50%; 
-  float: right;
-  padding-top: 1%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text-container2 {
@@ -28,14 +29,37 @@
   margin-top: 10px;
   margin-bottom: 20px;
 }
+
 .details {
-  float: center; /* se mantiene a la derecha */
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .imga{
   float: left; 
   max-height: 30%; 
-  width: 50%;
-  padding-top: 0.5%;
-  padding-bottom: 0.5%;
+  width: 55%;
+  height: 55%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+
+.mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+mat-expansion-panel {
+  margin-bottom: 1%;
+  margin-left: 10%;
+  width: 100%;
+}
+
+i {
+  margin-left: 2%;
+}
+
+@media (max-width: 574px) {
+  /* Estilos para pantallas más pequeñas que 574px de ancho */
+
 }
