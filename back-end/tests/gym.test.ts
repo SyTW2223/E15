@@ -4,58 +4,100 @@ import { app } from "../server/server";
 
 const request = supertest(app);
 
-describe("Gym API", () => {
-  it("Debe devolver una lista de gimnasios", async () => {
-    const response = await request.get("/gym");
 
-    expect(response.status).to.equal(200);
+describe("Gym API", () => {
+  let trial_gym = {
+    name: "gimnasio prueba",
+    owner: "6439aa0ace6fbb3cd24a990f",
+    latitude: 37.7749,
+    longitude: -122.4194,
+    address: "prueba",
+    phone_number: "123456789",
+    website: "prueba@gmail.com",
+    likes: 0,
+    comments: [
+      {
+        username: "usuario de prueba",
+        comment: "comentario de prueba"
+      },
+      {
+        username: "usuario de prueba 2",
+        comment: "comentario de prueba 2"
+      }
+    ],
+    picture: "imagen de prueba",
+    schedule: {
+      monday: "8:00 - 20:00",
+      tuesday: "8:00 - 20:00",
+      wednesday: "8:00 - 20:00",
+      thursday: "8:00 - 20:00",
+      friday: "8:00 - 20:00",
+      saturday: "8:00 - 20:00",
+      sunday: "8:00 - 20:00"
+    }};
+
+  let trial_gym2 = {
+    name: "gimnasio prueba 2",
+    owner: "6439aa0ace6fbb3cd24a990f",
+    latitude: 37.7749,
+    longitude: -122.4194,
+  };
+
+  it ("Debe devolver una lista de gimnasios", async () => {
+    await supertest(app)
+      .get("/gym")
+      .expect(200)
   });
 
-  it("Debe crear un nuevo gimnasio", async () => {
-    const response = await request.post("/gym").send({
-        name: "Gymnasio Royale",
-        owner: "Bruno",
-        latitude: 37.7749,
-        longitude: -122.4194,
-        address: "santa cruz",
-        phone_number: "123456789",
-        website: "si",
-        likes: 10,
-        comments: [
-            {
-              username: "Usuario 1",
-              comment: "Este ejercicio es genial!"
-            },
-            {
-              username: "Usuario 2",
-              comment: "Me encanta este ejercicio!"
-            }
-          ],
-        picture: "cosa",
-        schedule: {
-          monday: "8:00 AM - 9:00 PM",
-          tuesday: "8:00 AM - 9:00 PM",
-          wednesday: "8:00 AM - 9:00 PM",
-          thursday: "8:00 AM - 9:00 PM",
-          friday: "8:00 AM - 9:00 PM",
-          saturday: "10:00 AM - 6:00 PM",
-          sunday: "10:00 AM - 6:00 PM"
-        }
-      });
-    });
+  it ("Debe crear un nuevo gimnasio", async () => {
+    await supertest(app)
+      .post("/gym")
+      .send(trial_gym)
+      .expect(200)
+  });
 
-    it("Debe buscar un gimnasio por id", async() =>{
-      const response = await request.get("/gym/64554b77d5be2441bce44496");
-      expect(response.status).to.equal(200);
-    });
+  it ("Debe devolver un error al crear un gimnasio, gimnasio no valido", async () => {
+    await supertest(app)
+      .post("/gym")
+      .send(trial_gym2)
+      .expect(500)
+  });
 
-    it("Debe actualizar un gimnasio", async() =>{
-      const response = await request.patch("/gym/64554b77d5be2441bce44496").send({
-        id:"1",
-        name: "Gimnasio Bros",
-      });
-      expect(response.status).to.equal(200);
-    });
+  it ("Debe devolver un gimnasio especifico", async () => {
+    await supertest(app)
+      .get("/gym/" + trial_gym.name)
+      .expect(200)
+  });
 
-    //TODO: Eliminar un gimnasio
+  it ("Debe devolver un error al buscar un gimnasio especifico, gimnasio no encontrado", async () => {
+    await supertest(app)
+      .get("/gym/gim_fallo")
+      .expect(404)
+  });
+
+  it ("Debe actualizar un gimnasio", async () => {
+    await supertest(app)
+      .patch("/gym/" + trial_gym.name)
+      .send({address: "prueba 2"})
+      .expect(200)
+  });
+
+  it ("Debe devolver un error al actualizar un gimnasio, gimnasio no encontrado", async () => {
+    await supertest(app)
+      .patch("/gym/gim_fallo")
+      .send({address: "prueba 2"})
+      .expect(404)
+  });
+
+  it ("Debe eliminar un gimnasio", async () => {
+    await supertest(app)
+      .delete("/gym/" + trial_gym.name)
+      .expect(200)
+  });
+
+  it ("Debe devolver un error al eliminar un gimnasio, gimnasio no encontrado", async () => {
+    await supertest(app)
+      .delete("/gym/gim_fallo")
+      .expect(404)
+  });
 });
