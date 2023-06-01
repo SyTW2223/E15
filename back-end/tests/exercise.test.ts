@@ -6,41 +6,90 @@ import { after } from "mocha";
 const request = supertest(app);
 
 describe("Exercise API", () => {
-  it("Debe devolver una lista de ejercicios", async () => {
-    const response = await request.get("/exercise");
-    
-    expect(response.status).to.equal(200);
+  let trial_exercise = {
+    id: "",
+    name: "ejercicio de prueba",
+    author: "6439aa0ace6fbb3cd24a990f",
+    short_description: "Descripción corta de prueba",
+    long_description: "Descripción larga de prueba",
+    initial_position: "Posición inicial de prueba",
+    categoria: "prueba",
+    picture: "imagen de prueba",
+    likes: 0,
+    comments: [
+      {
+        username: "usuario de prueba",
+        comment: "comentario de prueba"
+      },
+      {
+        username: "usuario de prueba 2",
+        comment: "comentario de prueba 2"
+      }
+    ]
+  };
+
+  let trial_exercise2 = {
+    id: "",
+    name: "ejercicio de prueba 2",
+    category: "prueba",
+    author : "6439aa0ace6fbb3cd24a990f",
+  };
+
+  it("Debe devolver una lista de los ejercicios", async () => {
+    await supertest(app)
+      .get("/exercise")
+      .expect(200)
   });
 
-  it("Debe devolver un ejercicio específico", async () => { 
-    const response = await request.get("/exercise/6442d4aa677db19baea771c1");
-    
-    expect(response.status).to.equal(200);
+  it ("Debe crear un nuevo ejercicio", async () => {
+    await supertest(app)
+      .post("/exercise")
+      .send(trial_exercise)
+      .expect(200)
   });
 
-  it("Debe crear un nuevo ejercicio", async () => {
-    const response = await request.post("/exercise").send({
-        id: "1",
-        name: "Jalon al pecho",
-        author: "Jose",
-        short_description: "Jalar al pecho",
-        long_description: "Tira de la barra hacia la parte superior del pecho mientras aprietas los omóplatos. Los codos deben moverse hacia abajo y no hacia atrás. De forma lenta y controlada, lleva la barra a la posición inicial estirando completamente los brazos y estirando los dorsales. Repite el proceso las veces indicadas.",
-        initial_position: "Sentado con la espalda recta y agarrando el aparato par hacer el jalon, nunca moverse hacia adelante mantenerse firme",
-        category: "Musculacion pecho",
-        equipment_needed: true,
-        picture: "algo",
-        likes: 37,
-        comments: []
-    });
-
-    expect(response.status).to.equal(200);
+  it ("Debe devolver un error al crear un ejercicio, ejercicio no valido", async () => {
+    await supertest(app)
+      .post("/exercise")
+      .send(trial_exercise2)
+      .expect(500)
   });
 
-  it("Debe actualizar un ejercicio", async () => {
-    const response = await request.patch("/exercise/6442d4aa677db19baea771c1").send({
-        id: "1",
-        name: "Jalon al brazo", 
-    });
-    expect(response.status).to.equal(200);
+  it ("Debe devolver un ejercicio especifico", async () => {
+    await supertest(app)
+      .get("/exercise/" + trial_exercise.name)
+      .expect(200)
+  });
+
+  it ("Debe devolver un error al devolver un ejercicio especifico, ejercicio no valido", async () => {
+    await supertest(app)
+      .get("/exercise/ejercicio_fallo")
+      .expect(404)
+  });
+
+  it ("Debe actualizar un ejercicio", async () => {
+    await supertest(app)
+      .patch("/exercise/" + trial_exercise.name)
+      .send({category: "prueba 2"})
+      .expect(200)
+  });
+
+  it ("Debe devolver un error al actualizar un ejercicio, ejercicio no valido", async () => {
+    await supertest(app)
+      .patch("/exercise/ejercicio_fallo")
+      .send({category: "prueba 2"})
+      .expect(404)
+  });
+
+  it("Debe borrar un ejercicio", async () => {
+    await supertest(app)
+      .delete("/exercise/" + trial_exercise.name)
+      .expect(200)
+  });
+
+  it("Debe devolver un error al borrar un ejercicio, ejercicio no valido", async () => {
+    await supertest(app)
+      .delete("/exercise/ejercicio_fallo")
+      .expect(404)
   });
 });
