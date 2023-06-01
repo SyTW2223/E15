@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { DietsService } from 'src/app/services/diets.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-diet-page',
@@ -16,10 +18,12 @@ export class DietPageComponent implements OnInit {
   categories: any = [];
   diets: any = [];
   categoryTerm: string = '';
+  token: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private getDiets: DietsService, private router: Router) {}
+  constructor(private getDiets: DietsService, private router: Router,
+              public authService: AuthenticationService) {}
 
   ngOnInit() {
     this.getDiets.getDiets()
@@ -56,5 +60,11 @@ export class DietPageComponent implements OnInit {
 
   navigateToDiet(id: string) {
     this.router.navigate(['diets_list', id]);
+  }
+
+  isCoach(): boolean {
+    this.token = this.authService.getToken();
+    this.token = jwt_decode(this.token);
+    return this.token.user.role === 'Entrenador';
   }
 }

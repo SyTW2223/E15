@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { ExerciseComponent } from 'src/app/components/Exercise/exercise/exercise.component'
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-exercise-page',
@@ -20,11 +22,12 @@ export class ExercisePageComponent {
   exercises: any = [];
   equipment: string[] = [];
   categoryTerm: string = '';
+  token: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
   constructor(private getExercises: ExercisesService, private router: Router,
-              private dialog: MatDialog) {}
+              private dialog: MatDialog, public authService: AuthenticationService) {}
 
   ngOnInit() {
     this.getExercises.getExercises()
@@ -69,5 +72,11 @@ export class ExercisePageComponent {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
-  }  
+  }
+
+  isCoach(): boolean {
+    this.token = this.authService.getToken();
+    this.token = jwt_decode(this.token);
+    return this.token.user.role === 'Entrenador';
+  }
 }

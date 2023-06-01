@@ -16,7 +16,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <div class="button-container">
+    <div class="button-container" *ngIf="isCoach()">
       <button mat-raised-button class="button" color="accent" align="end" routerLink="/profile/add_diet">Crear una dieta</button>
     </div>
   </mat-card-actions>
@@ -27,7 +27,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-      <td mat-cell *matCellDef="let row" (click)="navigateToDiet(row._id)"> {{row.name}} </td>
+      <td mat-cell *matCellDef="let row" (click)="navigateToDiet(row.name)"> {{row.name}} </td>
     </ng-container>
 
     <!-- Author Column -->
