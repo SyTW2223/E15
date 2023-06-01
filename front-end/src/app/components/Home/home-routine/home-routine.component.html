@@ -1,7 +1,3 @@
-<!-- <img src="assets/images/brazos.jpg" alt="Rutina de brazos">
-<img src="../../../../assets/images/brazos.jpg" alt="Rutina de brazos">
-<img src="@/../assets/images/brazos.jpg" alt="Rutina de brazos"> -->
-
 <div id="carouselRoutine" class="carousel carousel-dark slide carousel-custom-size">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselRoutine" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -10,36 +6,36 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="10000">
-      <img src="assets/images/brazos.jpg" class="d-block w-100 carousel-custom-size" alt="Rutina de brazos">
+      <img src="assets/images/brazos.jpg" class="d-block w-100 carousel-custom-size" alt="Rutina personalizada">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Rutina: Brazos</h5>
-        <p>Acceda para ver su rutina personalizada</p>
+        <h5>{{ show_routines[0].name }}</h5>
+        <p>Acceda para ver esta rutina personalizada</p>
       </div>
       <div class="carousel-caption d-md-none">
-        <h5>Rutina: Brazos</h5>
-        <p>Acceda para ver su rutina personalizada</p>
+        <h5>{{ show_routines[0].name }}</h5>
+        <p>Acceda para ver esta rutina personalizada</p>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="2000">
-      <img src="assets/images/brazos2.jpg" class="d-block w-100 carousel-custom-size" alt="Rutina de brazos">
+      <img src="assets/images/brazos2.jpg" class="d-block w-100 carousel-custom-size" alt="Rutina personalizada">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Rutina: Brazos 2</h5>
-        <p>Acceda para ver su rutina personalizada</p>
+        <h5>{{ show_routines[1].name }}</h5>
+        <p>Acceda para ver esta rutina personalizada</p>
       </div>
       <div class="carousel-caption d-md-none">
-        <h5>Rutina: Brazos 2</h5>
-        <p>Acceda para ver su rutina personalizada</p>
+        <h5>{{ show_routines[1].name }}</h5>
+        <p>Acceda para ver esta rutina personalizada</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="assets/images/piernas2.jpg" class="d-block w-100 carousel-custom-size" alt="Rutina de piernas">
+      <img src="assets/images/piernas2.jpg" class="d-block w-100 carousel-custom-size" alt="Rutina personalizada">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Rutina: Piernas</h5>
-        <p>Acceda para ver su rutina personalizada</p>
+        <h5>{{ show_routines[2].name }}</h5>
+        <p>Acceda para ver esta rutina personalizada</p>
       </div>
       <div class="carousel-caption d-md-none">
-        <h5>Rutina: Piernas</h5>
-        <p>Acceda para ver su rutina personalizada</p>
+        <h5>{{ show_routines[2].name }}</h5>
+        <p>Acceda para ver esta rutina personalizada</p>
       </div>
     </div>
   </div>
@@ -51,4 +47,32 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+</div>
+
+<h3>Contacta con nuestros asesores</h3>
+<div class="row circulos">
+  <div class="col-lg-4 unidades">
+    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+    <h2 class="fw-normal namee">{{ show_trainers[0].first_name | uppercase }} {{ show_trainers[0].last_name | uppercase }} </h2>
+    <p class="username"> {{ show_trainers[0].username }} </p>
+    <p> <i class="fa-solid fa-envelope fa-lg" style="color: #000000;"></i> {{ show_trainers[0].email }} </p>
+    <p> <i class="fa-solid fa-phone fa-lg" style="color: #000000;"></i> {{ show_trainers[0].phone_number }} </p>
+    <p><button mat-raised-button class="button" color="accent">Contactar</button></p>
+  </div>
+  <div class="col-lg-4 unidades">
+    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+    <h2 class="fw-normal namee">{{ show_trainers[1].first_name | uppercase }} {{ show_trainers[1].last_name | uppercase }}</h2>
+    <p class="username"> {{ show_trainers[1].username }} </p>
+    <p> <i class="fa-solid fa-envelope fa-lg" style="color: #000000;"></i> {{ show_trainers[1].email }} </p>
+    <p> <i class="fa-solid fa-phone fa-lg" style="color: #000000;"></i> {{ show_trainers[1].phone_number }} </p>
+    <p><button mat-raised-button class="button" color="accent">Contactar</button></p>
+  </div>
+  <div class="col-lg-4 unidades">
+    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" role="img"><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
+    <h2 class="fw-normal namee">{{ show_trainers[2].first_name | uppercase }} {{ show_trainers[2].last_name | uppercase }}</h2>
+    <p class="username"> {{ show_trainers[2].username }} </p>
+    <p> <i class="fa-solid fa-envelope fa-lg" style="color: #000000;"></i> {{ show_trainers[2].email }} </p>
+    <p> <i class="fa-solid fa-phone fa-lg" style="color: #000000;"></i> {{ show_trainers[2].phone_number }} </p>
+    <p><button mat-raised-button class="button" color="accent">Contactar</button></p>
+  </div>
 </div>

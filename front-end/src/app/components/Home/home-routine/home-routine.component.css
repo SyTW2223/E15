@@ -1,9 +1,45 @@
 .carousel-custom-size {
-  height: 70vh;
+  height: 60vh;
 }
 
 .carousel-custom-size img {
   object-fit: cover;
   object-position: center;
   opacity: 0.7;
+}
+
+.circulos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.unidades, .col-lg-4 {
+  flex: 0 0 22%;
+  text-align: center;
+}
+
+h3 {
+  margin-top: 50px;
+  font-size: 150%;
+  text-align: center;
+}
+
+i {
+  margin-right: 3%;
+}
+
+.namee {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 160%;
+}
+
+.username {
+  color: #00E676;
+  margin-top: 0.5%;
+  font-style: italic;
 }

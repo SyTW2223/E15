@@ -16,7 +16,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <div class="button-container">
+    <div class="button-container" *ngIf="isCoach()">
       <button mat-raised-button class="button" color="accent" align="end" routerLink="/profile/add_exercise">Crear un ejercicio</button>
     </div>
   </mat-card-actions>

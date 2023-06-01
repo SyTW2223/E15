@@ -29,7 +29,6 @@ export class ExerciseComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    console.log("AQUI BRUNO ---> ", this.id);
     this.exercisesService.getExercise(this.id).subscribe(
       (res) => {
         this.exercise = res;
@@ -99,5 +98,5 @@ export class ExerciseComponent implements OnInit {
       },
       (err) => console.log(err)
     );
-  }  
+  }
 }
