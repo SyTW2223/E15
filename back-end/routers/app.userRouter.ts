@@ -3,34 +3,41 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken');
 
-
 export const userR = express.Router();
-
 
 userR.use(bodyParser.json());
 
-
 userR.get('/user', async(req, res) =>{
-  const users = await User.find();
-  console.log(users);
-  res.status(200).json(users);
+  await User.find()
+  .then((users) =>{
+    if (!users) {
+      return res.status(404).json({ error: "No hay usuarios" });
+    
+    }
+    console.log(users);
+    res.status(200).json(users);
+  })
+  .catch(() => {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  });
 })
 
 userR.get('/user/:id' , async(req,res) =>{
-  try {
-    const users = await User.findOne({_id: req.params.id});
-    console.log(users);
-    res.status(200).json(users);
-  } catch (error) {
-    res.status(401)
-  }
-})
+  await User.findOne({_id: req.params.id})
+  .then((user) =>{
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+    console.log(user);
+    res.status(200).json(user);
+  })
+  .catch(() => {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  });
+});
 
 userR.patch('/user/:id', async(req, res) =>{
-  console.log(req.body);
-  const user_update = req.body;
-
-  await User.findByIdAndUpdate({_id: req.params.id}, user_update)
+  await User.findOneAndUpdate({_id: req.params.id}, req.body)
   .then((user) => {
     if(!user){
       return res.status(404).send({ msg: "Usuario no encontrado" })
@@ -40,12 +47,11 @@ userR.patch('/user/:id', async(req, res) =>{
   .catch(() => {
     return res.status(500).send({ msg: "Error al actualizar el usuario" })
   })
-})
+});
 
 
 userR.delete('/user/:id', async(req,res) =>{
-  console.log(req.body);
-  await User.findByIdAndDelete({_id: req.params.id})
+  await User.findOneAndDelete({_id: req.params.id})
   .then((user)=>{
     if(!user){
     return res.status(404).send({ msg: "Usuario no encontrado" });
@@ -55,4 +61,4 @@ userR.delete('/user/:id', async(req,res) =>{
   .catch(()=>{
     return res.status(500).send({ msg: "Error" });
   })
-})
+});

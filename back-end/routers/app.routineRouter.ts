@@ -11,60 +11,69 @@ export const routineR = express.Router();
 routineR.use(bodyParser.json());
 
 routineR.post('/routine', async (req, res) =>{
-  console.log(req.body);
+  await User.findOne({_id: req.body.author})
+  .then(async (user) =>{
+    if (!user) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+    const comments = req.body.comments;
+    const new_comments = [];
+    
+    for (let i = 0; i < comments.length; i++) {
+      const comment = comments[i];
+      const new_comment = new Comment({username: comment.username, comment: comment.comment})
+      new_comments.push(new_comment);
+    }
 
-  // Find author
-  const author = await User.findOne({_id: req.body.author})
+    const exercises = req.body.exercises;
+    const new_exercises = [];
+    for (let i = 0; i < exercises.length; i++) {
+      const exercise = exercises[i];
+      const new_exercise = await Exercise.findOne({_id: exercise})
+      new_exercises.push(new_exercise);
+    }
 
-  // Array de comment
-  const comments = req.body.comments;
-  const new_comments = [];
-  for (let i = 0; i < comments.length; i++) {
-    const comment = comments[i];
-    const new_comment = new Comment({username: comment.username, comment: comment.comment})
-    new_comments.push(new_comment);
-  }
-
-  // Array de exercises
-  const exercises = req.body.exercises;
-  const new_exercises = [];
-  for (let i = 0; i < exercises.length; i++) {
-    const exercise = exercises[i];
-    const new_exercise = await Exercise.findOne({_id: exercise})
-    new_exercises.push(new_exercise);
-  }
-
-  // Create new routine and save it
-  const new_routine = new Routine({ id: Math.floor(Math.random() * 1000000), name: req.body.name,  description: req.body.description, 
-    author: author, category: req.body.category, exercises: new_exercises, equipment_needed: req.body.equipment_needed, avg_duration: req.body.avg_duration, 
-    sets: req.body.sets, reps: req.body.reps, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
-  new_routine.save();
-  res.status(200).send({ msg: "Rutina creada correctamente" })
+    const new_routine = new Routine({ id: Math.floor(Math.random() * 1000000), name: req.body.name,  description: req.body.description, 
+      author: user, category: req.body.category, exercises: new_exercises, equipment_needed: req.body.equipment_needed, avg_duration: req.body.avg_duration, 
+      sets: req.body.sets, reps: req.body.reps, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
+    new_routine.save();
+    res.status(200).send({ msg: "Rutina creada correctamente" })
+  })
+  .catch(() => {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  });
 });
 
 routineR.get('/routine', async(req, res) =>{
-  const routines = await Routine.find();
-  console.log(routines);
-  res.status(200).json(routines);
+  await Routine.find()
+  .then((routines) =>{
+    if (!routines) {
+      return res.status(404).json({ error: "No hay rutinas" });
+    }
+    console.log(routines);
+    res.status(200).json(routines);
+  })
+  .catch(() => {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  });
 });
 
 routineR.get('/routine/:id', async(req, res) =>{
-  try {
-    const routines = await Routine.findOne({_id: req.params.id});
-    console.log(routines);
-    res.status(200).json(routines);
-  } catch (error) {
-    res.status(401)
-  }
+  await Routine.findOne({name: req.params.id})
+  .then((routine) =>{
+    if (!routine) {
+      return res.status(404).json({ error: "Rutina no encontrada" });
+    }
+    console.log(routine);
+    res.status(200).json(routine);
+  })
+  .catch(() => {
+    return res.status(500).json({ error: "Error interno del servidor" });
+  });
 });
 
 routineR.patch('/routine/:id', async(req, res) =>{
-  //TODO: Hay que buscar el usuario por el id que ofrece el JTW y comprobar que puede updatear el ejercicio bien
-  console.log(req.body);
-  const { id } = req.params
-  const routine_update = req.body;
-  
-  await Routine.findByIdAndUpdate({_id: id}, routine_update)
+  await Routine.findOneAndUpdate({name: req.params.id}, req.body)
   .then((Routine) =>{
     if(!Routine){
       res.status(404).send({ msg: "No se ha encontrado la rutina" })
@@ -78,7 +87,7 @@ routineR.patch('/routine/:id', async(req, res) =>{
 
 routineR.delete('/routine/:id', async(req, res)=>{
   console.log(req.body);
-  await Routine.findByIdAndDelete({_id: req.params.id})
+  await Routine.findOneAndDelete({_id: req.params.id})
   .then((Routine)=>{
     if(!Routine){
     return res.status(404).send({ msg: "Rutina no encontrado" });

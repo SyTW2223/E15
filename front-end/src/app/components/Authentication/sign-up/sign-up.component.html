@@ -75,6 +75,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
+        
         <mat-form-field>
           <mat-label>Tipo de usuario</mat-label>
           <mat-select formControlName="role">
@@ -83,6 +84,16 @@
             <mat-option value="Dueño de gimnasio">Dueño de gimnasio</mat-option>
           </mat-select>
         </mat-form-field> 
+        
+        <mat-card class="inputFileCard">
+          <mat-card-header> 
+            <mat-card-title> Seleccionar imágen de perfil: </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <input class="inputFile" type="file" (change)="onFile($event)">
+          </mat-card-content>
+        </mat-card>
+
         <mat-checkbox [formGroup]="signUpUserForm" class="example-margin" formControlName="acceptTerms">Aceptar términos y condiciones</mat-checkbox>      
       </div>
     </mat-card-content>

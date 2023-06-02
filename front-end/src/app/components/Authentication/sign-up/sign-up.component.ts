@@ -14,6 +14,7 @@ export class SignUpComponent implements OnInit {
   hide = true;
   termsAccepted = false;
   signUpUserForm: FormGroup;
+  selectedFile: any = null;
   // TODO: sustituir por el modelo de usuario
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -31,7 +32,7 @@ export class SignUpComponent implements OnInit {
         gender: ['', Validators.required],
         role: ['', Validators.required],
         birthdate: ['', Validators.required],
-        picture: 'foto',
+        picture: '',
         acceptTerms: [true, Validators.requiredTrue]
       }, { validator: this.passwordsMatchValidator });
     }
@@ -64,7 +65,8 @@ export class SignUpComponent implements OnInit {
     }
 
     const signUpUser = this.signUpUserForm.value;
-
+    signUpUser.picture = this.selectedFile;
+    
     this.auth.signUpUser(signUpUser)
     .subscribe(
       res =>  {
@@ -73,7 +75,11 @@ export class SignUpComponent implements OnInit {
         this.router.navigate(['/home'])
       },  
       err => console.log(err)
-    )
-  };
-
+      )
+    };
+    
+    onFile(event: any) {
+      console.log(event);
+    this.selectedFile = event.target.files[0];
+  }
 }
