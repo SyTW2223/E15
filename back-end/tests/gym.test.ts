@@ -1,9 +1,5 @@
 import supertest from "supertest";
-import { expect } from "chai";
 import { app } from "../server/server";
-
-const request = supertest(app);
-
 
 describe("Gym API", () => {
   let trial_gym = {
