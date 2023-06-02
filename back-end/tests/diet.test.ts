@@ -1,8 +1,5 @@
 import supertest from "supertest";
-import { expect } from "chai";
 import { app } from "../server/server";
-
-const request = supertest(app);
 
 describe("Diet API", () => {
 
