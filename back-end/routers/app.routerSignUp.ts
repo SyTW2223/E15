@@ -1,18 +1,33 @@
 import { User } from '../Schema/userSchema';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import { upload } from '../middleware/file'
 const jwt = require('jsonwebtoken')
+//import multer from 'multer';
+//var multipart = require('connect-multiparty');
+//var multipartMiddleware = multipart({uploadDir: 'public/'});
 
 export const signUpR = express.Router();
 
 signUpR.use(bodyParser.json());
 
-signUpR.post('/signUp', async (req, res)=>{
+
+signUpR.post('/signUp', upload.single('picture'), async (req: any, res)=>{
   console.log(req.body);
-  //const { username, password, email, first_name, last_name, phone_number, profile_picture, role} = req.body;
+
+  const url = req.protocol + '://' + req.get('host');
+  let imageURL = "";
+  if(req.file.filename){
+    imageURL = url + '/public/' + req.file.filename;
+  } else {
+    imageURL = "";
+  }
+  
   const new_user = new User({ id: Math.floor(Math.random() * 1000000), first_name: req.body.first_name, last_name: req.body.last_name, username: req.body.username, 
-   phone_number: req.body.phone_number, email: req.body.email, password: req.body.password, 
-   gender: req.body.gender, role: req.body.role, birthdate: req.body.birthdate, picture: req.body.picture})
+    phone_number: req.body.phone_number, email: req.body.email, password: req.body.password, 
+    gender: req.body.gender, role: req.body.role, birthdate: req.body.birthdate, picture: imageURL})
+
+
   new_user.save()
   .then((saveU) =>{
     if(!saveU){

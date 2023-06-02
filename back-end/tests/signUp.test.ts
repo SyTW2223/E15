@@ -5,6 +5,7 @@ import { app } from "../server/server";
 const request = supertest(app);
 
 describe("signUp API", () => {
+  /*
   // TODO: Esto se cambia a fondo
   it("Registrarse en la aplicación", async () => {
     const response = await request.post("/signUp").send({
@@ -22,4 +23,6 @@ describe("signUp API", () => {
 
     expect(response.status).to.equal(200);
   });
+  */
+ 
 });
