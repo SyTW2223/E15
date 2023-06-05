@@ -14,7 +14,7 @@ describe("Diet API", () => {
     dinner: "Cena de prueba",
     short_description: "Descripción corta de prueba",
     long_description: "Descripción larga de prueba",
-    picture: "imagen de prueba",
+    picture: "",
     likes: 0,
     comments: [
       {

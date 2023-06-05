@@ -21,7 +21,7 @@ describe("Gym API", () => {
         comment: "comentario de prueba 2"
       }
     ],
-    picture: "imagen de prueba",
+    picture: "",
     schedule: {
       monday: "8:00 - 20:00",
       tuesday: "8:00 - 20:00",
