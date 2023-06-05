@@ -2,6 +2,7 @@ import { Gym } from '../Schema/gymSchema';
 import { User } from '../Schema/userSchema';
 import { Comment } from '../Schema/commentsSchema';
 import { Scheduled } from '../Schema/scheduledSchema';
+import { upload } from '../middleware/file';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken')
@@ -10,7 +11,7 @@ export const gymR = express.Router();
 
 gymR.use(bodyParser.json());
 
-gymR.post('/gym', async (req, res)=>{
+gymR.post('/gym', upload.single('picture'), async (req: any, res)=>{
   await User.findOne({_id: req.body.owner})
   .then((owner) =>{
     if (!owner) {
@@ -25,9 +26,22 @@ gymR.post('/gym', async (req, res)=>{
     }
     const schedule = req.body.schedule;
     const new_schedule = new Scheduled(schedule);
+    
+    let imageURL = "";
+    if (req.body.picture === "") {
+      imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+    } else {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+      } else {
+        imageURL = "";
+      }
+    }
+
     const new_gym = new Gym({ id: Math.floor(Math.random() * 1000000), name: req.body.name, owner: owner,
         latitude: req.body.latitude, longitude: req.body.latitude, address: req.body.address, phone_number: req.body.phone_number,
-        website: req.body.website, likes:req.body.likes, comments: new_comments, picture: req.body.picture, schedule: new_schedule});
+        website: req.body.website, likes:req.body.likes, comments: new_comments, picture: imageURL, schedule: new_schedule});
     new_gym.save()
     .then(() =>{
       return res.status(200).send({ msg: "Gimnasio creado correctamente" });

@@ -3,9 +3,6 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import { upload } from '../middleware/file'
 const jwt = require('jsonwebtoken')
-//import multer from 'multer';
-//var multipart = require('connect-multiparty');
-//var multipartMiddleware = multipart({uploadDir: 'public/'});
 
 export const signUpR = express.Router();
 
@@ -15,12 +12,17 @@ signUpR.use(bodyParser.json());
 signUpR.post('/signUp', upload.single('picture'), async (req: any, res)=>{
   console.log(req.body);
 
-  const url = req.protocol + '://' + req.get('host');
   let imageURL = "";
-  if(req.file.filename){
-    imageURL = url + '/public/' + req.file.filename;
+  if (req.body.picture === "") {
+    console.log("No hay imagen");
+    imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
   } else {
-    imageURL = "";
+    const url = req.protocol + '://' + req.get('host');
+    if(req.file.filename){
+      imageURL = url + '/public/' + req.file.filename;
+    } else {
+      imageURL = "";
+    }
   }
   
 

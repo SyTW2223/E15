@@ -27,6 +27,7 @@ app.use(gymR);
 app.use(routineR);
 app.use(dietR);
 app.use(userR);
+app.use('/public', express.static('public'));
 
 const port = process.env.PORT || 3002;
 app.listen(port, () => {

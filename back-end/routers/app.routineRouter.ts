@@ -2,6 +2,7 @@ import { Routine } from '../Schema/routineSchema';
 import { User } from '../Schema/userSchema';
 import { Comment } from '../Schema/commentsSchema';
 import { Exercise } from '../Schema/exerciseSchema';
+import { upload } from '../middleware/file';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken')
@@ -10,7 +11,7 @@ export const routineR = express.Router();
 
 routineR.use(bodyParser.json());
 
-routineR.post('/routine', async (req, res) =>{
+routineR.post('/routine', upload.single('picture') ,async (req: any, res) =>{
   await User.findOne({_id: req.body.author})
   .then(async (user) =>{
     if (!user) {
@@ -33,13 +34,28 @@ routineR.post('/routine', async (req, res) =>{
       new_exercises.push(new_exercise);
     }
 
+    let imageURL = "";
+    if (req.body.picture === "") {
+      imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+    } else {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+      } else {
+        imageURL = "";
+      }
+    }
+
     const new_routine = new Routine({ id: Math.floor(Math.random() * 1000000), name: req.body.name,  description: req.body.description, 
       author: user, category: req.body.category, exercises: new_exercises, equipment_needed: req.body.equipment_needed, avg_duration: req.body.avg_duration, 
-      sets: req.body.sets, reps: req.body.reps, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
+      sets: req.body.sets, reps: req.body.reps, picture: imageURL, likes: req.body.likes, comments: new_comments })
     new_routine.save()
     .then(() =>{
       return res.status(200).send({ msg: "Rutina creada correctamente" });
     })
+    .catch(() => {
+      return res.status(500).json({ error: "Error interno del servidor" });
+    });
   })
   .catch(() => {
     return res.status(500).json({ error: "Error interno del servidor" });
