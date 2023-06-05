@@ -10,7 +10,7 @@
           <mat-card-subtitle class="author">Autor: {{ exercise.author.username }}</mat-card-subtitle>
           <mat-card-subtitle>{{ exercise.short_description }}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image class="card-img" src="../assets/images/brazos.jpg" alt="Foto descriptiva del ejercicio">
+        <img mat-card-image class="card-img" [src]="exercise.picture" alt="Foto descriptiva del ejercicio">
         <mat-card-content class="card-content">
           <mat-card class="equipment">
             <mat-card-content>

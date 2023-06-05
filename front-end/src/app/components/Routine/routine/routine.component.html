@@ -5,7 +5,7 @@
         <mat-card-title>{{ routine.name | uppercase }}</mat-card-title>
         <mat-card-subtitle>{{ routine.category }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image class="card-img" src="../assets/images/brazos3.jpg" alt="Foto de la rutina">
+      <img mat-card-image class="card-img" [src]="routine.picture" alt="Foto de la rutina">
       <mat-card-content class="card-content">
         <p class="author"> Autor: {{ routine.author.username }} </p>
         <p> {{ routine.description }} </p>

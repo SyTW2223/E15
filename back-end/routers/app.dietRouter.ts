@@ -1,6 +1,7 @@
 import { Diet } from '../Schema/dietSchema';
 import { User } from '../Schema/userSchema';
 import { Comment } from '../Schema/commentsSchema';
+import { upload } from '../middleware/file';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken');
@@ -9,7 +10,7 @@ export const dietR = express.Router();
 
 dietR.use(bodyParser.json());
 
-dietR.post('/diet', async (req, res) =>{
+dietR.post('/diet', upload.single('picture'), async (req: any, res) =>{
   await User.findOne({_id: req.body.author})
   .then((author) =>{
     if (!author) {
@@ -22,9 +23,23 @@ dietR.post('/diet', async (req, res) =>{
       const new_comment = new Comment({username: comment.username, comment: comment.comment})
       new_comments.push(new_comment);
     }
+    
+    let imageURL = "";
+    if (req.body.picture === "") {
+      imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+    } else {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+      } else {
+        imageURL = "";
+      }
+    }
+
+  
     const new_diet = new Diet({id: Math.floor(Math.random() * 1000000), name: req.body.name, category: req.body.category, author: author,
       breakfast: req.body.breakfast, lunch: req.body.lunch, snacks: req.body.snacks, dinner: req.body.dinner,
-      short_description: req.body.short_description, long_description: req.body.short_description, picture: req.body.picture,
+      short_description: req.body.short_description, long_description: req.body.short_description, picture: imageURL,
       likes: req.body.likes, comments: comments});
     new_diet.save()
     .then(() =>{

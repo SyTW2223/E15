@@ -27,7 +27,7 @@
     <!-- Name Column -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-      <td mat-cell *matCellDef="let row" (click)="openExerciseDialog(row._id)"> {{row.name}} </td>
+      <td mat-cell *matCellDef="let row" (click)="openExerciseDialog(row.name)"> {{row.name}} </td>
     </ng-container>
 
     <!-- Author Column -->

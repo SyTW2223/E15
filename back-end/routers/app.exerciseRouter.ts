@@ -10,7 +10,7 @@ export const exerciseR = express.Router();
 
 exerciseR.use(bodyParser.json());
 
-exerciseR.post('/exercise',async (req, res) =>{
+exerciseR.post('/exercise', upload.single('picture'),async (req: any, res) =>{
   await User.findOne({_id: req.body.author})
   .then((author) =>{
     if (!author) {
@@ -23,8 +23,22 @@ exerciseR.post('/exercise',async (req, res) =>{
       const new_comment = new Comment({username: comment.username, comment: comment.comment})
       new_comments.push(new_comment);
     }
+
+       
+    let imageURL = "";
+    if (req.body.picture === "") {
+      imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+    } else {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+      } else {
+        imageURL = "";
+      }
+    }
+
     const new_exercise = new Exercise({id: Math.floor(Math.random() * 1000000), name: req.body.name, author: author ,short_description: req.body.short_description, long_description: req.body.long_description,
-      initial_position: req.body.initial_position, category: req.body.category, equipment_needed: req.body.equipment_needed, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
+      initial_position: req.body.initial_position, category: req.body.category, equipment_needed: req.body.equipment_needed, picture: imageURL, likes: req.body.likes, comments: new_comments })
     new_exercise.save()
     .then(() =>{
       return res.status(200).send({ msg: "Ejercicio creado correctamente" });

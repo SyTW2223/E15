@@ -24,7 +24,7 @@ describe("Routine API", () => {
         comment: "comentario de prueba 2"
       }
     ],
-    picture: "imagen de prueba"
+    picture: ""
   };
 
   let trial_routine2 = {
