@@ -126,3 +126,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   color: black;
   padding: 25px;
 }
+
+.example-header-image {
+  background-size: cover;
+}

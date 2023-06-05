@@ -1,68 +1,66 @@
 <div class="container">
-  <div class="column">
-    <mat-card class="card_profile">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{user.first_name}} {{user.last_name}}</mat-card-title>
-        <mat-card-subtitle>{{user.role}}</mat-card-subtitle>
-      </mat-card-header>
-      <img [src]="user.picture" alt="Foto de perfil">
-      <mat-card-content>
-        <br>
-        <p class="center"><strong>Estadisticas</strong></p>
-        <mat-divider></mat-divider>
-        <div *ngIf="isGymOwner()">
-          <p>Gimnasios añadidos: {{gyms_lentgh}} </p>
-        </div>
-        <p>Rutinas creadas: {{routines_lentgh}}</p>
-        <div *ngIf="isCoach()">
-          <p>Ejercicios añadidas: {{exercises_lentgh}}</p>
-          <p>Dietas añadidas: {{diets_lentgh}}</p>
-        </div>
-        <mat-divider></mat-divider>
-      </mat-card-content>
-      
-        <button mat-button routerLink="/profile/edit">EDITAR PERFIL</button>
-        <button mat-button (click)="authService.logoutUser()">SALIR</button>
-    </mat-card>
-  </div>
+  <mat-card class="card_profile">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image" style="background-image: url('{{user.picture}}')"></div>
+      <mat-card-title>{{user.first_name}} {{user.last_name}}</mat-card-title>
+      <mat-card-subtitle>{{user.role}}</mat-card-subtitle>
+    </mat-card-header>
+    <img [src]="user.picture" alt="Foto de perfil">
+    
+    <mat-card-content>
+      <br>
+      <p class="center"><strong>Estadisticas</strong></p>
+      <mat-divider></mat-divider>
+      <div *ngIf="isGymOwner()">
+        <p>Gimnasios añadidos: {{gyms_lentgh}} </p>
+      </div>
+      <p>Rutinas creadas: {{routines_lentgh}}</p>
+      <div *ngIf="isCoach()">
+        <p>Ejercicios añadidas: {{exercises_lentgh}}</p>
+        <p>Dietas añadidas: {{diets_lentgh}}</p>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-card-content>
+    
+      <button mat-button routerLink="/profile/edit">EDITAR PERFIL</button>
+      <button mat-button (click)="authService.logoutUser()">SALIR</button>
+  </mat-card>
 
-  <div class="column">
-    <mat-card class="card triple">
-      <mat-card-title class="center"><h3>Datos del perfil</h3></mat-card-title>
-      <mat-card-content>
-        <p><strong>Nombre:</strong> {{user.first_name}} {{user.last_name}} </p>
-        <p><strong>Nombre de usuario:</strong> {{user.username}} </p>
-        <p><strong>Correo:</strong> {{user.email}} </p>
-        <p><strong>Fecha de nacimiento:</strong> {{user.birthdate}} </p>
-        <p><strong>Número de telefono:</strong> {{user.phone_number}}</p>
-        <p><strong>Género:</strong> {{user.gender}}</p>
-        <p><strong>Tipo de usuario:</strong> {{user.role}}</p>
-      </mat-card-content>
+  <mat-card class="card triple1">
+    <mat-card-title class="center"><h3>Datos del perfil</h3></mat-card-title>
+    <mat-card-content>
+      <p><strong>Nombre:</strong> {{user.first_name}} {{user.last_name}} </p>
+      <p><strong>Nombre de usuario:</strong> {{user.username}} </p>
+      <p><strong>Correo:</strong> {{user.email}} </p>
+      <p><strong>Fecha de nacimiento:</strong> {{user.birthdate}} </p>
+      <p><strong>Número de telefono:</strong> {{user.phone_number}}</p>
+      <p><strong>Género:</strong> {{user.gender}}</p>
+      <p><strong>Tipo de usuario:</strong> {{user.role}}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="card triple2">
+      <mat-card-title class="center"><h3>Opciones</h3></mat-card-title>
+        <div mat-dialog-actions *ngIf="isGymOwner()" align="center">
+          <button mat-button routerLink="/profile/add_gym">AÑADE TU GIMNASIO</button>
+          <button mat-button routerLink="/profile/edit_gym">MODIFICA TU GIMNASIO</button>
+          <button mat-button routerLink="/profile/delete_gym">ELIMINA TU GIMNASIO</button>
+        </div>
+        <div mat-dialog-actions *ngIf="isCoach()"  align="center">
+          <button mat-button routerLink="/profile/add_exercise">AÑADE UN EJERCICIO</button>
+          <button mat-button routerLink="/profile/edit_exercise">MODIFICA UN EJERCICIO</button>
+          <button mat-button routerLink="/profile/delete_exercise">ELIMINA UN EJERCICIO</button>
+        </div>
+        <div mat-dialog-actions align="center">
+          <button mat-button routerLink="/profile/add_routine">AÑADE UNA RUTINA</button>
+          <button mat-button routerLink="/profile/edit_routine">MODIFICA UNA RUTINA</button>
+          <button mat-button routerLink="/profile/delete_routine">ELIMINA UNA RUTINA</button>
+        </div>
+        <div mat-dialog-actions *ngIf="isCoach()"  align="center">  
+          <button mat-button routerLink="/profile/add_diet">AÑADE UNA DIETA</button>
+          <button mat-button routerLink="/profile/edit_diet">MODIFICA UNA DIETA</button>
+          <button mat-button routerLink="/profile/delete_diet">ELIMINA UNA DIETA</button>
+        </div>
     </mat-card>
 
-    <mat-card class="card triple">
-        <mat-card-title class="center"><h3>Opciones</h3></mat-card-title>
-          <div mat-dialog-actions *ngIf="isGymOwner()" align="center">
-            <button mat-button routerLink="/profile/add_gym">AÑADE TU GIMNASIO</button>
-            <button mat-button routerLink="/profile/edit_gym">MODIFICA TU GIMNASIO</button>
-            <button mat-button routerLink="/profile/delete_gym">ELIMINA TU GIMNASIO</button>
-          </div>
-          <div mat-dialog-actions *ngIf="isCoach()"  align="center">
-            <button mat-button routerLink="/profile/add_exercise">AÑADE UN EJERCICIO</button>
-            <button mat-button routerLink="/profile/edit_exercise">MODIFICA UN EJERCICIO</button>
-            <button mat-button routerLink="/profile/delete_exercise">ELIMINA UN EJERCICIO</button>
-          </div>
-          <div mat-dialog-actions align="center">
-            <button mat-button routerLink="/profile/add_routine">AÑADE UNA RUTINA</button>
-            <button mat-button routerLink="/profile/edit_routine">MODIFICA UNA RUTINA</button>
-            <button mat-button routerLink="/profile/delete_routine">ELIMINA UNA RUTINA</button>
-          </div>
-          <div mat-dialog-actions *ngIf="isCoach()"  align="center">  
-            <button mat-button routerLink="/profile/add_diet">AÑADE UNA DIETA</button>
-            <button mat-button routerLink="/profile/edit_diet">MODIFICA UNA DIETA</button>
-            <button mat-button routerLink="/profile/delete_diet">ELIMINA UNA DIETA</button>
-          </div>
-      </mat-card>
-  </div>
 </div>

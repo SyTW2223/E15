@@ -5,7 +5,7 @@
         <mat-card-title>{{ diet.name | uppercase }}</mat-card-title>
         <mat-card-subtitle>{{ diet.short_description }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image class="card-img" src="../assets/images/dieta3.jpg" alt="Foto de la dieta">
+      <img mat-card-image class="card-img" [src]="diet.picture" alt="Foto de perfil">
       <mat-card-content class="card-content">
         <p class="author"> Autor: {{ diet.author.username }} </p>
         <p> {{ diet.long_description }} </p>
