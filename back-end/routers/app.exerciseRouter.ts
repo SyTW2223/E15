@@ -10,7 +10,7 @@ export const exerciseR = express.Router();
 
 exerciseR.use(bodyParser.json());
 
-exerciseR.post('/exercise', upload.single('picture'),async (req, res) =>{
+exerciseR.post('/exercise',async (req, res) =>{
   await User.findOne({_id: req.body.author})
   .then((author) =>{
     if (!author) {
@@ -25,8 +25,13 @@ exerciseR.post('/exercise', upload.single('picture'),async (req, res) =>{
     }
     const new_exercise = new Exercise({id: Math.floor(Math.random() * 1000000), name: req.body.name, author: author ,short_description: req.body.short_description, long_description: req.body.long_description,
       initial_position: req.body.initial_position, category: req.body.category, equipment_needed: req.body.equipment_needed, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
-    new_exercise.save();
-    res.status(200).send({ msg: "Ejercicio creado correctamente" });
+    new_exercise.save()
+    .then(() =>{
+      return res.status(200).send({ msg: "Ejercicio creado correctamente" });
+    })
+    .catch(() => {
+      return res.status(500).json({ error: "Error interno del servidor" });
+    });
   })
   .catch(() => {
     return res.status(500).json({ error: "Error interno del servidor" });

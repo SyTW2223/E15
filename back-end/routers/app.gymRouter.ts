@@ -28,8 +28,13 @@ gymR.post('/gym', async (req, res)=>{
     const new_gym = new Gym({ id: Math.floor(Math.random() * 1000000), name: req.body.name, owner: owner,
         latitude: req.body.latitude, longitude: req.body.latitude, address: req.body.address, phone_number: req.body.phone_number,
         website: req.body.website, likes:req.body.likes, comments: new_comments, picture: req.body.picture, schedule: new_schedule});
-    new_gym.save();
-    res.status(200).send({ msg: "Gimnasio creado correctamente" });
+    new_gym.save()
+    .then(() =>{
+      return res.status(200).send({ msg: "Gimnasio creado correctamente" });
+    })
+    .catch(() => {
+      return res.status(500).json({ error: "Error interno del servidor" });
+    });
   })
   .catch(() => {
     return res.status(500).json({ error: "Error interno del servidor" });

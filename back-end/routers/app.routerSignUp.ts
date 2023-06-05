@@ -23,17 +23,19 @@ signUpR.post('/signUp', upload.single('picture'), async (req: any, res)=>{
     imageURL = "";
   }
   
+
   const new_user = new User({ id: Math.floor(Math.random() * 1000000), first_name: req.body.first_name, last_name: req.body.last_name, username: req.body.username, 
     phone_number: req.body.phone_number, email: req.body.email, password: req.body.password, 
     gender: req.body.gender, role: req.body.role, birthdate: req.body.birthdate, picture: imageURL})
 
 
   new_user.save()
-  .then((saveU) =>{
-    if(!saveU){
+  .then(async (user) =>{
+    if(!user){
       res.status(400).send({message: "Fallo al guardar el usuario, no se ha podido almacenar"})
     } else{
-      res.status(200).send({new_user: saveU})
+      const token = await jwt.sign({user}, 'secretkey')
+      res.status(200).json({token});
     }
   }).catch((err) =>{
     if(err.code === 11000){
@@ -42,9 +44,4 @@ signUpR.post('/signUp', upload.single('picture'), async (req: any, res)=>{
       res.status(500).send({message: "ha ocurrido un error"})
     }
   })
-
-
-  const token = await jwt.sign({new_user}, 'secretkey')
-
-  res.status(200).json({token});
 });

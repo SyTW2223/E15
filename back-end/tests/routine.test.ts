@@ -10,6 +10,8 @@ describe("Routine API", () => {
     author: "6439aa0ace6fbb3cd24a990f",
     exercises: ["6442d4aa677db19baea771c1","6442d84b53af6d36441838c1","6442d88753af6d36441838c7"],
     equipment_needed: true,
+    sets: 3,
+    reps: 10,
     avg_duration: 3,
     likes: 0,
     comments: [
