@@ -9,9 +9,10 @@ describe("Exercise API", () => {
     short_description: "Descripción corta de prueba",
     long_description: "Descripción larga de prueba",
     initial_position: "Posición inicial de prueba",
-    categoria: "prueba",
+    category: "prueba",
     picture: "imagen de prueba",
     likes: 0,
+    equipment_needed: false,
     comments: [
       {
         username: "usuario de prueba",

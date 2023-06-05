@@ -26,8 +26,13 @@ dietR.post('/diet', async (req, res) =>{
       breakfast: req.body.breakfast, lunch: req.body.lunch, snacks: req.body.snacks, dinner: req.body.dinner,
       short_description: req.body.short_description, long_description: req.body.short_description, picture: req.body.picture,
       likes: req.body.likes, comments: comments});
-    new_diet.save();
-    res.status(200).send({ msg: "Dieta creada correctamente" });
+    new_diet.save()
+    .then(() =>{
+      return res.status(200).send({ msg: "Dieta creada correctamente" });
+    })
+    .catch(() => {
+      return res.status(500).json({ error: "Error interno del servidor" });
+    });
   })
   .catch(() => {
     return res.status(500).json({ error: "Error interno del servidor" });

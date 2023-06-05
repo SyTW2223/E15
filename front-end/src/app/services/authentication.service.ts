@@ -13,8 +13,8 @@ export class AuthenticationService {
   constructor(private http: HttpClient,
     private router: Router) {}
 
-  signUpUser(user: any) {
-    return this.http.post<any>(this.signUpURL, user);
+  signUpUser(formData: FormData) {
+    return this.http.post<any>(this.signUpURL, formData);
   }
 
   signInUser(user: any) {

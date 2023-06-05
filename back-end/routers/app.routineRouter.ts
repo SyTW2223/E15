@@ -36,8 +36,10 @@ routineR.post('/routine', async (req, res) =>{
     const new_routine = new Routine({ id: Math.floor(Math.random() * 1000000), name: req.body.name,  description: req.body.description, 
       author: user, category: req.body.category, exercises: new_exercises, equipment_needed: req.body.equipment_needed, avg_duration: req.body.avg_duration, 
       sets: req.body.sets, reps: req.body.reps, picture: req.body.picture, likes: req.body.likes, comments: new_comments })
-    new_routine.save();
-    res.status(200).send({ msg: "Rutina creada correctamente" })
+    new_routine.save()
+    .then(() =>{
+      return res.status(200).send({ msg: "Rutina creada correctamente" });
+    })
   })
   .catch(() => {
     return res.status(500).json({ error: "Error interno del servidor" });
@@ -87,7 +89,7 @@ routineR.patch('/routine/:id', async(req, res) =>{
 
 routineR.delete('/routine/:id', async(req, res)=>{
   console.log(req.body);
-  await Routine.findOneAndDelete({_id: req.params.id})
+  await Routine.findOneAndDelete({name: req.params.id})
   .then((Routine)=>{
     if(!Routine){
     return res.status(404).send({ msg: "Rutina no encontrado" });

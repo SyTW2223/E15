@@ -45,6 +45,7 @@
       <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
         <div class="example-element-detail"
             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <!--Cualquier cosa que no carge la foto borrar este cacho-->
           <div class="example-element-diagram">
             <div> {{element.picture}}</div>
           </div> 
