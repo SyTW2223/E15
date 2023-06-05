@@ -64,10 +64,20 @@ export class SignUpComponent implements OnInit {
       return;
     }
 
+    const formData = new FormData();
     const signUpUser = this.signUpUserForm.value;
-    signUpUser.picture = this.selectedFile;
+    formData.append('first_name', signUpUser.first_name);
+    formData.append('last_name', signUpUser.last_name);
+    formData.append('username', signUpUser.username);
+    formData.append('phone_number', signUpUser.phone_number);
+    formData.append('email', signUpUser.email);
+    formData.append('password', signUpUser.password); 
+    formData.append('gender', signUpUser.gender);
+    formData.append('role', signUpUser.role);
+    formData.append('birthdate', signUpUser.birthdate);
+    formData.append('picture', this.selectedFile);
     
-    this.auth.signUpUser(signUpUser)
+    this.auth.signUpUser(formData)
     .subscribe(
       res =>  {
         console.log(res)
@@ -78,8 +88,8 @@ export class SignUpComponent implements OnInit {
       )
     };
     
-    onFile(event: any) {
-      console.log(event);
+  onFile(event: any) {
+    //console.log(event);
     this.selectedFile = event.target.files[0];
   }
 }

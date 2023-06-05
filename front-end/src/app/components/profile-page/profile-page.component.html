@@ -6,7 +6,7 @@
         <mat-card-title>{{user.first_name}} {{user.last_name}}</mat-card-title>
         <mat-card-subtitle>{{user.role}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Foto de perfil">
+      <img [src]="user.picture" alt="Foto de perfil">
       <mat-card-content>
         <br>
         <p class="center"><strong>Estadisticas</strong></p>
