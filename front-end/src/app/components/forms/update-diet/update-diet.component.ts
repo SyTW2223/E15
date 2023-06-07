@@ -16,6 +16,7 @@ export class UpdateDietComponent implements OnInit {
   diet: any = {};
   diets: any = [];
   diets_filtered: any = [];
+  selectedFile: any = null;
 
   constructor(private dietService: DietsService,
     public authService: AuthenticationService,
@@ -52,8 +53,20 @@ export class UpdateDietComponent implements OnInit {
     this.out();
   }
   updateDiet() {
-    let id = this.diet._id;
-    this.dietService.patchDiet(id, this.diet)
+    let id = this.diet.name;
+
+    const formData = new FormData();
+    formData.append('name', this.diet.name);
+    formData.append('breakfast', this.diet.breakfast);
+    formData.append('category', this.diet.category);
+    formData.append('lunch', this.diet.lunch);
+    formData.append('snacks', this.diet.snacks);
+    formData.append('dinner', this.diet.dinner);
+    formData.append('short_description', this.diet.short_description);
+    formData.append('long_description', this.diet.long_description);
+    formData.append('picture', this.selectedFile);
+
+    this.dietService.patchDiet(id, formData)
       .subscribe(
         res => {
           console.log(res);
@@ -63,4 +76,7 @@ export class UpdateDietComponent implements OnInit {
       )
   }
 
+  onFile(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 }

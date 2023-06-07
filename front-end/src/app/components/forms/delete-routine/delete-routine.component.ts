@@ -66,7 +66,7 @@ export class DeleteRoutineComponent implements OnInit {
   }
   deleteRoutine() {
     if (this.routineForm.valid) {
-      const id = this.routineForm.get('routine')?.value._id;
+      const id = this.routineForm.get('routine')?.value.name;
       this.routineService.deleteRoutine(id)
         .subscribe(
           res => {

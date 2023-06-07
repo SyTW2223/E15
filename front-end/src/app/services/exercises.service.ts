@@ -17,15 +17,15 @@ export class ExercisesService {
     return this.http.get<any>(`${this.exercisesURL}/${id}`);
   }
 
-  postExercise(data: any) {
-    return this.http.post<any>(this.exercisesURL, data);
+  postExercise(formData: FormData) {
+    return this.http.post<any>(this.exercisesURL, formData);
   }
 
   deleteExercise(id: string) {
     return this.http.delete<any>(`${this.exercisesURL}/${id}`);
   }
 
-  patchExercise(id: string, data: any) {
-    return this.http.patch<any>(`${this.exercisesURL}/${id}`, data);
+  patchExercise(id: string, formData: FormData) {
+    return this.http.patch<any>(`${this.exercisesURL}/${id}`, formData);
   }
 }

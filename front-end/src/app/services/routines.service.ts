@@ -17,15 +17,15 @@ export class RoutinesService {
     return this.http.get<any>(`${this.routinesURL}/${id}`);
   }
 
-  postRoutine(data: any) {
-    return this.http.post<any>(this.routinesURL, data);
+  postRoutine(formData: FormData) {
+    return this.http.post<any>(this.routinesURL, formData);
   }
 
   deleteRoutine(id: string) {
     return this.http.delete<any>(`${this.routinesURL}/${id}`);
   }
 
-  patchRoutine(id: string, data: any) {
-    return this.http.patch<any>(`${this.routinesURL}/${id}`, data);
+  patchRoutine(id: string, formData: FormData) {
+    return this.http.patch<any>(`${this.routinesURL}/${id}`, formData);
   }
 }

@@ -17,15 +17,15 @@ export class DietsService {
     return this.http.get<any>(`${this.dietsURL}/${id}`);
   }
 
-  postDiet(data: any) {
-    return this.http.post<any>(this.dietsURL, data);
+  postDiet(formData: FormData) {
+    return this.http.post<any>(this.dietsURL, formData);
   }
 
   deleteDiet(id: string) {
     return this.http.delete<any>(`${this.dietsURL}/${id}`);
   }
 
-  patchDiet(id: string, data: any) {
-    return this.http.patch<any>(`${this.dietsURL}/${id}`, data);
+  patchDiet(id: string, formData: FormData) {
+    return this.http.patch<any>(`${this.dietsURL}/${id}`, formData);
   }
 }

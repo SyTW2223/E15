@@ -59,8 +59,8 @@ export class UpdateGymComponent implements OnInit {
     this.out();
   }
   updateGym() {
-    let id = this.gym._id;
-    this.gymService.patchGym(id, this.gym)
+    let name = this.gym.name;
+    this.gymService.patchGym(name, this.gym)
       .subscribe(
         res => {
           console.log(res);

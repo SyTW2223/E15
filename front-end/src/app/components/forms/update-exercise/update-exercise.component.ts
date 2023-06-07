@@ -23,6 +23,7 @@ export class UpdateExerciseComponent implements OnInit {
   exercise: any = {};
   exercises: any = [];
   exercises_filtered: any = [];  
+  selectedFile: any = null;
 
   constructor(private authService: AuthenticationService,
     public exerciseService: ExercisesService,
@@ -60,13 +61,23 @@ export class UpdateExerciseComponent implements OnInit {
   }
 
   updateExercise() {
-    let id = this.exercise._id;
+    let name = this.exercise.name;
     if (this.exercise.equipment_needed == "Si") {
       this.exercise.equipment_needed = true;
     } else {
       this.exercise.equipment_needed = false;
     }
-    this.exerciseService.patchExercise(id, this.exercise)
+
+    const formData = new FormData();
+    formData.append('name', this.exercise.name);
+    formData.append('short_description', this.exercise.short_description);
+    formData.append('long_description', this.exercise.long_description);
+    formData.append('initial_position', this.exercise.initial_position);
+    formData.append('category', this.exercise.category); 
+    formData.append('equipment_needed', this.exercise.equipment_needed);
+    formData.append('picture', this.selectedFile);
+
+    this.exerciseService.patchExercise(name, formData)
       .subscribe(
         res => {
           console.log(res);
@@ -74,5 +85,9 @@ export class UpdateExerciseComponent implements OnInit {
         },
         err => console.log(err)
       )
+  }
+
+  onFile(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 }

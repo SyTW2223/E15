@@ -22,6 +22,7 @@ import jwt_decode from 'jwt-decode';
 export class CreateExerciseComponent implements OnInit {
   token: any;
   exercise: any = {};
+  selectedFile: any = null;
 
   constructor(private exerciseService: ExercisesService,
     public authService: AuthenticationService,
@@ -43,6 +44,7 @@ export class CreateExerciseComponent implements OnInit {
       duration: 1000
     });
   }
+  
   handleButtomClick(){
     this.openSnackBar();
     this.out();
@@ -50,7 +52,6 @@ export class CreateExerciseComponent implements OnInit {
 
   createExercise() {
     this.exercise.author = this.token.user._id;
-    this.exercise.picture = "Imagen";
     this.exercise.likes = 0;
     this.exercise.comments = [];
     if (this.exercise.equipment_needed == "Si") {
@@ -58,7 +59,21 @@ export class CreateExerciseComponent implements OnInit {
     } else {
       this.exercise.equipment_needed = false;
     }
-    this.exerciseService.postExercise(this.exercise)
+    
+    const formData = new FormData();
+    formData.append('name', this.exercise.name);
+    formData.append('author', this.exercise.author);
+    formData.append('short_description', this.exercise.short_description);
+    formData.append('long_description', this.exercise.long_description);
+    formData.append('initial_position', this.exercise.initial_position);
+    formData.append('category', this.exercise.category); 
+    formData.append('equipment_needed', this.exercise.equipment_needed);
+    formData.append('picture', this.selectedFile);
+    formData.append('likes', this.exercise.likes);
+    formData.append('comments', this.exercise.comments);
+
+    console.log(this.exercise);
+    this.exerciseService.postExercise(formData)
       .subscribe(
         res => {
           console.log(res);
@@ -66,5 +81,9 @@ export class CreateExerciseComponent implements OnInit {
         },
         err => console.log(err)
       ) 
+  }
+
+  onFile(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 }

@@ -25,7 +25,7 @@ export class UsersService {
     return this.http.get<any>(`${this.userURL}/${id}`);
   }
 
-  patchUserId(id: string, data: any) {
-    return this.http.patch<any>(`${this.userURL}/${id}`, data);
+  patchUserId(id: string, formData: FormData) {
+    return this.http.patch<any>(`${this.userURL}/${id}`, formData);
   }
 }

@@ -26,6 +26,7 @@ export class UpdateRoutineComponent implements OnInit {
   routine: any = {};
   exercise: any = "";
   exercises: any = [];
+  selectedFile: any = null;
 
   constructor(private routineService: RoutinesService,
     private exerciseService: ExercisesService,
@@ -93,7 +94,24 @@ export class UpdateRoutineComponent implements OnInit {
     } else {
       this.routine.equipment_needed = false;
     }
-    this.routineService.patchRoutine(this.routine._id, this.routine)
+
+    let exercisesIds: any = [];
+    this.routine.exercises.forEach((exercise: any) => {
+      exercisesIds.push(exercise._id);
+    });
+
+    const formData = new FormData();
+    formData.append('name', this.routine.name);
+    formData.append('description', this.routine.description);
+    formData.append('category', this.routine.category); 
+    formData.append('exercises', JSON.stringify(exercisesIds));
+    formData.append('equipment_needed', this.routine.equipment_needed);
+    formData.append('avg_duration', this.routine.avg_duration);
+    formData.append('sets', this.routine.sets);
+    formData.append('reps', this.routine.reps);
+    formData.append('picture', this.selectedFile);
+
+    this.routineService.patchRoutine(this.routine.name, formData)
       .subscribe(
         res => {
           console.log(res);
@@ -103,4 +121,7 @@ export class UpdateRoutineComponent implements OnInit {
       )
   }
 
+  onFile(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 }

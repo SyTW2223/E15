@@ -66,7 +66,7 @@ export class DeleteDietComponent {
   }
   deleteDiet() {
     if(this.dietForm.valid){
-      let id = this.dietForm.get('diet')?.value._id;
+      let id = this.dietForm.get('diet')?.value.name;
       this.dietsService.deleteDiet(id)
         .subscribe(
           res => {

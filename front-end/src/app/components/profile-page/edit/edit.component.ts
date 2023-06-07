@@ -14,6 +14,8 @@ import jwt_decode from 'jwt-decode';
 export class EditComponent {
   token: any;
   user: any = {};
+
+  selectedFile: any = null;
   
   previous_first_name: String = '';
   previous_last_name: String = '';
@@ -55,7 +57,20 @@ export class EditComponent {
   }
 
   updateUser(){
-    this.userService.patchUserId(this.user._id, this.user)
+    const formData = new FormData();
+    formData.append('first_name', this.user.first_name);
+    formData.append('last_name', this.user.last_name);
+    formData.append('username', this.user.username);
+    formData.append('phone_number', this.user.phone_number);
+    formData.append('email', this.user.email);
+    //formData.append('password',user.password); 
+    formData.append('gender', this.user.gender);
+    formData.append('birthdate', this.user.birthdate);
+    if (this.selectedFile != null) {
+      formData.append('picture', this.selectedFile);
+    }
+
+    this.userService.patchUserId(this.user._id, formData)
     .subscribe(
       res =>  {
         console.log(res);
@@ -67,5 +82,9 @@ export class EditComponent {
 
   cancel(){
     this.router.navigate(['/profile']);
+  }
+
+  onFile(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 }

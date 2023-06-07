@@ -43,3 +43,8 @@ i {
   margin-top: 0.5%;
   font-style: italic;
 }
+
+.circle {
+  background-size: cover;
+  background-position: center;
+}

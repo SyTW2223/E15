@@ -7,7 +7,7 @@
   padding: 10px 100px 10px 100px;
 }
 
-@media (min-width: 800px) and (max-width: 1200px) {
+@media (min-width: 800px) and (max-width: 1200px) { /* ENTRE 800 Y 1200 */
   .container {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
