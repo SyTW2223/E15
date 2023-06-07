@@ -19,11 +19,13 @@ dietR.post('/diet', upload.single('picture'), async (req: any, res) =>{
     const comments = req.body.comments;
     const new_comments = [];
     for (let i = 0; i < comments.length; i++) {
+      console.log("entra aqui");
       const comment = comments[i];
       const new_comment = new Comment({username: comment.username, comment: comment.comment})
       new_comments.push(new_comment);
     }
     
+
     let imageURL = "";
     if (req.body.picture === "") {
       imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
@@ -36,20 +38,21 @@ dietR.post('/diet', upload.single('picture'), async (req: any, res) =>{
       }
     }
 
-  
     const new_diet = new Diet({id: Math.floor(Math.random() * 1000000), name: req.body.name, category: req.body.category, author: author,
       breakfast: req.body.breakfast, lunch: req.body.lunch, snacks: req.body.snacks, dinner: req.body.dinner,
       short_description: req.body.short_description, long_description: req.body.short_description, picture: imageURL,
-      likes: req.body.likes, comments: comments});
+      likes: req.body.likes, comments: new_comments});
     new_diet.save()
     .then(() =>{
       return res.status(200).send({ msg: "Dieta creada correctamente" });
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return res.status(500).json({ error: "Error interno del servidor" });
     });
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
@@ -63,7 +66,8 @@ dietR.get('/diet', async(req, res) =>{
     console.log(diets);
     res.status(200).json(diets);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
@@ -77,12 +81,27 @@ dietR.get('/diet/:name', async(req, res) =>{
     console.log(diet);
     res.status(200).json(diet);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
 
-dietR.patch('/diet/:name', async(req, res) =>{
+dietR.patch('/diet/:name', upload.single('picture'), async(req: any, res) =>{
+
+  let imageURL = "";
+  if (req.body.picture === "") {
+    req.body.picture = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+  } else {
+    try {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+        req.body.picture = imageURL;
+      }
+    } catch (error) {}
+  }
+
   await Diet.findOneAndUpdate({name: req.params.name}, req.body)
   .then((diet) =>{
     if(!diet){
@@ -92,7 +111,8 @@ dietR.patch('/diet/:name', async(req, res) =>{
         .status(200)
         .send({ msg: 'Dieta actualizada satisfactoriamente' })
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return res.status(500).send({ msg: 'Error al actualizar la dieta' })
     })
 });
@@ -105,7 +125,8 @@ dietR.delete('/diet/:name', async(req, res)=>{
     }
     return res.status(200).send({ msg: "Dieta eliminada correctamente" });
   })
-  .catch(()=>{
+  .catch((err)=>{
+    console.log(err);
     return res.status(500).send({ msg: "Error" });
   })
 });
