@@ -2,7 +2,9 @@ import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
 import { RoutinesService } from 'src/app/services/routines.service';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import jwt_decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-home-routine',
@@ -17,7 +19,8 @@ export class HomeRoutineComponent implements OnInit {
   show_trainers: any = [];
   random: any;
 
-  constructor(private getRoutines: RoutinesService, private getUsers: UsersService) {}
+  constructor(private getRoutines: RoutinesService, private getUsers: UsersService,
+              private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.getRoutines.getRoutines()
@@ -81,4 +84,9 @@ export class HomeRoutineComponent implements OnInit {
     return false;
   }
 
+  openSnackBar() {
+    this._snackBar.open("Asesor contactado, pronto recibirá su respuesta", "", {
+      duration: 1000
+    });
+  }
 }

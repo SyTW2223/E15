@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SERVER_URL } from 'src/utils/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GymsService {
-  private gymsURL = 'http://localhost:3002/gym'
+  private gymsURL = SERVER_URL + '/gym'
 
   constructor(private http: HttpClient) {}
 

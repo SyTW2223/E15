@@ -63,7 +63,7 @@
     <p class="username"> {{ show_trainers[0].username }} </p>
     <p> <i class="fa-solid fa-envelope fa-lg" style="color: #000000;"></i> {{ show_trainers[0].email }} </p>
     <p> <i class="fa-solid fa-phone fa-lg" style="color: #000000;"></i> {{ show_trainers[0].phone_number }} </p>
-    <p><button mat-raised-button class="button" color="accent">Contactar</button></p>
+    <p><button mat-raised-button class="button" color="accent" (click)="openSnackBar()">Contactar</button></p>
   </div>
   <div class="col-lg-4 unidades">
     <svg class="bd-placeholder-img rounded-circle circle" width="140" height="140" role="img" style="background-image: url('{{show_trainers[1].picture}}')"> </svg>
@@ -71,7 +71,7 @@
     <p class="username"> {{ show_trainers[1].username }} </p>
     <p> <i class="fa-solid fa-envelope fa-lg" style="color: #000000;"></i> {{ show_trainers[1].email }} </p>
     <p> <i class="fa-solid fa-phone fa-lg" style="color: #000000;"></i> {{ show_trainers[1].phone_number }} </p>
-    <p><button mat-raised-button class="button" color="accent">Contactar</button></p>
+    <p><button mat-raised-button class="button" color="accent" (click)="openSnackBar()">Contactar</button></p>
   </div>
   <div class="col-lg-4 unidades">
     <svg class="bd-placeholder-img rounded-circle circle" width="140" height="140" role="img" style="background-image: url('{{show_trainers[2].picture}}')"> </svg>
@@ -79,6 +79,6 @@
     <p class="username"> {{ show_trainers[2].username }} </p>
     <p> <i class="fa-solid fa-envelope fa-lg" style="color: #000000;"></i> {{ show_trainers[2].email }} </p>
     <p> <i class="fa-solid fa-phone fa-lg" style="color: #000000;"></i> {{ show_trainers[2].phone_number }} </p>
-    <p><button mat-raised-button class="button" color="accent">Contactar</button></p>
+    <p><button mat-raised-button class="button" color="accent" (click)="openSnackBar()">Contactar</button></p>
   </div>
 </div>

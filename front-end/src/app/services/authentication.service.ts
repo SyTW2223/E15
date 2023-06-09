@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SERVER_URL } from 'src/utils/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private signUpURL = 'http://localhost:3002/signUp'
-  private signInURL = 'http://localhost:3002/signIn'
+  private signUpURL = SERVER_URL + '/signUp'
+  private signInURL = SERVER_URL + '/signIn'
 
   constructor(private http: HttpClient,
     private router: Router) {}

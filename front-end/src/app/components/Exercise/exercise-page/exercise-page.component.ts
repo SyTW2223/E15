@@ -38,8 +38,9 @@ export class ExercisePageComponent {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         for (let exercise of res) {
-          //TODO: cuando esté el enum iterar sobre el enum, y comprobar que la categoria ya está insertada
-          this.categories.push(exercise.category);
+          if (!this.categories.includes(exercise.category)) {
+            this.categories.push(exercise.category);
+          }
         }
       }
     )

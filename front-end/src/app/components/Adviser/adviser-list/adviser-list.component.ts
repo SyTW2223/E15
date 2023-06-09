@@ -88,9 +88,11 @@ export class AdviserListComponent implements OnInit {
         this.dataSource.sort = this.sort;
 
         
-        for (let user of res) {
-          //TODO: cuando esté el enum iterar sobre el enum, y comprobar que la categoria ya está insertada
-          this.categories.push(user.first_name);
+        for (let user of res) { 
+          if (!this.categories.includes(user.email)) {
+            console.log(user.email);
+            this.categories.push(user.email);
+          }
         }
       }
     )

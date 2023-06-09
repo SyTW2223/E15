@@ -11,8 +11,8 @@
     <mat-form-field class="selector" appearance="fill">
       <mat-label>Email</mat-label>
       <mat-select [(ngModel)]="emailTerm" (ngModelChange)="applyEmailFilter()">
-        <mat-option *ngFor="let user of users" [value]="user.email">
-          {{user.email}}
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category}}
         </mat-option>
       </mat-select>
     </mat-form-field>

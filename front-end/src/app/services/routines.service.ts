@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SERVER_URL } from 'src/utils/constants';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoutinesService {
-  private routinesURL = 'http://localhost:3002/routine'
+  private routinesURL = SERVER_URL + '/routine'
 
   constructor(private http: HttpClient) { }
 
