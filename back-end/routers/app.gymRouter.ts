@@ -46,11 +46,13 @@ gymR.post('/gym', upload.single('picture'), async (req: any, res)=>{
     .then(() =>{
       return res.status(200).send({ msg: "Gimnasio creado correctamente" });
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return res.status(500).json({ error: "Error interno del servidor" });
     });
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
@@ -65,7 +67,8 @@ gymR.get('/gym', async (req,res) => {
     console.log(gyms);
     return res.status(200).send(gyms);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).send({ msg: "Error al buscar los gimnasios" })
   });
 })
@@ -79,12 +82,27 @@ gymR.get('/gym/:id', async (req,res) => {
     console.log(gym);
     return res.status(200).send(gym);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).send({ msg: "Error al buscar el gimnasio" })
   });
 })
 
-gymR.patch('/gym/:id', async(req, res) =>{
+gymR.patch('/gym/:id', upload.single('picture'), async(req: any, res) =>{
+
+  let imageURL = "";
+  if (req.body.picture === "") {
+    req.body.picture = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+  } else {
+    try {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+        req.body.picture = imageURL;
+      }
+    } catch (error) {}
+  }
+
   await Gym.findOneAndUpdate({name: req.params.id}, req.body)
   .then((gym) => {
     if(!gym){
@@ -92,7 +110,8 @@ gymR.patch('/gym/:id', async(req, res) =>{
     }
     return res.status(200).send({ msg: "Gimnasio actualizado correctamente" })
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).send({ msg: "Error al actualizar el Gimnasio" })
   })
 })
@@ -105,7 +124,8 @@ gymR.delete('/gym/:id', async(req,res) =>{
   }
     return res.status(200).send({ msg: "Gimnasio eliminado correctamente"});
   })
-  .catch(()=>{
+  .catch((err)=>{
+    console.log(err);
     return res.status(500).send({ msg: "Error" });
   })
 })

@@ -23,6 +23,7 @@ export class CreateRoutineComponent implements OnInit{
   token: any;
   routine: any = {};
   exercise: any = "";
+  selectedFile: any = null;
   exercises: any = [];
 
   constructor(private routineService: RoutinesService,
@@ -51,7 +52,6 @@ export class CreateRoutineComponent implements OnInit{
       return;
     }
     this.routine.exercises.push(this.exercise);
-    console.log(this.routine.exercises);
     this.exercise = "";
   }
   
@@ -76,7 +76,6 @@ export class CreateRoutineComponent implements OnInit{
 
   createRoutine() {
     this.routine.author = this.token.user._id;
-    this.routine.picture = "Imagen";
     this.routine.likes = 0;
     this.routine.comments = [];    
     if (this.routine.equipment_needed == "Si") {
@@ -84,7 +83,26 @@ export class CreateRoutineComponent implements OnInit{
     } else {
       this.routine.equipment_needed = false;
     }
-    this.routineService.postRoutine(this.routine)
+    
+    let exercisesIds: any = [];
+    this.routine.exercises.forEach((exercise: any) => {
+      exercisesIds.push(exercise._id);
+    });
+    const formData = new FormData();
+    formData.append('name', this.routine.name);
+    formData.append('description', this.routine.description);
+    formData.append('category', this.routine.category); 
+    formData.append('author', this.routine.author);
+    formData.append('exercises', JSON.stringify(exercisesIds));
+    formData.append('equipment_needed', this.routine.equipment_needed);
+    formData.append('avg_duration', this.routine.avg_duration);
+    formData.append('sets', this.routine.sets);
+    formData.append('reps', this.routine.reps);
+    formData.append('picture', this.selectedFile);
+    formData.append('likes', this.routine.likes);
+    formData.append('comments', this.routine.comments);
+    
+    this.routineService.postRoutine(formData)
       .subscribe(
         res => {
           console.log(res);
@@ -94,4 +112,7 @@ export class CreateRoutineComponent implements OnInit{
       )
   }
 
+  onFile(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
 }

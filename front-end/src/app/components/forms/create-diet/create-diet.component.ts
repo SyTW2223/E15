@@ -21,6 +21,7 @@ import jwt_decode from 'jwt-decode';
 export class CreateDietComponent implements OnInit {
   token: any;
   diet: any = {};
+  selectedFile: any = null;
 
   constructor(private dietService: DietsService,
     public authService: AuthenticationService,
@@ -47,10 +48,25 @@ export class CreateDietComponent implements OnInit {
   
   createDiet() {
     this.diet.author = this.token.user._id;
-    this.diet.picture = "Imagen";
     this.diet.likes = 0;
     this.diet.comments = [];
-    this.dietService.postDiet(this.diet)
+
+    const formData = new FormData();
+    formData.append('name', this.diet.name);
+    formData.append('author', this.diet.author);
+    formData.append('breakfast', this.diet.breakfast);
+    formData.append('category', this.diet.category);
+    formData.append('lunch', this.diet.lunch);
+    formData.append('snacks', this.diet.snacks);
+    formData.append('dinner', this.diet.dinner);
+    formData.append('short_description', this.diet.short_description);
+    formData.append('long_description', this.diet.long_description);
+    formData.append('picture', this.selectedFile);
+    formData.append('likes', this.diet.likes);
+    formData.append('comments', this.diet.comments);
+
+
+    this.dietService.postDiet(formData)
       .subscribe(
         res => {
           console.log(res);
@@ -58,5 +74,9 @@ export class CreateDietComponent implements OnInit {
         },
         err => console.log(err)
       ) 
+  }
+
+  onFile(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 }

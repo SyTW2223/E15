@@ -68,7 +68,7 @@ export class DeleteExerciseComponent implements OnInit {
 
   deleteExercise() {
     if(this.exerciseForm.valid){
-      let id = this.exerciseForm.get('exercise')?.value._id;
+      let id = this.exerciseForm.get('exercise')?.value.name;
       this.exercisesService.deleteExercise(id)
         .subscribe(
           res => {

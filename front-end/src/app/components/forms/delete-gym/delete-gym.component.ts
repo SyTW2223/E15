@@ -70,7 +70,7 @@ export class DeleteGymComponent implements OnInit {
 
   deleteGym() {
     if (this.gymForm.valid){
-      let id = this.gymForm.get('gym')?.value._id;
+      let id = this.gymForm.get('gym')?.value.name;
       this.gymService.deleteGym(id)
         .subscribe(
           res => {

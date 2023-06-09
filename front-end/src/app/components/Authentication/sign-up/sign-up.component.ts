@@ -89,7 +89,6 @@ export class SignUpComponent implements OnInit {
     };
     
   onFile(event: any) {
-    //console.log(event);
     this.selectedFile = event.target.files[0];
   }
 }

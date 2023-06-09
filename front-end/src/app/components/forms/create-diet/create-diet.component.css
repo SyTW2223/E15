@@ -47,3 +47,13 @@ mat-form-field {
 .text-input {
   width: 100%;
 }
+
+.inputFile {
+  margin: 15px;
+}
+
+.inputFileCard {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+

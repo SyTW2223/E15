@@ -84,6 +84,14 @@
             </mat-card-actions>
           </mat-card>
         </div>
+        <mat-card class="inputFileCard">
+          <mat-card-header> 
+            <mat-card-title> Seleccionar la imágen de la rutina: </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <input class="inputFile" type="file" (change)="onFile($event)">
+          </mat-card-content>
+        </mat-card>
       </div>
     </mat-card-content>
     <mat-card-actions>

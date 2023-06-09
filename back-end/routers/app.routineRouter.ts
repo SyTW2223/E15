@@ -25,15 +25,15 @@ routineR.post('/routine', upload.single('picture') ,async (req: any, res) =>{
       const new_comment = new Comment({username: comment.username, comment: comment.comment})
       new_comments.push(new_comment);
     }
-
-    const exercises = req.body.exercises;
+    
+    const exercises = JSON.parse(req.body.exercises);
     const new_exercises = [];
     for (let i = 0; i < exercises.length; i++) {
       const exercise = exercises[i];
       const new_exercise = await Exercise.findOne({_id: exercise})
       new_exercises.push(new_exercise);
     }
-
+    
     let imageURL = "";
     if (req.body.picture === "") {
       imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
@@ -53,11 +53,13 @@ routineR.post('/routine', upload.single('picture') ,async (req: any, res) =>{
     .then(() =>{
       return res.status(200).send({ msg: "Rutina creada correctamente" });
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return res.status(500).json({ error: "Error interno del servidor" });
     });
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
@@ -71,7 +73,8 @@ routineR.get('/routine', async(req, res) =>{
     console.log(routines);
     res.status(200).json(routines);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
@@ -85,12 +88,35 @@ routineR.get('/routine/:id', async(req, res) =>{
     console.log(routine);
     res.status(200).json(routine);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
 
-routineR.patch('/routine/:id', async(req, res) =>{
+routineR.patch('/routine/:id', upload.single('picture'), async(req: any, res) =>{
+  const exercises = JSON.parse(req.body.exercises);
+  const new_exercises = [];
+  for (let i = 0; i < exercises.length; i++) {
+    const exercise = exercises[i];
+    const new_exercise = await Exercise.findOne({_id: exercise})
+    new_exercises.push(new_exercise);
+  }
+  req.body.exercises = new_exercises;
+  
+  let imageURL = "";
+  if (req.body.picture === "") {
+    req.body.picture = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+  } else {
+    try {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+        req.body.picture = imageURL;
+      }
+    } catch (error) {}
+  }
+
   await Routine.findOneAndUpdate({name: req.params.id}, req.body)
   .then((Routine) =>{
     if(!Routine){
@@ -99,6 +125,7 @@ routineR.patch('/routine/:id', async(req, res) =>{
     return res.status(200).send({ msg: "Rutina actualizada correctamente" })
   })
   .catch((err) =>{
+    console.log(err);
     res.status(500).send({ msg: "Error al actualizar la rutina" })
   })
 });
@@ -112,7 +139,8 @@ routineR.delete('/routine/:id', async(req, res)=>{
   }
     return res.status(200).send({ msg: "Rutina eliminada satisfactoriamente" });
   })
-  .catch(()=>{
+  .catch((err)=>{
+    console.log(err);
     return res.status(500).send({ msg: "Error" });
   })
 })

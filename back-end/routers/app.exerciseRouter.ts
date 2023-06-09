@@ -16,6 +16,7 @@ exerciseR.post('/exercise', upload.single('picture'),async (req: any, res) =>{
     if (!author) {
       return res.status(404).json({ error: "Usuario no encontrado" });
     }
+    
     const comments = req.body.comments;
     const new_comments = [];
     for (let i = 0; i < comments.length; i++) {
@@ -37,17 +38,20 @@ exerciseR.post('/exercise', upload.single('picture'),async (req: any, res) =>{
       }
     }
 
+
     const new_exercise = new Exercise({id: Math.floor(Math.random() * 1000000), name: req.body.name, author: author ,short_description: req.body.short_description, long_description: req.body.long_description,
       initial_position: req.body.initial_position, category: req.body.category, equipment_needed: req.body.equipment_needed, picture: imageURL, likes: req.body.likes, comments: new_comments })
     new_exercise.save()
     .then(() =>{
       return res.status(200).send({ msg: "Ejercicio creado correctamente" });
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return res.status(500).json({ error: "Error interno del servidor" });
     });
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
@@ -61,18 +65,11 @@ exerciseR.get('/exercise', async(req, res) =>{
     console.log(exercises);
     res.status(200).json(exercises);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });   
 });
-
-/* exerciseR.get('assets/image/:filename', (req, res) => {
-  const { filename } = req.params;
-  const imagePath = `assets/image/${filename}`;
-
-  // Envía la imagen al cliente
-  res.sendFile(imagePath, { root: '.' });
-}); */
 
 exerciseR.get('/exercise/:id', async(req, res) =>{
   await Exercise.findOne({name: req.params.id})
@@ -82,13 +79,29 @@ exerciseR.get('/exercise/:id', async(req, res) =>{
     }
     res.status(200).json(exercise);
   })
-  .catch(() => {
+  .catch((err) => {
+    console.log(err);
     return res.status(500).json({ error: "Error interno del servidor" });
   });
 });
 
 
-exerciseR.patch('/exercise/:id', async(req, res) =>{
+exerciseR.patch('/exercise/:id', upload.single('picture'), async(req: any, res) =>{
+
+  let imageURL = "";
+  if (req.body.picture === "") {
+    req.body.picture = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
+  } else {
+    try {
+      const url = req.protocol + '://' + req.get('host');
+      if(req.file.filename){
+        imageURL = url + '/public/' + req.file.filename;
+        req.body.picture = imageURL;
+      }
+    } catch (error) {}
+  }
+  
+  console.log(req.params.id);
   await Exercise.findOneAndUpdate({name: req.params.id}, req.body)
   .then((exercise) =>{
     if(!exercise){
@@ -98,7 +111,8 @@ exerciseR.patch('/exercise/:id', async(req, res) =>{
         .status(200)
         .send({ msg: 'Ejercicio actualizado satisfactoriamente' })
     })
-    .catch(() => {
+    .catch((err) => {
+      console.log(err);
       return res.status(500).send({ msg: 'Error al actualizar el ejercicio' })
     })  
 })
@@ -111,7 +125,8 @@ exerciseR.delete('/exercise/:id', async(req, res)=>{
   }
     return res.status(200).send({ msg: "Ejercicio eliminado satisfactoriamente" });
   })
-  .catch(()=>{
+  .catch((err)=>{
+    console.log(err);
     return res.status(500).send({ msg: "Error" });
   })
 })

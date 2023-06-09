@@ -1,6 +1,7 @@
 import supertest from "supertest";
 import { app } from "../server/server";
 
+//TODO: crear una rutina hay que arreglarlo
 describe("Routine API", () => {
   let trial_routine = {
     id: "",
@@ -8,7 +9,7 @@ describe("Routine API", () => {
     description: "Descripción de prueba",
     category: "prueba",
     author: "6439aa0ace6fbb3cd24a990f",
-    exercises: ["6442d4aa677db19baea771c1","6442d84b53af6d36441838c1","6442d88753af6d36441838c7"],
+    //exercises: ["6442d4aa677db19baea771c1","6442d84b53af6d36441838c1","6442d88753af6d36441838c7"],
     equipment_needed: true,
     sets: 3,
     reps: 10,
