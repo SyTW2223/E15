@@ -129,4 +129,6 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 .example-header-image {
   background-size: cover;
+  width: 100px; 
+  height: 100px;
 }

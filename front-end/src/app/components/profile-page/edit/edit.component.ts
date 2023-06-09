@@ -63,7 +63,7 @@ export class EditComponent {
     formData.append('username', this.user.username);
     formData.append('phone_number', this.user.phone_number);
     formData.append('email', this.user.email);
-    //formData.append('password',user.password); 
+    formData.append('password', this.user.password); 
     formData.append('gender', this.user.gender);
     formData.append('birthdate', this.user.birthdate);
     if (this.selectedFile != null) {

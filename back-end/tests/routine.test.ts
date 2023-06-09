@@ -9,7 +9,7 @@ describe("Routine API", () => {
     description: "Descripción de prueba",
     category: "prueba",
     author: "6439aa0ace6fbb3cd24a990f",
-    //exercises: ["6442d4aa677db19baea771c1","6442d84b53af6d36441838c1","6442d88753af6d36441838c7"],
+    exercises: ["6442d4aa677db19baea771c1","6442d84b53af6d36441838c1","6442d88753af6d36441838c7"],
     equipment_needed: true,
     sets: 3,
     reps: 10,
@@ -68,10 +68,10 @@ describe("Routine API", () => {
   });
 
   it ("Debe actualizar una rutina", async () => {
-    await supertest(app)
-      .patch("/routine/" + trial_routine.name)
-      .send({ description: "Descripción de prueba actualizada" })
-      .expect(200)
+     await supertest(app)
+       .patch("/routine/" + trial_routine.name)
+       .send({ description: "Descripción de prueba actualizada" ,  exercises: ["6442d4aa677db19baea771c1","6442d84b53af6d36441838c1","6442d88753af6d36441838c7"]})
+       .expect(200)
   });
 
   it ("Debe devolver un error al actualizar una rutina, rutina no valida", async () => {

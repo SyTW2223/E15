@@ -30,10 +30,10 @@ export class RoutinePageComponent {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         for (let routine of res) {
-          //TODO: cuando esté el enum iterar sobre el enum, y comprobar que la categoria ya está insertada
-          this.categories.push(routine.category);
+          if (!this.categories.includes(routine.category)) {
+            this.categories.push(routine.category);
+          }
         }
-        // routine/row._id
       }
     )
   }

@@ -26,7 +26,16 @@ routineR.post('/routine', upload.single('picture') ,async (req: any, res) =>{
       new_comments.push(new_comment);
     }
     
-    const exercises = JSON.parse(req.body.exercises);
+    let exercises = [];
+    try {
+      exercises = JSON.parse(req.body.exercises);
+    } catch (error) { 
+      if (req.body.exercises === undefined) {
+        exercises = [];
+      } else {
+        exercises = req.body.exercises;
+      }
+    }
     const new_exercises = [];
     for (let i = 0; i < exercises.length; i++) {
       const exercise = exercises[i];
@@ -95,7 +104,17 @@ routineR.get('/routine/:id', async(req, res) =>{
 });
 
 routineR.patch('/routine/:id', upload.single('picture'), async(req: any, res) =>{
-  const exercises = JSON.parse(req.body.exercises);
+  let exercises = [];
+  try {
+    exercises = JSON.parse(req.body.exercises);
+  } catch (error) { 
+    if (req.body.exercises === undefined) {
+      exercises = [];
+    } else {
+      exercises = req.body.exercises;
+    }
+  }
+
   const new_exercises = [];
   for (let i = 0; i < exercises.length; i++) {
     const exercise = exercises[i];
