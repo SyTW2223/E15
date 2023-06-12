@@ -11,7 +11,6 @@ import { userR } from '../routers/app.userRouter';
 
 export const app = express();
 
-/* mirar porque es de dsi pillado*/
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -19,7 +18,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(cors({origin: 'http://localhost:4200'}));
+app.use(cors());
 app.use(signUpR);
 app.use(signInR);
 app.use(exerciseR);
