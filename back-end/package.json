@@ -7,7 +7,7 @@
     "test": "mocha --exit --coverage --timeout 1000000",
     "run": "tsc-watch --onSucces ./dist/server/server.js",
     "start": "node ./dist/index.js",
-    "build": "tsc",
+    "build": "npm install && tsc",
     "coveralls": "nyc npm test && nyc report --reporter=lcov"
   },
   "repository": {
