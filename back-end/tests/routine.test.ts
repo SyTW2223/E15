@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import { app } from "../server/server";
+import { app } from "../index";
 
 //TODO: crear una rutina hay que arreglarlo
 describe("Routine API", () => {

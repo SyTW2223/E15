@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import { app } from "../server/server";
+import { app } from "../index";
 
 describe("User API", () => {
   it("Debe devolver una lista de usuarios", async () => {
