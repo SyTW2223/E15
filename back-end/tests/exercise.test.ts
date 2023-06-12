@@ -1,5 +1,5 @@
 import supertest from "supertest";
-import { app } from "../server/server";
+import { app } from "../index";
 
 describe("Exercise API", () => {
   let trial_exercise = {
