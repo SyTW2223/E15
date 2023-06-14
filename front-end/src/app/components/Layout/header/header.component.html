@@ -3,40 +3,37 @@
     <i class="fa-solid fa-dumbbell fa-xl" style="color: #000000;" routerLink="/"></i>
     <span class="title" routerLink="/"><strong>PRE-WORKOUT</strong></span>
     <span class="spacer"></span>
-    <!-- Botones principales ocultos en pantallas pequeñas -->
-    <button class="button" mat-button routerLink="/" *ngIf="!isScreenSmall">Inicio</button>
-    <button class="button" mat-button routerLink="/exercises" *ngIf="!isScreenSmall">Ejercicios</button>
-    <button class="button" mat-button routerLink="/routines" *ngIf="!isScreenSmall">Rutinas</button>
-    <button class="button" mat-button routerLink="/diets" *ngIf="!isScreenSmall">Alimentación</button>
-    <button class="button" mat-button routerLink="/map" *ngIf="!isScreenSmall">Mapa</button>
-    <button class="button" mat-button routerLink="/adviser" *ngIf="!isScreenSmall">Asesoramiento</button>
+    <div *ngIf="authService.userLogged()">
+      <button class="button" mat-button routerLink="/" *ngIf="!isScreenSmall">Inicio</button>
+      <button class="button" mat-button routerLink="/exercises" *ngIf="!isScreenSmall">Ejercicios</button>
+      <button class="button" mat-button routerLink="/routines" *ngIf="!isScreenSmall">Rutinas</button>
+      <button class="button" mat-button routerLink="/diets" *ngIf="!isScreenSmall">Alimentación</button>
+      <button class="button" mat-button routerLink="/map" *ngIf="!isScreenSmall">Mapa</button>
+      <button class="button" mat-button routerLink="/adviser" *ngIf="!isScreenSmall">Asesoramiento</button>
+      <button class="button" mat-raised-button color="accent" routerLink="/profile" *ngIf="!isScreenSmall">Perfil</button>
+      <button class="button" mat-raised-button color="accent" (click)="authService.logoutUser()" *ngIf="!isScreenSmall">Salir</button>
+    </div>
     <div *ngIf="!authService.userLogged()">
       <button class="button" mat-raised-button color="accent" routerLink="/sign-in" *ngIf="!isScreenSmall">Iniciar sesión</button>
       <button class="button" mat-raised-button color="accent" routerLink="/sign-up" *ngIf="!isScreenSmall">Registrarse</button>
     </div>
-    <div *ngIf="authService.userLogged()">
-      <button class="button" mat-raised-button color="accent" routerLink="/profile" *ngIf="!isScreenSmall">Perfil</button>
-      <button class="button" mat-raised-button color="accent" (click)="authService.logoutUser()" *ngIf="!isScreenSmall">Salir</button>
-    </div>
-
    
     <button mat-icon-button [matMenuTriggerFor]="menu" class="fa-solid fa-bars fa-xl" style="color: #000000;" *ngIf="isScreenSmall"></button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item routerLink="/">Inicio</button>
-      <button mat-menu-item routerLink="/exercises">Ejercicios</button>
-      <button mat-menu-item routerLink="/routines">Rutinas</button>
-      <button mat-menu-item routerLink="/diets">Alimentación</button>
-      <button mat-menu-item routerLink="/map">Mapa</button>
-      <button mat-menu-item routerLink="/adviser">Asesoramiento</button>
+      <div *ngIf="authService.userLogged()">
+        <button mat-menu-item routerLink="/">Inicio</button>
+        <button mat-menu-item routerLink="/exercises">Ejercicios</button>
+        <button mat-menu-item routerLink="/routines">Rutinas</button>
+        <button mat-menu-item routerLink="/diets">Alimentación</button>
+        <button mat-menu-item routerLink="/map">Mapa</button>
+        <button mat-menu-item routerLink="/adviser">Asesoramiento</button>
+        <button mat-menu-item routerLink="/profile">Perfil</button>
+        <button mat-menu-item (click)="authService.logoutUser()">Salir</button>
+      </div>
       <div *ngIf="!authService.userLogged()">
         <button mat-menu-item routerLink="/sign-in">Iniciar sesión</button>
         <button mat-menu-item routerLink="/sign-up">Registrarse</button>
       </div>
-      <div *ngIf="authService.userLogged()">
-        <button mat-menu-item routerLink="/profile">Perfil</button>
-        <button mat-menu-item (click)="authService.logoutUser()">Salir</button>
-      </div>
     </mat-menu>
-
   </mat-toolbar-row>
 </mat-toolbar>

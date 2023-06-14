@@ -47,7 +47,6 @@ export class MapPageComponent implements OnInit {
   addMarker(gyms: any) {
     for (let gym of gyms) {
       this.marks.push(L.marker([gym.latitude, gym.longitude]).addTo(this.map)
-      // TODO: update popup
       .bindPopup('<b>' + gym.name + '</b><br>' +
       '<i class="fa fa-heart" style="color: #E53935;"></i> ' + gym.likes + ' Me Gusta' +  '<br><hr>' +
       '<i class="fa fa-map-pin" style="color: #1f3b6b;"></i>  <b>Dirección:</b><br>' +
