@@ -35,10 +35,10 @@
       <mat-card-content>
         <mat-list> 
           <!-- TODO: falta que al clickear vaya al ejercicio -->
-          <mat-list-item *ngFor="let exercise of exercises" [id]="exercise">
-            <a matListItemTitle href="https://media.tenor.com/x8v1oNUOmg4AAAAd/rickroll-roll.gif">{{ exercise.name }}</a>
+          <mat-list-item class="list-item" *ngFor="let exercise of exercises" [id]="exercise">
+            <a matListItemTitle>{{ exercise.name }}</a>
             <span matListItemLine class="reps">{{ routine.sets }} x {{ routine.reps }}</span>
-            <span matListItemLine>{{ exercise.short_description }}</span>
+            <span matListItemLine class="desc">{{ exercise.short_description }}</span>
           </mat-list-item>
         </mat-list>
       </mat-card-content>

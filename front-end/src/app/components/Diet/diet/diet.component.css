@@ -49,9 +49,24 @@
 }
 
 .info {
-  flex: 0 0 40%;
+  flex: 0 0 50%;
   margin: 20px;
-  max-width: 40%;
+}
+
+.info-card {
+  max-height: auto;
+}
+
+mat-list-item {
+  margin-bottom: 1%;
+  height: auto !important;
+  text-align: justify;
+  justify-content: center;
+}
+
+.diet-info {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
 }
 
 .comment {
@@ -84,12 +99,6 @@ mat-card-title {
 
 i {
   margin-left: 3%;
-}
-
-.diet-info {
-  font-style: italic;
-  word-wrap: break-word !important;
-  white-space: break-spaces;
 }
 
 .mat-list-item {
