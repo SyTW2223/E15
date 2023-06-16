@@ -6,11 +6,12 @@
   <mat-card-actions class="card-content">
     <mat-form-field class="filter-container"> 
       <mat-label>Buscar</mat-label>
-      <input matInput (keyup)="applyTextFilter($event)" placeholder="Ej. Baja Calórica" #input>
+      <input matInput (keyup)="applyFilter()" [(ngModel)]="textFilter" placeholder="Ej. Baja Calórica" #input>
     </mat-form-field>
     <mat-form-field class="selector" appearance="fill">
       <mat-label>Categoría</mat-label>
-      <mat-select [(ngModel)]="categoryTerm" (ngModelChange)="applyCategoryFilter()">
+      <mat-select [(ngModel)]="categoryTerm" (ngModelChange)="onCategoryChange()">
+        <mat-option value="">Ninguna</mat-option>
         <mat-option *ngFor="let cat of categories" [value]="cat">
           {{cat}}
         </mat-option>

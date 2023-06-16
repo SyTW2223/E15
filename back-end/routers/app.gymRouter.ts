@@ -40,7 +40,7 @@ gymR.post('/gym', upload.single('picture'), async (req: any, res)=>{
     }
 
     const new_gym = new Gym({ id: Math.floor(Math.random() * 1000000), name: req.body.name, owner: owner,
-        latitude: req.body.latitude, longitude: req.body.latitude, address: req.body.address, phone_number: req.body.phone_number,
+        latitude: req.body.latitude, longitude: req.body.longitude, address: req.body.address, phone_number: req.body.phone_number,
         website: req.body.website, likes:req.body.likes, comments: new_comments, picture: imageURL, schedule: new_schedule});
     new_gym.save()
     .then(() =>{

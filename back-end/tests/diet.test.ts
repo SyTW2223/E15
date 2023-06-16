@@ -7,7 +7,7 @@ describe("Diet API", () => {
     id: "",
     name: "dieta de prueba",
     category: "prueba",
-    author: "6439aa0ace6fbb3cd24a990f",
+    author: "64875cee47b25860b5b9301e",
     breakfast: "Desayuno de prueba",
     lunch: "Almuerzo de prueba",
     snacks: "Merienda de prueba",
@@ -32,7 +32,7 @@ describe("Diet API", () => {
     id: "",
     name: "dieta de prueba 2",
     category: "prueba",
-    author : "6439aa0ace6fbb3cd24a990f",
+    author : "64875cee47b25860b5b9301e",
   };
 
   it("Debe devolver una lista de las dietas", async () => {

@@ -5,7 +5,7 @@
 .carousel-custom-size img {
   object-fit: cover;
   object-position: center;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 
 .circulos {
