@@ -48,7 +48,7 @@ export class CreateGymComponent implements OnInit {
   createGym() {
     this.gym.owner = this.token.user._id;
     this.gym.schedule = this.schedule;
-    this.gym.picture = "Imagen";
+    this.gym.picture = "";
     this.gym.likes = 0;
     this.gym.comments = [];
     this.gymService.postGym(this.gym)

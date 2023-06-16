@@ -28,7 +28,6 @@ export const dietSchema = new Schema<DietModel>({
     type: String,
     required: true
   },
-  // TODO: revisar
   snacks: {
     type: String,
     required: true

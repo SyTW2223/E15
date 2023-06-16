@@ -156,3 +156,9 @@
   max-height: 70%;
   width: 90%;
 }
+
+.profile-picture {
+  height: 370px;
+  width: auto;
+  object-fit: cover;
+}

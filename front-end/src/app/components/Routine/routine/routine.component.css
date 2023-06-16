@@ -49,8 +49,25 @@
 }
 
 .info {
+  width: 40%;
   flex: 0 0 40%;
   margin: 20px;
+}
+
+.info-card {
+  max-height: auto;
+}
+
+.list-item {
+  margin-bottom: 1%;
+  height: auto !important;
+  text-align: justify;
+  justify-content: center;
+}
+
+.desc {
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
 }
 
 .comment {

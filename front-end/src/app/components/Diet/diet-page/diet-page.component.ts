@@ -18,6 +18,7 @@ export class DietPageComponent implements OnInit {
   categories: any = [];
   diets: any = [];
   categoryTerm: string = '';
+  textFilter: string = '';
   token: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -68,4 +69,31 @@ export class DietPageComponent implements OnInit {
     this.token = jwt_decode(this.token);
     return this.token.user.role === 'Entrenador';
   }
+
+  applyFilter() {
+    const textFilterValue = this.textFilter.trim().toLowerCase();
+    const categoryFilterValue = this.categoryTerm.trim().toLowerCase();
+  
+    this.dataSource.filterPredicate = (data: any) => {
+      const categoryMatches = categoryFilterValue === '' || (data.category && data.category.toLowerCase().includes(categoryFilterValue));
+      const textMatches =
+        (data.name && data.name.toLowerCase().includes(textFilterValue)) ||
+        (data.author && typeof data.author === 'string' && data.author.toLowerCase().includes(textFilterValue)) ||
+        (data['short-description'] && data['short-description'].toLowerCase().includes(textFilterValue));
+  
+      return categoryMatches && textMatches;
+    };
+  
+    // Verificar si this.dataSource tiene datos antes de aplicar el filtro
+    if (this.dataSource) {
+      this.dataSource.filter = {text: textFilterValue, category: categoryFilterValue};
+    }
+  }  
+
+  onCategoryChange() {
+    if (this.categoryTerm === null) {
+      this.categoryTerm = '';
+    }
+    this.applyFilter();
+  }  
 }

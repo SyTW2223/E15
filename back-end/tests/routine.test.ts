@@ -8,8 +8,8 @@ describe("Routine API", () => {
     name: "rutina de prueba",
     description: "Descripción de prueba",
     category: "prueba",
-    author: "6439aa0ace6fbb3cd24a990f",
-    exercises: ["6442d4aa677db19baea771c1","6442d84b53af6d36441838c1","6442d88753af6d36441838c7"],
+    author: "64875cee47b25860b5b9301e",
+    exercises: ["6489ec15bf6fd4826e1fea44","6489ec15bf6fd4826e1fea44","6489ec15bf6fd4826e1fea44"],
     equipment_needed: true,
     sets: 3,
     reps: 10,
@@ -32,7 +32,7 @@ describe("Routine API", () => {
     id: "",
     name: "rutina de prueba 2",
     category: "prueba",
-    author : "6439aa0ace6fbb3cd24a990f",
+    author : "64875cee47b25860b5b9301e",
   };
 
   it ("Debe devolver una lista de las rutinas", async () => {

@@ -4,6 +4,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { AppRoutingModule } from './modules/app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/Home/homepage/homepage.component';
@@ -140,6 +141,10 @@ import { UpdateRoutineComponent } from './components/forms/update-routine/update
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
+  },
+  {
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
   },
     GymsService,
     DietsService,

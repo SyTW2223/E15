@@ -4,8 +4,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { ExercisesService } from 'src/app/services/exercises.service';
 import { Router } from '@angular/router';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 import { ExerciseComponent } from 'src/app/components/Exercise/exercise/exercise.component'
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import jwt_decode from 'jwt-decode';
@@ -22,6 +22,7 @@ export class ExercisePageComponent {
   exercises: any = [];
   equipment: string[] = [];
   categoryTerm: string = '';
+  textFilter: string = '';
   token: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -46,22 +47,25 @@ export class ExercisePageComponent {
     )
   }
 
-  applyTextFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  applyFilter() {
+    const textFilterValue = this.textFilter.trim().toLowerCase();
+    const categoryFilterValue = this.categoryTerm.trim().toLowerCase();
+  
+    this.dataSource.filterPredicate = (data: any) => {
+      const categoryMatches = categoryFilterValue === '' || (data.category && data.category.toLowerCase().includes(categoryFilterValue));
+      const textMatches =
+        (data.name && data.name.toLowerCase().includes(textFilterValue)) ||
+        (data.author && typeof data.author === 'string' && data.author.toLowerCase().includes(textFilterValue)) ||
+        (data['short-description'] && data['short-description'].toLowerCase().includes(textFilterValue));
+  
+      return categoryMatches && textMatches;
+    };
+  
+    // Verificar si this.dataSource tiene datos antes de aplicar el filtro
+    if (this.dataSource) {
+      this.dataSource.filter = {text: textFilterValue, category: categoryFilterValue};
     }
-  }
-
-  applyCategoryFilter() {
-    this.dataSource.filter = this.categoryTerm.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+  }  
 
   openExerciseDialog(id: any): void {
     const dialogRef = this.dialog.open(ExerciseComponent, {
@@ -79,5 +83,12 @@ export class ExercisePageComponent {
     this.token = this.authService.getToken();
     this.token = jwt_decode(this.token);
     return this.token.user.role === 'Entrenador';
+  }
+
+  onCategoryChange() {
+    if (this.categoryTerm === null) {
+      this.categoryTerm = '';
+    }
+    this.applyFilter();
   }
 }

@@ -5,7 +5,7 @@ describe("Exercise API", () => {
   let trial_exercise = {
     id: "",
     name: "ejercicio de prueba",
-    author: "6439aa0ace6fbb3cd24a990f",
+    author: "64875cee47b25860b5b9301e",
     short_description: "Descripción corta de prueba",
     long_description: "Descripción larga de prueba",
     initial_position: "Posición inicial de prueba",
@@ -29,7 +29,7 @@ describe("Exercise API", () => {
     id: "",
     name: "ejercicio de prueba 2",
     category: "prueba",
-    author : "6439aa0ace6fbb3cd24a990f",
+    author : "64875cee47b25860b5b9301e",
   };
 
   it("Debe devolver una lista de los ejercicios", async () => {
