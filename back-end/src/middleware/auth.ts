@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken')
 import { Router, Request, Response } from 'express';
 import * as bodyParser from 'body-parser';
 
-//improvisado no se si funciona de ninguna manera
 interface AuthRequest extends Request {
   user?: any;
 }

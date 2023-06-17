@@ -1,7 +1,7 @@
 import supertest from "supertest";
 import { app } from "../index";
+import { describe } from "mocha";
 
-//TODO: crear una rutina hay que arreglarlo
 describe("Routine API", () => {
   let trial_routine = {
     id: "",

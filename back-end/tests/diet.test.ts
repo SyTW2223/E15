@@ -1,5 +1,6 @@
 import supertest from "supertest";
 import { app } from "../index";
+import { describe } from "mocha";
 
 describe("Diet API", () => {
 

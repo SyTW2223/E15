@@ -1,13 +1,13 @@
 import express from 'express';
 import cors from 'cors';
-import './db/moongose';
-import { signUpR } from './routers/app.routerSignUp'
-import { signInR } from './routers/app.routerSignIn'
-import { exerciseR } from './routers/app.exerciseRouter'
-import { gymR } from './routers/app.gymRouter'
-import { routineR } from './routers/app.routineRouter';
-import { dietR } from './routers/app.dietRouter';
-import { userR } from './routers/app.userRouter';
+import './src/db/moongose';
+import { signUpR } from './src/routers/app.routerSignUp'
+import { signInR } from './src/routers/app.routerSignIn'
+import { exerciseR } from './src/routers/app.exerciseRouter'
+import { gymR } from './src/routers/app.gymRouter'
+import { routineR } from './src/routers/app.routineRouter';
+import { dietR } from './src/routers/app.dietRouter';
+import { userR } from './src/routers/app.userRouter';
 
 export const app = express();
 
