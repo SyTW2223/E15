@@ -14,7 +14,6 @@ signUpR.post('/signUp', upload.single('picture'), async (req: any, res)=>{
 
   let imageURL = "";
   if (req.body.picture === "") {
-    console.log("No hay imagen");
     imageURL = "https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found.jpg";
   } else {
     const url = req.protocol + '://' + req.get('host');
@@ -40,6 +39,7 @@ signUpR.post('/signUp', upload.single('picture'), async (req: any, res)=>{
       res.status(200).json({token});
     }
   }).catch((err) =>{
+    console.log(err);
     if(err.code === 11000){
       res.status(500).send({message: "El usuario ya existe"})
     } else {

@@ -74,6 +74,7 @@ userR.patch('/user/:id', auth, upload.single('picture'), async(req: any, res) =>
 
 
 userR.delete('/user/:id', auth, async(req,res) =>{
+  console.log(req.params.id);
   await User.findOneAndDelete({_id: req.params.id})
   .then((user)=>{
     if(!user){
