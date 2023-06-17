@@ -5,12 +5,13 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {upload} from '../middleware/file';
 const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth');
 
 export const exerciseR = express.Router();
 
 exerciseR.use(bodyParser.json());
 
-exerciseR.post('/exercise', upload.single('picture'),async (req: any, res) =>{
+exerciseR.post('/exercise', auth, upload.single('picture'),async (req: any, res) =>{
   await User.findOne({_id: req.body.author})
   .then((author) =>{
     if (!author) {
@@ -56,7 +57,7 @@ exerciseR.post('/exercise', upload.single('picture'),async (req: any, res) =>{
   });
 });
 
-exerciseR.get('/exercise', async(req, res) =>{
+exerciseR.get('/exercise', auth, async(req, res) =>{
   await Exercise.find()
   .then((exercises) =>{
     if (!exercises) {
@@ -87,7 +88,7 @@ exerciseR.get('/exercise/:id', async(req, res) =>{
 });
 
 
-exerciseR.patch('/exercise/:id', upload.single('picture'), async(req: any, res) =>{
+exerciseR.patch('/exercise/:id', auth, upload.single('picture'), async(req: any, res) =>{
 
   let imageURL = "";
   if (req.body.picture === "") {
@@ -118,7 +119,7 @@ exerciseR.patch('/exercise/:id', upload.single('picture'), async(req: any, res) 
     })  
 })
 
-exerciseR.delete('/exercise/:id', async(req, res)=>{
+exerciseR.delete('/exercise/:id', auth, async(req, res)=>{
   await Exercise.findOneAndDelete({name: req.params.id})
   .then((Exercise)=>{
     if(!Exercise){

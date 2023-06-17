@@ -41,15 +41,33 @@ describe("Gym API", () => {
     picture: "",
   };
 
+  let test_user = {
+    email: "bumstead@gmail.com",
+    password: "bumstead",
+  };
+
+  let token = "";
+
+  it ("Debe loguearse en la aplicacion", async () => {
+    const response = await supertest(app)
+      .post("/signIn")
+      .send(test_user)
+      .expect(200)
+    token = response.body.token;
+    
+  });
+
   it ("Debe devolver una lista de gimnasios", async () => {
     await supertest(app)
       .get("/gym")
+      .set("Authorization", "Bearer " + token)
       .expect(200)
   });
 
   it ("Debe crear un nuevo gimnasio", async () => {
     await supertest(app)
       .post("/gym")
+      .set("Authorization", "Bearer " + token)
       .send(trial_gym)
       .expect(200)
   });
@@ -64,18 +82,21 @@ describe("Gym API", () => {
   it ("Debe devolver un gimnasio especifico", async () => {
     await supertest(app)
       .get("/gym/" + trial_gym.name)
+      .set("Authorization", "Bearer " + token)
       .expect(200)
   });
 
   it ("Debe devolver un error al buscar un gimnasio especifico, gimnasio no encontrado", async () => {
     await supertest(app)
       .get("/gym/gim_fallo")
+      .set("Authorization", "Bearer " + token)
       .expect(404)
   });
 
   it ("Debe actualizar un gimnasio", async () => {
     await supertest(app)
       .patch("/gym/" + trial_gym.name)
+      .set("Authorization", "Bearer " + token)
       .send({address: "prueba 2"})
       .expect(200)
   });
@@ -83,6 +104,7 @@ describe("Gym API", () => {
   it ("Debe devolver un error al actualizar un gimnasio, gimnasio no encontrado", async () => {
     await supertest(app)
       .patch("/gym/gim_fallo")
+      .set("Authorization", "Bearer " + token)
       .send({address: "prueba 2"})
       .expect(404)
   });
@@ -90,12 +112,14 @@ describe("Gym API", () => {
   it ("Debe eliminar un gimnasio", async () => {
     await supertest(app)
       .delete("/gym/" + trial_gym.name)
+      .set("Authorization", "Bearer " + token)
       .expect(200)
   });
 
   it ("Debe devolver un error al eliminar un gimnasio, gimnasio no encontrado", async () => {
     await supertest(app)
       .delete("/gym/gim_fallo")
+      .set("Authorization", "Bearer " + token)
       .expect(404)
   });
 });

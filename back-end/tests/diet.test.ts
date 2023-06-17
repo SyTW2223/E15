@@ -36,9 +36,26 @@ describe("Diet API", () => {
     author : "64875cee47b25860b5b9301e",
   };
 
+  let test_user = {
+    email: "bumstead@gmail.com",
+    password: "bumstead",
+  };
+
+  let token = "";
+
+  it ("Debe loguearse en la aplicacion", async () => {
+    const response = await supertest(app)
+      .post("/signIn")
+      .send(test_user)
+      .expect(200)
+    token = response.body.token;
+    
+  });
+
   it("Debe devolver una lista de las dietas", async () => {
     await supertest(app)
       .get("/diet")
+      .set("Authorization", "Bearer " + token)
       .expect(200)
   });
   
@@ -46,6 +63,7 @@ describe("Diet API", () => {
   it ("Debe crear una nueva dieta", async () => {
     await supertest(app)
       .post("/diet")
+      .set("Authorization", "Bearer " + token)
       .send(trial_diet)
       .expect(200)
   });
@@ -53,6 +71,7 @@ describe("Diet API", () => {
   it ("Debe devolver un error al crear una dieta, dieta no valida", async () => {
     await supertest(app)
       .post("/diet")
+      .set("Authorization", "Bearer " + token)
       .send(trial_diet2)
       .expect(500)
   });
@@ -61,18 +80,21 @@ describe("Diet API", () => {
   it("Debe devolver una dieta específica", async () => {
     await supertest(app)
     .get("/diet/" + trial_diet.name)
+    .set("Authorization", "Bearer " + token)
     .expect(200)
   });
 
   it("Debe devolver un error al buscar una dieta", async () => {
     await supertest(app)
     .get("/diet/prueba_fallo")
+    .set("Authorization", "Bearer " + token)
     .expect(404)
   });
   
   it("Debe actualizar una dieta", async () => {
     await supertest(app)
     .patch("/diet/" + trial_diet.name)
+    .set("Authorization", "Bearer " + token)
     .send({breakfast: "Desayuno de prueba actualizado"})
     .expect(200) 
   });
@@ -80,6 +102,7 @@ describe("Diet API", () => {
   it("Debe devolver un error al actualizar una dieta", async () => {
     await supertest(app)
     .patch("/diet/prueba_fallo")
+    .set("Authorization", "Bearer " + token)
     .send({breakfast: "Desayuno de prueba actualizado"})
     .expect(404)
   });
@@ -88,12 +111,14 @@ describe("Diet API", () => {
   it("Debe borrar una dieta", async () => {
     await supertest(app)
     .delete("/diet/" + trial_diet.name)
+    .set("Authorization", "Bearer " + token)
     .expect(200)
   });
 
   it("Debe devolver un error al borrar una dieta", async () => {
     await supertest(app)
     .delete("/diet/prueba_fallo")
+    .set("Authorization", "Bearer " + token)
     .expect(404)
   });
 });

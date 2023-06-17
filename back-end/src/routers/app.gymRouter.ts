@@ -6,12 +6,13 @@ import { upload } from '../middleware/file';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth');
 
 export const gymR = express.Router();
 
 gymR.use(bodyParser.json());
 
-gymR.post('/gym', upload.single('picture'), async (req: any, res)=>{
+gymR.post('/gym', auth, upload.single('picture'), async (req: any, res)=>{
   await User.findOne({_id: req.body.owner})
   .then((owner) =>{
     if (!owner) {
@@ -58,7 +59,7 @@ gymR.post('/gym', upload.single('picture'), async (req: any, res)=>{
 });
 
 
-gymR.get('/gym', async (req,res) => {
+gymR.get('/gym', auth, async (req,res) => {
   await Gym.find()
   .then((gyms) => {
     if(!gyms){
@@ -89,7 +90,7 @@ gymR.get('/gym/:id', async (req,res) => {
   });
 })
 
-gymR.patch('/gym/:id', upload.single('picture'), async(req: any, res) =>{
+gymR.patch('/gym/:id', auth, upload.single('picture'), async(req: any, res) =>{
 
   let imageURL = "";
   if (req.body.picture === "") {
@@ -117,7 +118,7 @@ gymR.patch('/gym/:id', upload.single('picture'), async(req: any, res) =>{
   })
 })
 
-gymR.delete('/gym/:id', async(req,res) =>{
+gymR.delete('/gym/:id', auth,async(req,res) =>{
   await Gym.findOneAndDelete({name: req.params.id})
   .then((gym)=>{
     if(!gym){

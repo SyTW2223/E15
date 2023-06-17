@@ -5,12 +5,13 @@ import { upload } from '../middleware/file';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
 
 export const dietR = express.Router();
 
 dietR.use(bodyParser.json());
 
-dietR.post('/diet', upload.single('picture'), async (req: any, res) =>{
+dietR.post('/diet', auth, upload.single('picture'), async (req: any, res) =>{
   await User.findOne({_id: req.body.author})
   .then((author) =>{
     if (!author) {
@@ -57,7 +58,7 @@ dietR.post('/diet', upload.single('picture'), async (req: any, res) =>{
   });
 });
 
-dietR.get('/diet', async(req, res) =>{
+dietR.get('/diet', auth, async(req, res) =>{
   await Diet.find()
   .then((diets) =>{
     if (!diets) {
@@ -73,7 +74,7 @@ dietR.get('/diet', async(req, res) =>{
   });
 });
 
-dietR.get('/diet/:name', async(req, res) =>{
+dietR.get('/diet/:name', auth, async(req, res) =>{
   await Diet.findOne({name: req.params.name})
   .then((diet) =>{
     if (!diet) {
@@ -88,7 +89,7 @@ dietR.get('/diet/:name', async(req, res) =>{
   });
 });
 
-dietR.patch('/diet/:name', upload.single('picture'), async(req: any, res) =>{
+dietR.patch('/diet/:name', auth, upload.single('picture'), async(req: any, res) =>{
 
   let imageURL = "";
   if (req.body.picture === "") {
@@ -118,7 +119,7 @@ dietR.patch('/diet/:name', upload.single('picture'), async(req: any, res) =>{
     })
 });
 
-dietR.delete('/diet/:name', async(req, res)=>{
+dietR.delete('/diet/:name', auth, async(req, res)=>{
   await Diet.findOneAndDelete({name: req.params.name})
   .then((Diet)=>{
     if(!Diet){

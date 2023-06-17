@@ -2,6 +2,7 @@ import { User } from '../Schema/userSchema';
 import { upload } from '../middleware/file';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
+const auth = require('../middleware/auth');
 
 const jwt = require('jsonwebtoken');
 
@@ -9,7 +10,7 @@ export const userR = express.Router();
 
 userR.use(bodyParser.json());
 
-userR.get('/user', async(req, res) =>{
+userR.get('/user', auth, async(req, res) =>{
   await User.find()
   .then((users) =>{
     if (!users) {
@@ -26,7 +27,7 @@ userR.get('/user', async(req, res) =>{
   });
 })
 
-userR.get('/user/:id' , async(req,res) =>{
+userR.get('/user/:id', auth, async(req,res) =>{
   await User.findOne({_id: req.params.id})
   .then((user) =>{
     if (!user) {
@@ -41,7 +42,7 @@ userR.get('/user/:id' , async(req,res) =>{
   });
 });
 
-userR.patch('/user/:id', upload.single('picture'), async(req: any, res) =>{
+userR.patch('/user/:id', auth, upload.single('picture'), async(req: any, res) =>{
   const userId = req.params.id;
   const newUserData = req.body;
 
@@ -72,7 +73,7 @@ userR.patch('/user/:id', upload.single('picture'), async(req: any, res) =>{
 });
 
 
-userR.delete('/user/:id', async(req,res) =>{
+userR.delete('/user/:id', auth, async(req,res) =>{
   await User.findOneAndDelete({_id: req.params.id})
   .then((user)=>{
     if(!user){

@@ -6,12 +6,13 @@ import { upload } from '../middleware/file';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth');
 
 export const routineR = express.Router();
 
 routineR.use(bodyParser.json());
 
-routineR.post('/routine', upload.single('picture') ,async (req: any, res) =>{
+routineR.post('/routine', auth, upload.single('picture') ,async (req: any, res) =>{
   await User.findOne({_id: req.body.author})
   .then(async (user) =>{
     if (!user) {
@@ -73,7 +74,7 @@ routineR.post('/routine', upload.single('picture') ,async (req: any, res) =>{
   });
 });
 
-routineR.get('/routine', async(req, res) =>{
+routineR.get('/routine', auth, async(req, res) =>{
   await Routine.find()
   .then((routines) =>{
     if (!routines) {
@@ -89,7 +90,7 @@ routineR.get('/routine', async(req, res) =>{
   });
 });
 
-routineR.get('/routine/:id', async(req, res) =>{
+routineR.get('/routine/:id', auth, async(req, res) =>{
   await Routine.findOne({name: req.params.id})
   .then((routine) =>{
     if (!routine) {
@@ -104,7 +105,7 @@ routineR.get('/routine/:id', async(req, res) =>{
   });
 });
 
-routineR.patch('/routine/:id', upload.single('picture'), async(req: any, res) =>{
+routineR.patch('/routine/:id', auth, upload.single('picture'), async(req: any, res) =>{
   let exercises = [];
   try {
     exercises = JSON.parse(req.body.exercises);
@@ -150,7 +151,7 @@ routineR.patch('/routine/:id', upload.single('picture'), async(req: any, res) =>
   })
 });
 
-routineR.delete('/routine/:id', async(req, res)=>{
+routineR.delete('/routine/:id', auth, async(req, res)=>{
   console.log(req.body);
   await Routine.findOneAndDelete({name: req.params.id})
   .then((Routine)=>{
