@@ -65,6 +65,7 @@ gymR.get('/gym', async (req,res) => {
       return res.status(404).send({ msg: "No hay gimnasios" })
     }
     console.log(gyms);
+    gyms.sort((a, b) => (a.name < b.name) ? 1 : -1)
     return res.status(200).send(gyms);
   })
   .catch((err) => {

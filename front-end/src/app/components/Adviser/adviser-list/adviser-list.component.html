@@ -6,11 +6,12 @@
   <mat-card-actions class="card-content">
     <mat-form-field class="filter-container"> 
       <mat-label>Buscar</mat-label>
-      <input matInput (keyup)="applyTextFilter($event)" placeholder="Ej. @gmail" #input>
+      <input matInput (keyup)="applyTextFilter()" [(ngModel)]="textFilter" placeholder="Ej. @gmail" #input>
     </mat-form-field>
     <mat-form-field class="selector" appearance="fill">
       <mat-label>Email</mat-label>
       <mat-select [(ngModel)]="emailTerm" (ngModelChange)="applyEmailFilter()">
+        <mat-option value="">Ninguno</mat-option>
         <mat-option *ngFor="let category of categories" [value]="category">
           {{category}}
         </mat-option>
@@ -45,9 +46,7 @@
       <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
         <div class="example-element-detail"
             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <!--Cualquier cosa que no carge la foto borrar este cacho-->
             <div mat-card-avatar class="example-header-image" style="background-image: url('{{element.picture}}')"></div>
-            <!-- <img [src]="element.picture" alt="Imagen"> -->
           <div class="example-element-description">
             {{element.descriptions}} 
           </div>

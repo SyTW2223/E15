@@ -64,6 +64,7 @@ dietR.get('/diet', async(req, res) =>{
       return res.status(404).json({ error: "No hay dietas" });
     }
     console.log(diets);
+    diets.sort((a, b) => (a.name > b.name) ? 1 : -1);
     res.status(200).json(diets);
   })
   .catch((err) => {

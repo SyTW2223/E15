@@ -17,6 +17,7 @@ userR.get('/user', async(req, res) =>{
     
     }
     console.log(users);
+    users.sort((a, b) => (a.username > b.username) ? 1 : -1)
     res.status(200).json(users);
   })
   .catch((err) => {

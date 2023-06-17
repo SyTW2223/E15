@@ -63,6 +63,7 @@ exerciseR.get('/exercise', async(req, res) =>{
       return res.status(404).json({ error: "No hay ejercicios" });
     }
     console.log(exercises);
+    exercises.sort((a, b) => (a.name > b.name) ? 1 : -1)
     res.status(200).json(exercises);
   })
   .catch((err) => {

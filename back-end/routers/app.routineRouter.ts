@@ -80,6 +80,7 @@ routineR.get('/routine', async(req, res) =>{
       return res.status(404).json({ error: "No hay rutinas" });
     }
     console.log(routines);
+    routines.sort((a, b) => (a.name < b.name) ? 1 : -1)
     res.status(200).json(routines);
   })
   .catch((err) => {
