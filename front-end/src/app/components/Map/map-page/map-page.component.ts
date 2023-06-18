@@ -62,12 +62,12 @@ export class MapPageComponent implements OnInit {
       'Sábado: ' + gym.schedule.saturday + '<br>' +
       'Domingo: ' + gym.schedule.sunday + '<br><br>' +
       '<i class="fa fa-globe" style="color: #1f3b6b;"></i>  <b>Web:</b><br>' +
-      gym.website + '<br><hr>' + 
-      '<i class="fa fa-comments" style="color: #1f3b6b;"></i>  <b>Comentarios:</b><br>' +
-      gym.comments[0].username + '<br>' +
-      gym.comments[0].comment + '<br><br>' +
-      gym.comments[1].username + '<br>' +
-      gym.comments[1].comment + '<br><br>') 
+      gym.website + '<br><hr>') 
+      // '<i class="fa fa-comments" style="color: #1f3b6b;"></i>  <b>Comentarios:</b><br>' +
+      // gym.comments[0].username + '<br>' +
+      // gym.comments[0].comment + '<br><br>' +
+      // gym.comments[1].username + '<br>' +
+      // gym.comments[1].comment + '<br><br>'
     )}    
   }
 }

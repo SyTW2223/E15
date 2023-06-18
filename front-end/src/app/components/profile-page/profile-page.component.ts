@@ -38,6 +38,14 @@ export class ProfilePageComponent implements OnInit {
     this.token = jwt_decode(this.token);
     this.user = this.token.user;
 
+    let fechaObj = new Date(this.user.birthdate);
+
+    const dia = fechaObj.getUTCDate();
+    const mes = fechaObj.getUTCMonth() + 1;
+    const anio = fechaObj.getUTCFullYear();
+
+    this.user.birthdate = `${dia.toString().padStart(2, '0')}/${mes.toString().padStart(2, '0')}/${anio}`;
+
     this.routineService.getRoutines()
     .subscribe(
       res => {

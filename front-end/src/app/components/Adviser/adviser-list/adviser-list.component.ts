@@ -5,7 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { UsersService } from 'src/app/services/users.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
-//import { User } from './back-end/Schema/userSchema';
 import { Router } from '@angular/router';
 
 const descriptions: string[] =[
@@ -65,6 +64,7 @@ export class AdviserListComponent implements OnInit {
   categories: any = [];
   users: any = [];
   emailTerm: string = '';
+  textFilter: string = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   columnsToDisplayWithExpand = [...this.displayedColumns, 'expand'];
@@ -89,31 +89,35 @@ export class AdviserListComponent implements OnInit {
 
         
         for (let user of res) { 
-          if (!this.categories.includes(user.email)) {
-            console.log(user.email);
-            this.categories.push(user.email);
+          if (user.role === 'Entrenador') {
+            if (!this.categories.includes(user.email)) {
+              this.categories.push(user.email);
+            }
           }
         }
       }
     )
   }
 
-  applyTextFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  applyTextFilter() {
+    const textFilterValue = this.textFilter.trim().toLowerCase();
+    const emailFilterValue = this.emailTerm.trim().toLowerCase();
+    
+    this.dataSource.filterPredicate = (data: any) => {
+      const emailMatches = emailFilterValue === '' || data.email.toLowerCase().includes(emailFilterValue);
+      const textMatches = textFilterValue === '' || data.first_name.toLowerCase().includes(textFilterValue);
+      return emailMatches && textMatches;
+    };
+    if (this.dataSource) {
+      this.dataSource.filter = {text: textFilterValue, email: emailFilterValue};
     }
   }
 
   applyEmailFilter() {
-    const filterValue =  this.emailTerm.trim().toLowerCase();
-    this.dataSource.filter = filterValue;
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    if (this.emailTerm === null) {
+      this.emailTerm = '';
     }
+    this.applyTextFilter();
   }
 
   columnNames: { [key: string]: string } = {

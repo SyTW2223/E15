@@ -1,6 +1,6 @@
 import supertest from "supertest";
 import { app } from "../index";
-const request = supertest(app);
+import { describe } from "mocha";
 
 describe("signUp API", () => {
   /*
