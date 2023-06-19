@@ -1,6 +1,22 @@
 # Back-end
 
-## Descripción
+## Comandos
+### Instalar dependencias
+```dotnetcli
+npm install
+```
 
-## Como usar
-npm start para ejecutar el servidor
+### Ejecutar tests
+```dotnetcli
+npm run test
+```
+
+### Ejecutar tests con cobertura
+```dotnetcli
+npm run coveralls
+```
+
+### Desplegar servidor en local
+``` dotnetcli
+npm run start
+```
